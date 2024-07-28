@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Methods of Treatment</title>
+</head>
+<body>
+    <h1>דרכי טיפול </h1>
+    {% for treatment in treatments %}
+        <h2>{{ treatment.title }}</h2>
+        <p>{{ treatment.content }}</p>
+    {% endfor %}
+</body>
+</html>

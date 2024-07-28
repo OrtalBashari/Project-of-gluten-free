@@ -1,0 +1,14 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Entitlements for Celiac Patients</title>
+</head>
+<body>
+    <h1>זכאויות לחולי צליאק</h1>
+    {% for entitlement in entitlements %}
+        <h2>{{ entitlement.title }}</h2>
+        <p>{{ entitlement.description }}</p>
+    {% endfor %}
+</body>
+</html>

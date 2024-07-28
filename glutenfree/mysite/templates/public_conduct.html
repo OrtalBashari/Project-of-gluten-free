@@ -1,0 +1,14 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Conduct in Public Places</title>
+</head>
+<body>
+    <h1>התנהלות במקומות ציבוריים</h1>
+    {% for conduct in conducts %}
+        <h2>{{ conduct.title }}</h2>
+        <p>{{ conduct.content }}</p>
+    {% endfor %}
+</body>
+</html>

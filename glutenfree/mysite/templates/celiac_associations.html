@@ -1,0 +1,17 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Celiac Associations</title>
+</head>
+<body>
+    <h1> עמותות לחולי צליאק </h1>
+    {% for association in associations %}
+        <h2>{{ association.name }}</h2>
+        <p>{{ association.description }}</p>
+        {% if association.website %}
+            <p>Website: <a href="{{ association.website }}" target="_blank">{{ association.website }}</a></p>
+        {% endif %}
+    {% endfor %}
+</body>
+</html>

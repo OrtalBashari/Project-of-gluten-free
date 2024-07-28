@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Background on the Disease</title>
+</head>
+<body>
+    <h1>רקע על המחלה</h1>
+    {% for background in backgrounds %}
+        <h2>{{ background.title }}</h2>
+        <p>{{ background.content }}</p>
+    {% endfor %}
+</body>
+</html>

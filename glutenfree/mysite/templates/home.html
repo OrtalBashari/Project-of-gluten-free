@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gluten-Free Website</title>
+    <link rel="icon" href="{% static 'favicon.ico' %}">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <div class="header">
+        <!-- Registration/Login Link -->
+        <div class="auth-links">
+            <a href="{% url 'login' %}">התחברות/הרשמה</a>
+           
+        </div>
+          
+        <h1 class="title"> המדריך - Gluten Free</h1>
+        <!-- Search Box -->
+        <form class="search-form" action="#" method="get">
+            <input type="text" name="search" placeholder="הקלד...">
+            <button type="submit">חפש</button>
+        </form>
+    </div>
+
+    <!-- Tab Navigation -->
+    <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'Recipes')">מתכונים</button>
+        <button class="tablinks" onclick="openTab(event, 'Entitlements')">זכאויות לחולי צליאק</button>
+        <button class="tablinks" onclick="openTab(event, 'CeliacAssociations')">עמותות לחולי צליאק</button>
+        <button class="tablinks" onclick="openTab(event, 'PublicConduct')">התנהלות במקומות ציבוריים</button>
+        <button class="tablinks" onclick="openTab(event, 'Treatment')">דרכי טיפול</button>
+        <button class="tablinks" onclick="openTab(event, 'Background')">רקע על המחלה</button>
+    </div>
+
+    <!-- Square Buttons -->
+    <ul>
+        <li><a href="{% url 'background' %}">מתכונים</a></li>
+        <li><a href="{% url 'treatment' %}">זכאויות לחולי צליאק</a></li>
+        <li><a href="{% url 'public_conduct' %}">עמותות לחולי צליאק</a></li>
+        <li><a href="{% url 'celiac_associations' %}">התנהלות במקומות ציבוריים</a></li>
+        <li><a href="{% url 'entitlements' %}">דרכי טיפול</a></li>
+        <li><a href="{% url 'recipes' %}">רקע על המחלה</a></li>
+    </ul>
+
+    <!-- Tab Content -->
+    <div id="Background" class="tabcontent">
+        <h2>רקע על המחלה</h2>
+        <p><a href="{% url 'background' %}">More details...</a></p>
+    </div>
+
+    <div id="Treatment" class="tabcontent">
+        <h2>דרכי טיפול</h2>
+        <p><a href="{% url 'treatment' %}">More details...</a></p>
+    </div>
+
+    <div id="PublicConduct" class="tabcontent">
+        <h2>התנהלות במקומות ציבוריים</h2>
+        <p><a href="{% url 'public_conduct' %}">More details...</a></p>
+    </div>
+
+    <div id="CeliacAssociations" class="tabcontent">
+        <h2>עמותות לחולי צליאק</h2>
+        <p><a href="{% url 'celiac_associations' %}">More details...</a></p>
+    </div>
+
+    <div id="Entitlements" class="tabcontent">
+        <h2>זכאויות לחולי צליאק</h2>
+        <p><a href="{% url 'entitlements' %}">More details...</a></p>
+    </div>
+
+    <div id="Recipes" class="tabcontent">
+        <h2>מתכונים</h2>
+        <p><a href="{% url 'recipes' %}">More details...</a></p>
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
+</body>
+</html>

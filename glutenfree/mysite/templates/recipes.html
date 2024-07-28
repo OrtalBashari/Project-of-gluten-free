@@ -1,0 +1,17 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recipes</title>
+</head>
+<body>
+    <h1>מתכונים ללא גלוטן</h1>
+    {% for recipe in recipes %}
+        <h2>{{ recipe.name }}</h2>
+        <p><strong>Ingredients:</strong></p>
+        <p>{{ recipe.ingredients }}</p>
+        <p><strong>Instructions:</strong></p>
+        <p>{{ recipe.instructions }}</p>
+    {% endfor %}
+</body>
+</html>
