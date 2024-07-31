@@ -1,13 +1,61 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" dir="rtl">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Background on the Disease</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #c2cdd4;
+            margin: 0;
+            padding: 0;
+            color: #8c3cbd;
+            direction: rtl; /* Set text direction to right-to-left */
+            text-align: right; /* Align text to the right */
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #e3609b;
+        }
+        h2 {
+            color: #4a90e2;
+            margin-top: 20px;
+        }
+        p {
+            margin: 10px 0;
+            line-height: 1.6;
+            padding: 0 20px;
+        }
+        .content-wrapper {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #eaeaea;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 <body>
-    <h1>רקע על המחלה</h1>
-    {% for background in backgrounds %}
-        <h2>{{ background.title }}</h2>
-        <p>{{ background.content }}</p>
-    {% endfor %}
+    <div class="content-wrapper">
+        <h1>רקע על המחלה</h1>
+        <p> 
+            צליאק הינה מחלה שבה הגוף תוקף את עצמו.
+            <br>
+            מחלה זו בעיקר פוגעת במערכת העיכול, אך היא משפיעה גם על איברים אחרים בגוף האדם. 
+            <br>
+            הגורם העיקרי למחלה הוא צריכה של גלוטן למערכת העיכול, אשר נמצא 
+            <br>
+            בלחם, פסטה, פיצה, קמח וכל מיני מאכלים אשר קיים בהם חיטה, שעורה או שיפון...
+            <br>
+
+        </p>
+        {% for background in backgrounds %}
+            <h2>{{ background.title }}</h2>
+            <p>{{ background.content }}</p>
+        {% endfor %}
+    </div>
 </body>
 </html>

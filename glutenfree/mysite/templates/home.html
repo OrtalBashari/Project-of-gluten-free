@@ -8,13 +8,17 @@
 </head>
 <body>
     <div class="header">
+        <!-- Header Image -->
+        <div class="header-image">
+            <img src="{% static 'images/2.jpg' %}"  height=100px  width=100px alt="Gluten-Free">
+        </div>
         <!-- Authentication Links and Welcome Message -->
         <div class="auth-links">
             {% if user.is_authenticated %}
                 <p>Welcome, {{ user.username }}!</p>
                 <form method="POST" action="{% url 'logout' %}">
                     {% csrf_token %}
-                    <button type="submit">Logout</button>
+                    <button type="submit">התנתק</button>
                 </form>
             {% else %}
                 <a href="{% url 'login' %}">התחברות</a> / 
@@ -41,12 +45,12 @@
 
     <!-- Square Buttons -->
     <div class="square-buttons">
-        <a href="{% url 'background' %}" class="square-button">רקע על המחלה</a>
-        <a href="{% url 'treatment' %}" class="square-button">דרכי טיפול</a>
-        <a href="{% url 'public_conduct' %}" class="square-button">התנהלות במקומות ציבוריים</a>
-        <a href="{% url 'celiac_associations' %}" class="square-button">עמותות לחולי צליאק</a>
-        <a href="{% url 'entitlements' %}" class="square-button">זכאויות לחולי צליאק</a>
         <a href="{% url 'recipes' %}" class="square-button">מתכונים</a>
+        <a href="{% url 'entitlements' %}" class="square-button">זכאויות לחולי צליאק</a>
+        <a href="{% url 'celiac_associations' %}" class="square-button">עמותות לחולי צליאק</a>
+        <a href="{% url 'public_conduct' %}" class="square-button">התנהלות במקומות ציבוריים</a>
+        <a href="{% url 'treatment' %}" class="square-button">דרכי טיפול</a>
+        <a href="{% url 'background' %}" class="square-button">רקע על המחלה</a>
     </div>
 
     <!-- Tab Content -->
