@@ -39,10 +39,6 @@ def login_view(request):
         pass 
     return render(request, 'login.html')
 
-def login_page(request):
-    return render(request, 'login.html')
 
-def registration_page(request):
-    return render(request, 'registration.html')
 
 

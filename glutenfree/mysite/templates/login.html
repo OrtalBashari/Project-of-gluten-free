@@ -3,10 +3,34 @@
 <html>
 <head>
     <title>Login</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
 </head>
 <body>
     <h1>Login Page</h1>
-    <p>This is a placeholder page for login.</p>
+<div>
+    <div class = "wrapper">
+        <form action="{% url 'login' %}" method="POST">
+            {% csrf_token %}
+            <h1> Login</h1>
+            <div class="input Box">
+                <input type="text" placeholder="Username" required>
+            </div>
+            <div class="input Box">
+                <input type="password" placeholder="password" required>
+            </div>
+            <button type="submit"> Login</button>
+            <div class="remember-forgot">
+                <label> <input type="checkbox"> Remember me </label>
+                <br>
+                <a href="{% url 'password_reset' %}"> Forgot password </a>
+            </br>
+                </div>
+            </div>
+            <div class="register-link">
+            <p> Dont have an account ? </p> <a href="{% url 'register' %}"> Register </a>   
+            </div>
+        </form>
+    </div>
 </body>
 </html>
 
