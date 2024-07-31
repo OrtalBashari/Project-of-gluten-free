@@ -1,33 +1,40 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>הרשמה</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <style>
         /* General Styles */
         body {
             font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-            padding: 20px;
+            margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            background: url(1.jpg) no-repeat;
+            background ;
         }
 
         /* Container Styles */
         .container {
+            width: 100%;
+            max-width: 1200px;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            flex-direction: column;
+            padding: 20px;
+            box-sizing: border-box;
         }
 
         /* Login Wrapper Styles */
         .login-wrapper {
-            background-color: #ffffff;
-            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             width: 400px;
@@ -45,7 +52,7 @@
         /* Input Box Styles */
         .input-box {
             position: relative;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .input-box .icon {
@@ -58,12 +65,13 @@
         }
 
         .input-box input {
-            width: 100%;
-            padding: 10px 10px 10px 35px;
+            width: calc(100% - 40px);
+            padding: 10px 10px 10px 40px;
             border: 1px solid #ddd;
             border-radius: 4px;
             outline: none;
             font-size: 16px;
+            box-sizing: border-box;
         }
 
         /* Options Styles */
@@ -107,7 +115,7 @@
         /* Register Link Styles */
         .register-link {
             text-align: center;
-            margin-top: 15px;
+            margin-top: 20px;
         }
 
         .register-link p {
@@ -142,9 +150,9 @@
                     <label><input type="checkbox"> זכור אותי</label>
                     <a href="{% url 'password_reset' %}">שכחת סיסמה?</a>
                 </div>
-                <button class="login-btn" type="submit">התחבר </button>
+                <button class="login-btn" type="submit">התחבר</button>
                 <div class="register-link">
-                    <p>אין לך שם משתמש ? <a href="{% url 'register' %}">הירשם</a></p>
+                    <p>אין לך שם משתמש? <a href="{% url 'register' %}">הירשם</a></p>
                 </div>
             </form>
         </div>

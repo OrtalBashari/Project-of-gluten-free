@@ -6,10 +6,15 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from .forms import RegisterForm
+from django.contrib.auth.decorators import login_required
 
 
 
 # Create your views here.
+
+@login_required
+def home_view(request):
+    return render(request, 'home.html')
 
 def home_view(request):
     return render(request, 'home.html')
@@ -38,13 +43,8 @@ def recipes_view(request):
     recipes = Recipe.objects.all()
     return render(request, 'recipes.html', {'recipes': recipes})
 
+
 def login_view(request):
-    if request.method == 'post':
-        pass 
-    return render(request, 'login.html')
-
-
-def login_view2(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -66,6 +66,7 @@ def register_view(request):
     else:
         form = RegisterForm()
     return render(request, 'register.html', {'form': form})
+
 
 def password_reset_view(request):
     # Implement password reset logic here
