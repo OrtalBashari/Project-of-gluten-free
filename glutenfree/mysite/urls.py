@@ -11,8 +11,10 @@ urlpatterns = [
     path('entitlements/', views.entitlements_view, name='entitlements'),
     path('recipes/', views.recipes_view, name='recipes'),
     path('login/', views.login_view, name='login'),
-    path('login/', views.login_page, name='login'),
-    path('register/', views.registration_page, name='register'),
+     path('login/', views.login_view2, name='login'),
+    path('register/', views.register_view, name='register'),
+    path('password_reset/', views.password_reset_view, name='password_reset'),
+   
     
 ]
 

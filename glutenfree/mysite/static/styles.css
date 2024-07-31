@@ -188,3 +188,17 @@ form button:hover {
     background-color: #0056b3;
 }
 
+
+
+body { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: aqua;
+}
+.wrapper {
+    width: 420px;
+    background: palevioletred;
+    color: white;
+}
