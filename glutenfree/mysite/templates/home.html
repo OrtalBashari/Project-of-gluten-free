@@ -15,7 +15,8 @@
         <!-- Authentication Links and Welcome Message -->
         <div class="auth-links">
             {% if user.is_authenticated %}
-                <p>Welcome, {{ user.username }}!</p>
+                <p>!{{ user.username }} ,שלום</p>
+                 <p> !ברוך הבא</p>
                 <form method="POST" action="{% url 'logout' %}">
                     {% csrf_token %}
                     <button type="submit">התנתק</button>

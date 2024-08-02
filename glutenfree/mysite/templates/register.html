@@ -60,6 +60,13 @@
         <form action="{% url 'register' %}" method="POST">
             {% csrf_token %}
             <h1>הרשמה</h1>
+            {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
             <div class="inputBox">
                 <input type="text" name="username" placeholder="Username" required>
             </div>

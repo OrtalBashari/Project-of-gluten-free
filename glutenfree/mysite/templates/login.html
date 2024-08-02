@@ -138,6 +138,13 @@
             <form action="{% url 'login' %}" method="POST">
                 {% csrf_token %}
                 <h1 class="login-title">התחברות</h1>
+                {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
                 <div class="input-box">
                     <i class='bx bx-user icon'></i>
                     <input type="text" name="username" placeholder="Username" required>
