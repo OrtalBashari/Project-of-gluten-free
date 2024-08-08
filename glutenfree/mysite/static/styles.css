@@ -2,11 +2,16 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #cab3b3;
+    background: url('../static/images/9.jpg') no-repeat center center fixed;
+    background-size: cover;
+    background-position: center;
+    height: 200vh;
+    font-size: larger;
 }
 
 .header {
-    background-color: #fff;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.338); /* רקע שקוף להבלטת התוכן */
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -14,40 +19,36 @@ body {
     border-bottom: 1px solid #ccc;
 }
 
-/* styles.css */
-
-.header-image {
-    text-align: center; /* Center the image horizontally */
-    margin-top: 20px; /* Optional: add space above the image */
-}
-
-.header-image img {
-    width: 500px; /* Set the image width */
-    height: auto; /* Maintain the image's aspect ratio */
-}
-
-
 .auth-links {
     position: absolute;
     top: 20px;
     right: 20px;
 }
 
-.auth-links a {
+.auth-links a, .auth-links button {
     text-decoration: none;
     color: #007bff;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 0;
 }
 
 .title {
-    font-size: 24px;
-    color: #9b1499;
+    font-size: 34px;
+    color: #d8a539a6;
     margin: 0;
+    margin-top: 20px;
 }
 
 .search-form {
+    position: absolute;
+    top: 20px;
+    left: 20px;
     display: flex;
-    justify-content: center;
-    margin-top: 10px;
+    justify-content: flex-start;
+    margin-top: 20px;
 }
 
 .search-form input[type="text"] {
@@ -62,65 +63,73 @@ body {
     padding: 5px 10px;
     border: none;
     border-radius: 4px;
-    background-color: #bb4184;
+    background-color: #b18347ac;
     color: #fff;
     cursor: pointer;
 }
 
-.tab {
+/* Navbar styling */
+.navbar {
     overflow: hidden;
-    background-color: #fff;
-    border-bottom: 1px solid #ccc;
+    background-color: #ffffff3e;
     display: flex;
     justify-content: center;
     margin-top: 10px;
 }
 
-.tab button {
-    background-color: #fff;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 14px 16px;
-    transition: 0.3s;
-    font-size: 17px;
+.navbar a {
+    float: left;
+    display: block;
+    color: rgb(8, 7, 7);
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+    transition: background-color 0.3s;
 }
 
-.tab button:hover {
-    background-color: #ddd;
+.navbar a:hover {
+    background-color: #575757;
 }
 
-.tab button.active {
-    background-color: #ccc;
+/* Tab content styling */
+.tabcontent {
+    display: none;
+    padding: 20px;
 }
 
+.tabcontent h2 {
+    color: #f2f1f19b;
+}
+
+/* Square buttons styling */
 .square-buttons {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    gap: 10px;
     margin: 20px 0;
 }
 
 .square-button {
     display: block;
-    width: 150px;
-    height: 150px;
-    text-align: center;
     padding: 20px;
-    background-color: #e9ecef;
-    border-radius: 8px;
-    margin: 10px;
-    color: #333;
+    color: rgb(14, 14, 14);
+    text-align: center;
     text-decoration: none;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s;
+    border-radius: 4px;
+    width: 150px;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 .square-button:hover {
-    background-color: #ddd;
+    transform: scale(1.05);
 }
 
-.tabcontent {
-    display: none;
-    padding: 20px;
-}
+/* Background colors for the square buttons */
+.square-button:nth-child(1) { background-color: #e6ce96b0; }
+.square-button:nth-child(2) { background-color: #e6ce96b0; }
+.square-button:nth-child(3) { background-color: #e6ce96b0; }
+.square-button:nth-child(4) { background-color: #e6ce96b0; }
+.square-button:nth-child(5) { background-color: #e6ce96b0; }
+.square-button:nth-child(6) { background-color: #e6ce96b0; }
+.square-button:nth-child(7) { background-color: #e6ce96b0; } /* צבע לכפתור החדש */

@@ -1,14 +1,12 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import backGround, TreatmentMethod, PublicConduct, CeliacAssociation, Entitlement, Recipe
+from .models import backGround, TreatmentMethod, PublicConduct, CeliacAssociation, Entitlement, Recipe, celiac_army
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from .forms import RegisterForm
 from django.contrib.auth.decorators import login_required
-
-
 
 # Create your views here.
 
@@ -42,6 +40,11 @@ def entitlements_view(request):
 def recipes_view(request):
     recipes = Recipe.objects.all()
     return render(request, 'recipes.html', {'recipes': recipes})
+
+
+def army_view(request):
+    army = celiac_army.objects.filter(title__icontains='צה"ל')
+    return render(request, 'Celiac_army.html', {'army': army})
 
 
 def login_view(request):
@@ -93,3 +96,6 @@ def register_view(request):
 def password_reset_view(request):
     # Implement password reset logic here
     return render(request, 'password_reset.html')
+
+
+

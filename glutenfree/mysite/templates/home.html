@@ -1,22 +1,23 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="he">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gluten-Free Website</title>
     <link rel="icon" href="{% static 'favicon.ico' %}">
     <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.5.1/uicons-solid-straight/css/uicons-solid-straight.css'>
 </head>
 <body>
     <div class="header">
-        <!-- Header Image -->
-        <div class="header-image">
-            <img src="{% static 'images/2.jpg' %}"  height=100px  width=100px alt="Gluten-Free">
-        </div>
+        <!-- Header Image (Background) -->
+        <div class="header-image"></div>
         <!-- Authentication Links and Welcome Message -->
         <div class="auth-links">
             {% if user.is_authenticated %}
-                <p>!{{ user.username }} ,שלום</p>
-                 <p> !ברוך הבא</p>
+                <p>שלום, {{ user.username }}!</p>
+                <p>ברוך הבא!</p>
                 <form method="POST" action="{% url 'logout' %}">
                     {% csrf_token %}
                     <button type="submit">התנתק</button>
@@ -26,7 +27,7 @@
                 <a href="{% url 'register' %}">הרשמה</a>
             {% endif %}
         </div>
-        <h1 class="title"> המדריך - Gluten Free</h1>
+        <h1 class="title">המדריך - Gluten Free</h1>
         <!-- Search Box -->
         <form class="search-form" action="#" method="get">
             <input type="text" name="search" placeholder="הקלד...">
@@ -34,14 +35,15 @@
         </form>
     </div>
 
-    <!-- Tab Navigation -->
-    <div class="tab">
-        <button class="tablinks" onclick="openTab(event, 'Recipes')">מתכונים</button>
-        <button class="tablinks" onclick="openTab(event, 'Entitlements')">זכאויות לחולי צליאק</button>
-        <button class="tablinks" onclick="openTab(event, 'CeliacAssociations')">עמותות לחולי צליאק</button>
-        <button class="tablinks" onclick="openTab(event, 'PublicConduct')">התנהלות במקומות ציבוריים</button>
-        <button class="tablinks" onclick="openTab(event, 'Treatment')">דרכי טיפול</button>
-        <button class="tablinks" onclick="openTab(event, 'Background')">רקע על המחלה</button>
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="{% url 'recipes' %}">מתכונים</a>
+        <a href="{% url 'entitlements' %}">זכאויות לחולי צליאק</a>
+        <a href="{% url 'celiac_associations' %}">עמותות לחולי צליאק</a>
+        <a href="{% url 'army'%}"> צליאק בצהל</a>
+        <a href="{% url 'public_conduct' %}">התנהלות במקומות ציבוריים</a>
+        <a href="{% url 'treatment' %}">דרכי טיפול</a>
+        <a href="{% url 'background' %}">רקע על המחלה</a>
     </div>
 
     <!-- Square Buttons -->
@@ -49,40 +51,49 @@
         <a href="{% url 'recipes' %}" class="square-button">מתכונים</a>
         <a href="{% url 'entitlements' %}" class="square-button">זכאויות לחולי צליאק</a>
         <a href="{% url 'celiac_associations' %}" class="square-button">עמותות לחולי צליאק</a>
+        <a href="{% url 'army' %}" class="square-button"> צליאק בצהל</a>
         <a href="{% url 'public_conduct' %}" class="square-button">התנהלות במקומות ציבוריים</a>
-        <a href="{% url 'treatment' %}" class="square-button">דרכי טיפול</a>
+        <a href="{% url 'treatment' %}" class="square-button"> <i class="fi fi-rs-treatment"></i>
+        דרכי טיפול </a>
         <a href="{% url 'background' %}" class="square-button">רקע על המחלה</a>
     </div>
 
     <!-- Tab Content -->
     <div id="Background" class="tabcontent">
         <h2>רקע על המחלה</h2>
-        <p><a href="{% url 'background' %}">More details...</a></p>
+        <p><a href="{% url 'background' %}">לפרטים נוספים...</a></p>
     </div>
 
     <div id="Treatment" class="tabcontent">
         <h2>דרכי טיפול</h2>
-        <p><a href="{% url 'treatment' %}">More details...</a></p>
+        <p><a href="{% url 'treatment' %}">לפרטים נוספים...</a></p>
     </div>
 
     <div id="PublicConduct" class="tabcontent">
         <h2>התנהלות במקומות ציבוריים</h2>
-        <p><a href="{% url 'public_conduct' %}">More details...</a></p>
+        <p><a href="{% url 'public_conduct' %}">לפרטים נוספים...</a></p>
     </div>
+
+
+    <div id="army" class="tabcontent">
+        <h2>צליאק בצהל</h2>
+        <p><a href="{% url 'army' %}">לפרטים נוספים...</a></p>
+    </div>
+
 
     <div id="CeliacAssociations" class="tabcontent">
         <h2>עמותות לחולי צליאק</h2>
-        <p><a href="{% url 'celiac_associations' %}">More details...</a></p>
+        <p><a href="{% url 'celiac_associations' %}">לפרטים נוספים...</a></p>
     </div>
 
     <div id="Entitlements" class="tabcontent">
         <h2>זכאויות לחולי צליאק</h2>
-        <p><a href="{% url 'entitlements' %}">More details...</a></p>
+        <p><a href="{% url 'entitlements' %}">לפרטים נוספים...</a></p>
     </div>
 
     <div id="Recipes" class="tabcontent">
         <h2>מתכונים</h2>
-        <p><a href="{% url 'recipes' %}">More details...</a></p>
+        <p><a href="{% url 'recipes' %}">לפרטים נוספים...</a></p>
     </div>
 
     <script>
