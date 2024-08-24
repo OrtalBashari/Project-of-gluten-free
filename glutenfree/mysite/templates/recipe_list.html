@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>רשימת מתכונים</title>
+    <style>
+        /* כלליות */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        /* מיכל עיקרי */
+        .container {
+            width: 80%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        /* כותרת */
+        h2 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        /* רשימה */
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+
+        ul li a {
+            text-decoration: none;
+            color: #007bff;
+            font-size: 18px;
+        }
+
+        ul li a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>רשימת מתכונים</h2>
+        <ul>
+            {% for recipe in recipe_list %}
+                <li>
+                    <a href="{% url 'recipe_detail' recipe.id %}">{{ recipe.name }}</a>
+                    <p>{{ recipe.description }}</p>
+                </li>
+            {% empty %}
+                <li>אין מתכונים לרשום.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>הפרופיל שלי</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            flex-basis: 30%;
+            text-align: right;
+        }
+
+        .form-group input, .form-group button {
+            flex-basis: 65%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .form-group input:focus, .form-group button:focus {
+            border-color: #007bff;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .profile-info {
+            margin-top: 20px;
+        }
+
+        .profile-info img {
+            max-width: 100px;
+            max-height: 100px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>הפרופיל שלי</h1>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">שם משתמש:</label>
+                {{ form.username }}
+            </div>
+            <div class="form-group">
+                <label for="email">אימייל:</label>
+                {{ form.email }}
+            </div>
+            <div class="form-group">
+                <label for="password">סיסמה חדשה:</label>
+                {{ form.password }}
+            </div>
+            <div class="form-group">
+                <label for="profile_picture">תמונת פרופיל:</label>
+                {{ form.profile_picture }}
+            </div>
+            <button type="submit">עדכון פרופיל</button>
+        </form>
+
+        <div class="profile-info">
+            <h2>פרטי משתמש</h2>
+            <p><strong>שם משתמש:</strong> {{ profile.user.username }}</p>
+            <p><strong>אימייל:</strong> {{ profile.user.email }}</p>
+            <p><strong>תמונת פרופיל:</strong></p>
+            {% if profile.profile_picture %}
+                <img src="{{ profile.profile_picture.url }}" alt="תמונת פרופיל">
+            {% else %}
+                <p>אין תמונת פרופיל</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

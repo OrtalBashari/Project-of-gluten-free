@@ -11,9 +11,9 @@
             background-color: #c2cdd4;
             margin: 0;
             padding: 0;
-            color: #8c3cbd;
-            direction: rtl; /* Set text direction to right-to-left */
-            text-align: right; /* Align text to the right */
+            color: #030203;
+            direction: rtl;
+            text-align: right;
         }
         h1 {
             text-align: center;
@@ -21,7 +21,7 @@
             color: #e3609b;
         }
         h2 {
-            color: #4a90e2;
+            color: #e73395;
             margin-top: 20px;
         }
         p {
@@ -44,17 +44,82 @@
         a:hover {
             text-decoration: underline;
         }
+        .section {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
 <body>
     <div class="content-wrapper">
         <h1>עמותות לחולי צליאק</h1>
+        <div class="section">
+            <p> עמותות הצליאק בישראל פועלות למען תמיכה, חינוך והגנה על זכויותיהם של חולי הצליאק,
+                <br>
+                באמצעות הדרכה, הסברה וקידום תזונה נטולת גלוטן במטרה לשפר את איכות החיים 
+                <br>ולהקל על התמודדות עם המחלה. 
+                <br>
+                בנוסף, בחלק מהעמותות נלחמים ביוקר המחיה של הצליאקים בשל פערי המחירים בין מזון רגיל למזון "ללא גלוטן". 
+                <br> <b> עמותות הצליאק פועלות בכמה תחומים עיקריים:</b>
+                <br>
+                <ol>
+                    <b><li> תמיכה והדרכה</li></b> <br>
+                    העמותות מספקות ייעוץ לחולי הצליאק ולבני משפחותיהם בכדי לעזור להם להבין את המחלה,
+                    <br> ולנהל אורח חיים ללא גלוטן. 
+                    <br>
+
+                    <b><li> הסברה</li></b> <br>
+                    העמותות מקיימות קמפיינים ציבוריים להעלאת המודעות ולהסביר לציבור הרחב את 
+                    <br> את הצרכים המיוחדים של חולי הצליאק. <br>
+
+                    <b><li> קידום זכויות</li></b> <br>
+                    העמותות פועלות מול רשויות הממשלה והגופים הרגולטוריים כדי לשפר את הזכויות וההטבות לחולי צליאק,
+                    <br>
+                    כולל קצבאות, הנחות על מוצרים נטולי גלוטן, ותנאים במוסדות ציבוריים.
+                </ol>
+            </p>
+        </div>
+
+
+
+
+            <div class="section">
+                <h2>עמותות לחולי צליאק בישראל</h2>
+                <p>
+                    כמו כן, קיימות מספר עמותות לחולי צליאק בישראל:
+                    <ol>
+                        <li> ארגון זכויות הצליאק ע"ר - לפרטים נוספים 
+                            <a href="https://celiacrights.org.il/"> לחץ כאן </a>
+                        </li>
+                        <li>צליאק - ארגון הזכויות - העמותה הגדולה בישראל - לפרטים נוספים  
+                            <a href="https://www.facebook.com/profile.php?id=100057263119106"> לחץ כאן </a>
+                        </li>
+                        <li> צליאק-CELIAC - קהילה ללא גלוטן - לפרטים נוספים
+                            <a href="https://www.facebook.com/groups/celiac.il/"> לחץ כאן </a>
+                        </li>
+                    </ol>
+
+
+
+
+
+
+                </p>
+
+
+
+            </div>
         {% for association in associations %}
-            <h2>{{ association.name }}</h2>
-            <p>{{ association.description }}</p>
-            {% if association.website %}
-                <p>אתר: <a href="{{ association.website }}" target="_blank">{{ association.website }}</a></p>
-            {% endif %}
+        
+                <h2>{{ association.name }}</h2>
+                <p>{{ association.description }}</p>
+                {% if association.website %}
+                    <p>אתר: <a href="{{ association.website }}" target="_blank">{{ association.website }}</a></p>
+                {% endif %}
+            </div>
         {% endfor %}
     </div>
 </body>

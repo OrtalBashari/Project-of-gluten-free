@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>אישור מחיקה</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            direction: rtl;
+            text-align: right;
+        }
+        .container {
+            width: 80%;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .confirm {
+            background-color: #dc3545;
+        }
+        .cancel {
+            background-color: #6c757d;
+        }
+        .confirm:hover {
+            background-color: #c82333;
+        }
+        .cancel:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>אישור מחיקה</h1>
+        <p>האם אתה בטוח שברצונך למחוק את המתכון "{{ recipe.name }}"?</p>
+        <form action="{% url 'delete_recipe' recipe.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="confirm">מחק מתכון</button>
+            <a href="{% url 'recipes' %}" class="cancel">ביטול</a>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,57 +1,307 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en" dir="rtl">
+<html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gluten-Free Recipes</title>
+    <title>מתכונים ללא גלוטן</title>
     <style>
+        /* Existing CSS */
         body {
             font-family: Arial, sans-serif;
-            background-color: #c2cdd4;
+            background-color: #f4f4f4;
             margin: 0;
             padding: 0;
-            color: #8c3cbd;
-            direction: rtl; /* Set text direction to right-to-left */
-            text-align: right; /* Align text to the right */
+            color: #333;
+            direction: rtl; /* טקסט מימין לשמאל */
+            text-align: right; /* טקסט מימין */
         }
-        h1 {
-            text-align: center;
-            margin-top: 20px;
-            color: #e3609b;
-        }
-        h2 {
-            color: #4a90e2;
-            margin-top: 20px;
-        }
-        p {
-            margin: 10px 0;
-            line-height: 1.6;
-            padding: 0 20px;
-        }
-        .content-wrapper {
-            max-width: 800px;
-            margin: 20px auto;
+
+        .container {
+            width: 80%;
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 20px;
-            background-color: #eaeaea;
+            background-color: #fff;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
-        strong {
-            color: #000;
+
+        /* New CSS for heading */
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .page-header h1 {
+            font-size: 36px;
+            color: #0a09098d;
+            margin: 0;
+            padding: 10px 20px;
+            background: linear-gradient(to right, #a9436d2b, #31a0c899);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        /* Existing CSS continued */
+        .recipe-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* יצירת כרטיסיות */
+            gap: 20px;
+        }
+
+        .recipe-item {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: right;
+        }
+
+        .recipe-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .recipe-item img {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover; /* שמירה על פרופורציות התמונה */
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .recipe-item h2 {
+            color: #4a90e2;
+            margin-bottom: 10px;
+            font-size: 22px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .recipe-item p {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.6;
+            width: 100%;
+            text-align: right;
+        }
+
+        .recipe-item p strong {
+            color: #333;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .delete-link {
+            color: #dc3545;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .delete-link:hover {
+            color: #c82333;
+            text-decoration: underline;
+        }
+
+        .like-btn {
+            margin-top: 10px;
+            padding: 10px 20px;
+            border: none;
+            background-color: #4a90e2;
+            color: white;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .like-btn:hover {
+            background-color: #3a78b2;
+        }
+
+        .like-btn .icon {
+            margin-left: 8px;
+            font-size: 16px;
+        }
+
+        .unlike-btn {
+            background-color: #dc3545;
+        }
+
+        .unlike-btn:hover {
+            background-color: #c82333;
+        }
+
+        .like-count {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* New CSS for home button */
+        .home-btn {
+            font-size: 20px;
+            color: #0a09098d;
+            margin: 0;
+            padding: 10px 20px;
+            background: linear-gradient(to right, #a9436d2b, #31a0c899);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .home-btn:hover {
+            background-color: #3a78b2;
+        }
+
+        .home-btn-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* New CSS for recipe content */
+        .recipe-content-container {
+            max-height: 300px; /* Adjust height as needed */
+            overflow-y: auto; /* Adds scrollbar if content overflows */
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+
+        .recipe-content {
+            font-size: 14px; /* Smaller text size */
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* CSS for comment form */
+        .comment-form {
+            width: 100%;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .comment-form textarea {
+            width: 100%;
+            height: 80px;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .comment-form button {
+            padding: 8px 16px;
+            border: none;
+            background-color: #4a90e2;
+            color: white;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .comment-form button:hover {
+            background-color: #3a78b2;
         }
     </style>
 </head>
 <body>
-    <div class="content-wrapper">
-        <h1>מתכונים ללא גלוטן</h1>
-        {% for recipe in recipes %}
-            <h2>{{ recipe.name }}</h2>
-            <p><strong>רכיבים:</strong></p>
-            <p>{{ recipe.ingredients }}</p>
-            <p><strong>הוראות הכנה:</strong></p>
-            <p>{{ recipe.instructions }}</p>
-        {% endfor %}
+    <div class="container">
+        <!-- Home Button -->
+        <div class="home-btn-container">
+            <a href="{% url 'home' %}" class="home-btn">חזרה לדף הבית</a>
+        </div>
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1>רשימת מתכונים</h1>
+        </div>
+
+        <div class="recipe-grid">
+            {% for recipe in recipes %}
+                <div class="recipe-item">
+                    {% if recipe.image %}
+                        <img src="{{ recipe.image.url }}" alt="{{ recipe.name }}">
+                    {% endif %}
+                    <h2>{{ recipe.name }}</h2>
+                    <div class="recipe-content-container">
+                        <p><strong>רכיבים:</strong></p>
+                        <p class="recipe-content">{{ recipe.ingredients|safe }}</p>
+                        <p><strong>הוראות הכנה:</strong></p>
+                        <p class="recipe-content">{{ recipe.instructions|safe }}</p>
+                    </div>
+                    <p><strong>תאריך הוספה:</strong> {{ recipe.created_at }}</p>
+
+                    {% if recipe.user == request.user %}
+                        <a href="{% url 'edit_recipe' recipe.id %}" class="edit-link">ערוך מתכון</a>
+                    {% endif %}
+
+                    {% if recipe.user == request.user %}
+                        <a href="{% url 'delete_recipe' recipe.id %}" class="delete-link">מחק מתכון</a>
+                    {% endif %}
+
+                    <!-- Like Button -->
+                    <form action="{% url 'like_recipe' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="recipe_id" value="{{ recipe.id }}">
+                        {% if user.is_authenticated and user in recipe.likes.all %}
+                            <button type="submit" class="like-btn unlike-btn">
+                                Unlike <span class="icon">👎</span>
+                            </button>
+                        {% else %}
+                            <button type="submit" class="like-btn">
+                                Like <span class="icon">👍</span>
+                            </button>
+                        {% endif %}
+                    </form>
+
+                    <p class="like-count">Likes: {{ recipe.likes.count }}</p>
+
+                    <!-- Comment Form -->
+                    <div class="comment-form">
+                        <form action="{% url 'add_comment' recipe.id %}" method="POST">
+                            {% csrf_token %}
+                            <textarea name="content" placeholder="הוסף תגובה כאן..." required></textarea>
+                            <button type="submit">הוסף תגובה</button>
+                        </form>
+                    </div>
+
+                    <!-- Display comments -->
+                    <div class="comments-section">
+                        <h3>תגובות:</h3>
+                        {% for comment in recipe.comments.all %}
+                            <p><strong>{{ comment.user.username }}:</strong> {{ comment.body }}</p>
+                        {% empty %}
+                            <p>אין תגובות עדיין.</p>
+                        {% endfor %}
+                    </div>
+
+                </div>
+            {% endfor %}
+        </div>
     </div>
 </body>
 </html>

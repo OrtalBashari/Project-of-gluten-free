@@ -1,17 +1,21 @@
-from django.shortcuts import render, redirect
+from importlib.metadata import requires
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
-from .models import backGround, TreatmentMethod, PublicConduct, CeliacAssociation, Entitlement, Recipe, celiac_army
+from .models import backGround, TreatmentMethod, PublicConduct, CeliacAssociation, Entitlement, celiac_army
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from .forms import RegisterForm
 from django.contrib.auth.decorators import login_required
+from .models import Profile, Preferences, Comment, Notification, Recipe, Like, CommentRecipe
+from .forms import ProfileForm, PreferencesForm, CommentForm, RecipeForm, Comment_RecipeForm
+from django.http import JsonResponse
+from datetime import datetime
 
 # Create your views here.
-
 @login_required
-def home_view(request):
+def home_view(request): # type: ignore
     return render(request, 'home.html')
 
 def home_view(request):
@@ -37,10 +41,66 @@ def entitlements_view(request):
     entitlements = Entitlement.objects.all()
     return render(request, 'entitlements.html', {'entitlements': entitlements})
 
-def recipes_view(request):
-    recipes = Recipe.objects.all()
-    return render(request, 'recipes.html', {'recipes': recipes})
 
+def recipes_view(request):
+    if request.method == 'POST':
+        form = RecipeForm(request.POST, request.FILES)  # Handle file uploads
+        if form.is_valid():
+            form.save()
+            return redirect('recipes')  # Redirect to recipes list after saving
+    else:
+        form = RecipeForm()  # Create an empty form for GET requests
+    recipes = Recipe.objects.all().order_by('-created_at')  # Order by creation date/time (optional)
+    return render(request, 'recipes.html', {'recipes': recipes, 'form': form})
+
+
+@login_required
+def add_recipe(request):
+    if request.method == 'POST':
+        form = RecipeForm(request.POST, request.FILES)
+        if form.is_valid():
+            recipes = form.save(commit=False)
+            recipes.user = request.user
+            recipes.save()
+            return redirect('recipe_list')
+        else:
+            print(form.errors)  
+    else:
+        form = RecipeForm()
+    return render(request, 'add_recipe.html', {'form': form})
+
+
+
+def recipe_list(request):
+    recipe_list = Recipe.objects.all()
+    return render(request, 'recipe_list.html', {'recipe_list': recipe_list})
+
+def recipe_detail(request, id):
+    recipe = get_object_or_404(Recipe, id=id)
+    return render(request, 'recipe_detail.html', {'recipe': recipe})
+
+@login_required
+def delete_recipe(request, recipe_id):
+    recipe = get_object_or_404(Recipe, id=recipe_id, user=request.user)
+    if request.method == 'POST':
+        recipe.delete()
+        return redirect('recipes')
+    return render(request, 'confirm_delete.html', {'recipe': recipe})
+
+@login_required
+def edit_recipe(request, recipe_id):
+    recipe = get_object_or_404(Recipe, id=recipe_id, user=request.user)
+    if request.method == 'POST':
+        form = RecipeForm(request.POST, request.FILES, instance=recipe)
+        if form.is_valid():
+            form.save()
+            return redirect('recipes')
+        
+    else:
+        form = RecipeForm(instance=recipe)
+    return render(request, 'edit_recipe.html', {'form': form, 'recipe': recipe})    
+
+    
 
 def army_view(request):
     army = celiac_army.objects.filter(title__icontains='צה"ל')
@@ -97,5 +157,115 @@ def password_reset_view(request):
     # Implement password reset logic here
     return render(request, 'password_reset.html')
 
+@login_required
+def profile_view(request):
+    # מנסה למצוא את פרופיל המשתמש הנוכחי
+    try:
+        profile = Profile.objects.get(user=request.user)
+    except Profile.DoesNotExist:
+        # אם פרופיל לא נמצא, צור פרופיל חדש
+        profile = Profile.objects.create(user=request.user, bio='', profile_picture=None)
+    
+    # טיפול בבקשת POST כדי לעדכן פרופיל
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')  # הפנה מחדש לדף פרופיל אחרי שמירת השינויים
+    else:
+        form = ProfileForm(instance=profile)
+    
+    return render(request, 'profile.html', {'profile': profile, 'form': form})
+
+@login_required
+def Preferences_view(request):
+    preferences, created = Preferences.objects.get_or_create(user= request.user)
+    if request.method == 'POST':
+        form = PreferencesForm(request.POST, instance= preferences)
+        if form.is_valid():
+            form.save()
+            return redirect('preferences')
+    else:
+        form = PreferencesForm(instance= preferences)
+    return render(request, 'preferences.html', {'form': form})
 
 
+
+@login_required
+def comments_view(request):
+    comments = Comment.objects.filter(user= request.user)
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            new_comment = form.save(commit = False)
+            new_comment.user = request.user
+            new_comment.save()
+            return redirect('comments')
+    else:
+        form = CommentForm()
+    return render(request, 'comments.html', {'comments': comments, 'form': form})
+            
+
+
+@login_required
+def notifications_view(request):
+    notification = Notification.objects.filter(user = request.user)
+    return render(request, 'notification.html', {'notification': notification})
+
+def like_recipe(request):
+    user = request.user
+    if request.method == 'POST':
+        recipe_id = request.POST.get('recipe_id')
+        recipe_obj = Recipe.objects.get(id=recipe_id)
+
+        if user in recipe_obj.likes.all():
+            recipe_obj.likes.remove(user)
+        else:
+            recipe_obj.likes.add(user)
+
+        like, created = Like.objects.get_or_create(user=user, recipe_id=recipe_id)    
+
+        if not created:
+            if like.value == 'Like':
+                like.value = 'Unlike'
+            else:
+                like.value = 'Like'
+
+        like.save()            
+
+        return redirect('recipes')
+     
+
+
+@login_required
+def add_comment(request, pk):
+    recipe = Recipe.objects.get(id=pk)
+
+    form = Comment_RecipeForm(instance=recipe)
+
+    if request.method == 'POST':
+        form = Comment_RecipeForm(request.POST, instance=recipe)
+        if form.is_valid():
+            name = request.user.username
+            body2 = form.cleaned_data['body']
+            comment = CommentRecipe(
+                parent_recipe=recipe,
+                body=body2,
+                user=request.user,
+                created_at=datetime.now())
+            comment.save()
+            return redirect('recipes')
+        else:
+            print('form is invalid')
+
+    else:
+        form = Comment_RecipeForm()    
+
+
+    context = {
+        'form': form
+    }
+  
+
+    return render(request, 'add_comment.html', context)                
+                

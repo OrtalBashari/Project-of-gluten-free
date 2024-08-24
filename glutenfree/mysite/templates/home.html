@@ -56,7 +56,39 @@
         <a href="{% url 'treatment' %}" class="square-button"> <i class="fi fi-rs-treatment"></i>
         דרכי טיפול </a>
         <a href="{% url 'background' %}" class="square-button">רקע על המחלה</a>
+    
     </div>
+
+       <!-- Main Container -->
+       <div class="main-container">
+        <!-- Sidebar for Authenticated Users -->
+        {% if user.is_authenticated %}
+        <div class="sidebar">
+            <h2>האפשרויות שלך</h2>
+            <ul>
+                <li><a href="{% url 'profile' %}">פרופיל</a></li>
+                <li><a href="{% url 'add_recipe' %}">הוספת מתכון</a></li>
+                <li><a href="{% url 'preferences' %}">העדפות</a></li>
+                <li><a href="{% url 'comments' %}">תגובות</a></li>
+                <li><a href="{% url 'notifications' %}">התראות</a></li>
+            </ul>
+        </div>
+        {% endif %}
+
+        <!-- Content Block -->
+        <div class="content">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2024 Gluten-Free Website. כל הזכויות שמורות.</p>
+    </div>
+
+
+
+
 
     <!-- Tab Content -->
     <div id="Background" class="tabcontent">
@@ -108,8 +140,16 @@
                 tablinks[i].className = tablinks[i].className.replace(" active", "");
             }
             document.getElementById(tabName).style.display = "block";
-            evt.currentTarget.className += " active";
+            if (evt) {
+                evt.currentTarget.className += " active";
+            }
         }
+        
+        // קריאה לפתיחת הלשונית הראשונה בהתחלה
+        document.addEventListener("DOMContentLoaded", function() {
+            openTab(null, "Background"); // לשונית "רקע על המחלה" תיפתח כברירת מחדל
+        });
     </script>
+    
 </body>
 </html>
