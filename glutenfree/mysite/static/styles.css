@@ -6,7 +6,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background: url('../static/images/9.jpg') no-repeat center center fixed;
+    background: url('../static/images/5.jpg') no-repeat center center fixed;
     background-size: cover;
     background-position: center;
     height: 200vh;
@@ -31,7 +31,7 @@ body {
 
 .auth-links a, .auth-links button {
     text-decoration: none;
-    color: #007bff;
+    color: #ff9500;
     background: none;
     border: none;
     cursor: pointer;
@@ -105,47 +105,18 @@ body {
     color: #f2f1f19b;
 }
 
-/* Square buttons styling */
-.square-buttons {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin: 20px 0;
-}
-
-.square-buttons {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin: 20px 0;
-}
-
-.square-button:hover {
-    transform: scale(1.05);
-}
-
-/* Background colors for the square buttons */
-.square-button:nth-child(1) { background-color: #e6ce96b0; }
-.square-button:nth-child(2) { background-color: #e6ce96b0; }
-.square-button:nth-child(3) { background-color: #e6ce96b0; }
-.square-button:nth-child(4) { background-color: #e6ce96b0; }
-.square-button:nth-child(5) { background-color: #e6ce96b0; }
-.square-button:nth-child(6) { background-color: #e6ce96b0; }
-.square-button:nth-child(7) { background-color: #e6ce96b0; } /* New button color */
 
 /* Main container styling */
 .main-container {
     display: flex;
-    min-height: 100vh;
+    min-height: 50vh;
 }
 
 /* Sidebar styling */
 .sidebar {
     background-color: #f9f9f9;
     padding: 20px;
-    width: 250px;
+    width: 150px;
     box-shadow: -2px 0 5px rgba(0,0,0,0.1); /* Shadow on the left for the sidebar */
     order: 2; /* Position the sidebar on the right */
     border-left: 1px solid #ccc; /* Add a vertical bar on the left */
@@ -167,7 +138,7 @@ body {
 
 .sidebar ul li a {
     text-decoration: none;
-    color: #040607;
+    color: #0e90d2;
 }
 
 /* Content container styling */
@@ -180,3 +151,17 @@ body {
 .content {
     margin-top: 20px;
 }
+
+.footer {
+    position: fixed; /* תיקון למיקום קבוע בתחתית המסך */
+    bottom: 0; /* הצמדת ה-footer לתחתית הדף */
+    left: 0;
+    width: 100%; /* התמתחות לרוחב מלא */
+    background-color: #1a16161a; /* צבע רקע כהה */
+    color: #000000; /* צבע טקסט לבן */
+    text-align: center; /* מרכז את הטקסט */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* צללים עדינים למראה תלת-ממדי */
+    z-index: 1000; /* למנוע התנגשות עם אלמנטים אחרים */
+    font-family: 'Nerko One', sans-serif;
+}
+

@@ -6,66 +6,309 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conduct in Public Places</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #c2cdd4;
+          body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to bottom right, #f0f0f0, #e0e0e0);
+            background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.05) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, 0.05) 75%, rgba(0, 0, 0, 0.05) 100%),
+                              linear-gradient(225deg, rgba(0, 0, 0, 0.05) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, 0.05) 75%, rgba(0, 0, 0, 0.05) 100%);
+            background-color: #f5f5f5;
             margin: 0;
             padding: 0;
-            color: #8c3cbd;
-            direction: rtl; /* Set text direction to right-to-left */
-            text-align: right; /* Align text to the right */
+            color: #333333;
+            direction: rtl; /* כיוון הטקסט מימין לשמאל */
+            text-align: right; /* יישור הטקסט לימין */
         }
+
         h1 {
-            text-align: center;
-            margin-top: 20px;
-            color: #e3609b;
+    text-align: center;
+    margin: 10px 0;
+    color: #00000098;
+    font-size: 2.5em; /* מגדיל את גודל הגופן */
+    font-weight: bold; /* הופך את הטקסט לעבה יותר */
+    letter-spacing: 1.5px; /* מוסיף ריווח בין האותיות */
+    text-transform: uppercase; /* הופך את הטקסט לאותיות גדולות */
+    background: linear-gradient(to right, #ed4c41, #ffffff); /* הוספת גרדיאנט לטקסט */
+    -webkit-background-clip: text; /* רקע הגרדיאנט יוצג רק בטקסט */
+    -webkit-text-fill-color: transparent; /* הופך את צבע המילוי של הטקסט לשקוף */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* הוספת צל לטקסט */
+    transition: transform 0.3s ease, text-shadow 0.3s ease; /* אפקט מעבר עדין */
+    position: relative; /* מאפשר שימוש באלמנטים כמו קו תחתון */
+}
+
+h1::after {
+    content: '';
+    display: block;
+    width: 50%;
+    height: 2px;
+    background-color: #91919193; /* קו תחתון בצבע דומה לגרדיאנט */
+    margin: 10px auto 0 auto; /* מיקום מרכזי */
+    transition: width 0.3s ease; /* אפקט מעבר לרוחב הקו */
+}
+
+h1:hover {
+    transform: scale(1.05); /* אפקט הגדלה בעת מעבר העכבר */
+    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4); /* הצללת טקסט נוספת בעת מעבר העכבר */
+}
+
+h1:hover::after {
+    width: 80%; /* הגדלת רוחב הקו בעת מעבר העכבר */
+}
+
+
+        h2, h3 {
+            text-align: right;
+            margin: 10px 0; /* הקטנת המרווחים העליונים והתחתונים של כותרות משניות */
+            color: #333;
         }
-        h2 {
-            color: #4a90e2;
-            margin-top: 20px;
-        }
-        p {
-            margin: 10px 0;
+
+        p, ul {
+            margin: 5px 0; /* הקטנת המרווחים מסביב לפסקאות ורשימות */
             line-height: 1.6;
             padding: 0 20px;
         }
+
         .content-wrapper {
-            max-width: 800px;
-            margin: 20px auto;
+            background-color: rgba(243, 234, 234, 0.447); /* שקיפות לתוכן המרכזי */
+            max-width: 900px;
+            margin: 10px auto; /* הקטנת המרווחים למעלה ולמטה */
             padding: 20px;
-            background-color: #eaeaea;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
+
         .section {
-            margin-bottom: 20px;
+            background-color: rgba(250, 250, 250, 0.484); /* שקיפות לסקשנים */
+            margin-bottom: 10px; /* הקטנת המרווח התחתון בין הסקשנים */
             padding: 20px;
-            background-color: #ffffff;
             border-radius: 8px;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
         }
+
         .section h3 {
-            color: #4a90e2;
+            margin: 5px 0; /* הקטנת המרווחים העליונים והתחתונים של כותרות בתוך סקשן */
         }
-        .section p {
-            color: #333;
+
+        ul {
+            padding-right: 20px;
         }
+
+        ul li {
+            margin-bottom: 8px; /* הקטנת המרווח התחתון של פריטי הרשימה */
+            list-style-type: disc;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 16px;
+            color: white;
+            background-color: #4114d499;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 33px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #8742e19f;
+        }
+
+        .card-container {
+            display: flex;
+            justify-content: right;
+            flex-wrap: wrap;
+            margin: 20px 0; /* הקטנת המרווחים למעלה ולמטה */
+        }
+
+        .card {
+            background-color: rgba(255, 255, 255, 0.8); /* שקיפות לכרטיסיות */
+            border: 1px solid rgba(221, 221, 221, 0.8);
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            margin: 10px;
+            text-align: center;
+            padding: 20px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            background-color: rgba(240, 240, 240, 0.8); /* שקיפות לכרטיסיות בהעברת עכבר */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-link {
+            text-decoration: none;
+            color: #00000098;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .card-link:hover {
+            text-decoration: underline;
+        }
+
+        .image-container {
+            max-width: 100%;
+            text-align: left;
+            margin-bottom: 20px; /* הקטנת המרווח התחתון */
+        }
+
+        .image-container img {
+            max-width: 250px;
+            max-height: 250px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            filter: blur(0.5px);
+        }
+
+        .footer {
+            position: fixed; 
+            bottom: 0; 
+            left: 0;
+            width: 100%; 
+            background-color: #fffcfc61; 
+            color: #000000f0; 
+            text-align: center; 
+            padding: 10px 0; 
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); 
+            z-index: 1000; 
+            font-family: 'Nerko One', sans-serif;
+        }
+
+        .footer p {
+            margin: 0; 
+            font-size: 14px; 
+        }
+
+        .home-btn-container {
+            display: flex;
+            justify-content: space-between; /* מפריד בין הכפתורים */
+            align-items: center; /* מרכז אנכית */
+            margin-bottom: 20px;
+        }
+
+        .home-btn {
+            font-size: 18px;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 8px; 
+            text-decoration: none;
+            transition: all 0.3s ease; 
+            display: inline-block;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+        }
+
+        .home-btn {
+            background-color: #e28f8f;
+        }
+
+        .home-btn:hover {
+            background-color: #bc263a90;
+            transform: scale(1.05); 
+        }
+
+        .image-head {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            overflow: hidden;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 100px;
+        }
+
+        .image-head img {
+            width: 100px; /* תופס את כל רוחב המיכל */
+            height: auto; /* שומר על יחס הצדדים */
+            border-radius: 50px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+            max-width: none; /* מבטל את ההגבלה על רוחב מקסימלי */
+            max-height: 400px; /* מוודא שהתמונה לא תהיה גבוהה מדי */
+            object-fit: cover;
+            filter: blur(0.5px);
+        }
+
+        .image-head img:hover {
+            transform: scale(1.02); /* הגדלה קלה בעת ריחוף */
+        }
+
+
+        .image-container {
+        text-align: center;
+        margin-bottom: 100px; 
+    }
+
+    .image-container img {
+        width: 100%; 
+        height: auto;
+        height: 600px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        filter: brightness(1.1);
+    }
+
     </style>
+<h1>התמודדות עם המחלה במקומות ציבוריים </h1>
+<div class="home-btn-container">
+    <a href="{% url 'home' %}" class="home-btn">חזרה לדף הבית</a>
+</div>
+<div class="image-head">
+    <div class="image-container">
+        <img src="{% static 'images/44.jpg' %}" alt="תמונת נושא 1">
+    </div>
+    <div class="image-container">
+        <img src="{% static 'images/45.jpg' %}" alt="תמונת נושא 2">
+    </div>
+    <div class="image-container">
+        <img src="{% static 'images/46.jpg' %}" alt="תמונת נושא 3">
+    </div>
+</div>
+
+
+
+</div>
+
+
 </head>
 <body>
-    <div class="content-wrapper">
-        <h1>התנהלות בבתי הספר</h1>
+    <div class="card-container">
+        <div class="card">
+            <a href="#section1" class="card-link">צליאק במערכת החינוך</a>
+        </div>
+        <div class="card">
+            <a href="#section2" class="card-link">טיולים ופעילויות מחוץ לבית הספר</a>
+        </div>
+        <div class="card">
+            <a href="#section3" class="card-link">צריכת גלוטן</a>
+        </div>
+        <div class="card">
+            <a href="#section4" class="card-link">התנהלות במסעדות ומקומות בילוי</a>
+        </div>
+        <div class="card">
+            <a href="#section5" class="card-link">התנהלות במלונות ובתי הארחה</a>
+        </div>
+    </div>
+
+
+        <div class="content-wrapper">
+
+       
+        
 
         <!-- Section 1 -->
-        <div class="section">
-            <h2>איך אפשר להתנהל עם המחלה במקומות ציבוריים?</h2>
-            <h3>צליאק במערכת החינוך</h3>
+        <div id="section1" class="section">
+            <h2>צליאק במערכת החינוך</h2>
             <p>
                 <b>יידוע הצוות</b><br>
                 התנהלות נכונה במערכת החינוך עם תלמידי חולי צליאק היא קריטית.
                 <br>
                 חשוב ליידע את צוות בית הספר על האבחנה של התלמיד ועל ההשלכות שיגיעו במידה והתלמיד יצרוך גלוטן.
-                <br>
             </p>
             <p>
                 <b>ארוחות המותאמות לתלמידים</b><br>
@@ -73,11 +316,10 @@
                 <br>
                 במידה ואין אפשרות לארוחות מותאמות אישית, יש להביא ארוחות מהבית.
             </p>
-          
         </div>
 
         <!-- Section 2 -->
-        <div class="section">
+        <div id="section2" class="section">
             <h3>טיולים ופעילויות מחוץ לבית הספר</h3>
             <p>
                 על ההורה לבדוק מראש את האוכל אשר מוגש בטיולים/פעילויות מחוץ לבית הספר.
@@ -87,99 +329,60 @@
         </div>
 
         <!-- Section 3 -->
-        <div class="section">
+        <div id="section3" class="section">
             <h3>צריכת גלוטן</h3>
             <p>
-                כאשר תלמיד בטעות אוכל מאכלים עם גלוטן, ישנם מספר צעדים שהצוות החינוכי והבריאותי של בית הספר
-                <br>
-                צריך לנקוט בכדי לסייע לו ולהקל על תסמיניו.
+                כאשר תלמיד בטעות אוכל מאכלים עם גלוטן, ישנם מספר צעדים שהצוות החינוכי והבריאותי של בית הספר צריך לנקוט בכדי לסייע לו ולהקל על תסמיניו.
                 <br>
                 תחילה, יש להפסיק מיידית את האכילה של המזון המכיל גלוטן.
                 <br>
                 לאחר מכן, יש ליידע את ההורים על המצב כדי שיוכלו להיות מודעים ולעקוב אחרי מצבו הרפואי של הילד.
-                <br>
+            </p>
+            <p>
                 <b>מתן טיפול רפואי</b><br>
                 יש לפנות לאחות בית הספר על מנת שתספק טיפול ראשוני תוך כדי הערכת מצב הילד.
                 <br>
-                האחות צריכה לספק תרופות לתלמיד בכדי שיקלו על התסמינים למשל,
-                <br>
-                משככי כאבים (אקמול, נורופן), תרופות נגד שלשולים, תרופות נגד בחילות/צרבות
-                ופרוביוטיקה
-                <br>
-                (אך חשוב להתייעץ עם הרופא עבור תרופה זו).
+                האחות צריכה לספק תרופות לתלמיד בכדי שיקלו על התסמינים כמו משככי כאבים, תרופות נגד שלשולים, תרופות נגד בחילות וצרבות, ופרוביוטיקה (בהתייעצות עם רופא).
                 <br>
                 לאחר החשיפה לגלוטן כדאי לעבור לתזונה קלה ונטולת גלוטן, כמו אורז, תפוחי אדמה, פירות וירקות.
             </p>
             <p>
-                <a href="https://apps.education.gov.il/mankal/horaa.aspx?siduri=483"
-                   target="_blank" >פרטים נוספים באתר משרד החינוך </a> <br>
-                   <a href="https://www.kolzchut.org.il/he/%D7%94%D7%AA%D7%90%D7%9E%D7%95%D7%AA_%D7%9C%D7%AA%D7%9C%D7%9E%D7%99%D7%93%D7%99%D7%9D_%D7%97%D7%95%D7%9C%D7%99_%D7%A6%D7%9C%D7%99%D7%90%D7%A7_%D7%91%D7%9E%D7%95%D7%A1%D7%93%D7%95%D7%AA_%D7%97%D7%99%D7%A0%D7%95%D7%9A"
-                   target="_blank" >פרטים נוספים באתר כל זכות </a>  
+                <a href="https://apps.education.gov.il/mankal/horaa.aspx?siduri=483" target="_blank">פרטים נוספים באתר משרד החינוך</a> <br>
+                <a href="https://www.kolzchut.org.il/he/%D7%94%D7%AA%D7%90%D7%9E%D7%95%D7%AA_%D7%9C%D7%AA%D7%9C%D7%9E%D7%99%D7%93%D7%99%D7%9D_%D7%97%D7%95%D7%9C%D7%99_%D7%A6%D7%9C%D7%99%D7%90%D7%A7_%D7%91%D7%9E%D7%95%D7%A1%D7%93%D7%95%D7%AA_%D7%97%D7%99%D7%A0%D7%95%D7%9A" target="_blank">פרטים נוספים באתר כל זכות</a>
             </p>
         </div>
+
         <!-- Section 4 -->
-        <div class="section">
-            <h3>התנהלות במסעדות ומקומות בילוי</h3>
-            <p> 
-                <b>איך אפשר להתנהל נכון במסעדות ? </b>
-                <br> 
-                קיימות המון מסעדות שמצהירות על "מנה ללא גלוטן" לכן, 
-                <br>
-                ראשית, יש לחפש מסעדות המגישות תפריט נטול גלוטן או כאלו שיש להם הבנה ומודעות על מחלת הצליאק, ניתן להיעזר בביקורות באינטרנט על המסעדות. 
-                <br> 
-                הסיבה העיקרית שצריך לבדוק לגבי מסעדות אלו היא שיכול לקרות מצב שהמנה היא נטולת גלוטן אך סביבת העבודה של המסעדה היא סביב גלוטן ודבר זה הופך את המנה למכילת גלוטן. 
-                <br> 
-                דבר זה יכול לבוא לידי ביטוי כמו: טיגון מוצר ללא גלוטן בשמן שטוגן בו גלוטן, או אפיית פיצה כאשר משטח העבודה היה עם קמח רגיל המכיל גלוטן.
-                <br> 
-                ברגע שלקוח מזמין מנה הוא צריך לוודא עם המלצר/המנהל על הנושא של הצליאק, לברר על רכיבי המנה והאם משטח העבודה נקי כשמכינים אוכל "ללא גלוטן". 
-                <br>
-                <b> איך אפשר להתנהל נכון במקומות בילוי ?</b>
-                <br>
-                התנהלות במקומות בילוי כמו ברים, בתי קפה ואירועיים חברתיים 
-                <br>
-                יכולה להיות מאוד מאתגרת עבור אנשים עם צליאק, אך עם ידע מוקדם ותכנון נכון, אפשר להיזהר וליהנות. 
-                <br>
-                ישנם כמה דברים שאפשר לעשות והם:
-                <br>
-                הדבר הראשון שניתן לעשות זה לבדוק באינטרנט על מקומות שמוכרים אוכל ושתיה חריפה נטולת גלוטן. 
-                <br>
-                רוב המשקאות החריפים מכילים גלוטן(בעיקר חיטה) כמו וודקה, ויסקי ובירה. 
-                <br>
-                ישנם משקאות חריפים נטולי גלוטן כמו רום, יין, טקילה, ערק וג'ין. 
-                <br> 
-                בנוסף, לחלק מהקוקטיילים עלולים להכיל מרכיבים אשר עשויים מגלוטן כמו סירופים ותערובות שמוכנות מראש לכן צריך לבקש מהמלצר/הברמן לבדוק ממה הקוקטייל עשוי. 
-                <br>
-                במידה ואתה נתקל בתפריט במשקאות מהסוג הנ"ל יש לבדוק עם המלצר והברמן שהם אכן נטולי גלוטן לפני ההזמנה. 
-            </p>
-            
-            </div>
-            <!-- Section 5 -->
-        <div class="section">
-            <h3>התנהלות במלונות </h3>
+        <div id="section4" class="section">
+            <h2>התנהלות במסעדות ומקומות בילוי</h2>
             <p>
-                מלונות רבים מודעים למצב הקיים אך לפני שאדם מחליט על מלון כלשהו, הוא יצטרך לבדוק כשהמלון שהוא רוצה לסגור 
-                 <br> 
-                 מציע תפריט אוכל "ללא גלוטן" והצוות של אותו המלון מודע לצרכים של אנשים עם צליאק. 
-                 <br>
-                  בנוסף, יש לקרוא ביקורות באינטרנט לגבי המלונות וכך להגיע להחלטה כמעט ודאית שהמלון תואם לחולי צליאק. 
-                  <br> 
-                ברגע שאדם החליט על מלון וקבע איתו הוא יצטרך ליידע את מנהל האוכל על מנת שיהיה ערוך שהאוכל יוכן בהתאם. 
+                <b>איך אפשר להתנהל נכון במסעדות ?</b><br>
+                קיימות המון מסעדות שמצהירות על "מנה ללא גלוטן", לכן חשוב לחפש מסעדות המגישות תפריט נטול גלוטן או כאלו שיש להם הבנה ומודעות למחלת הצליאק.
                 <br>
-                אחרי כל המשימות שחולה הצליאק היה צריך להיות ערוך, עבור הבדיקה האישית שלו והימנעות ממצב של אכילת גלוטן, הוא יצטרך לבדוק גם את האוכל כשהוא במלון עצמו ולברר עם צוות האוכל שהכל נקי ושלא קיים גלוטן באוכל של המלון. 
-                <br>
-                ברוב בתי המלונות ישנה מודעות לאנשים עם צליאק לכן, בחדר האוכל ישנה הפרדת מזון לרגישים לגלוטן/טבעונים וכדומה. 
-                <br>
-                בנוסף, חולי צליאק יכולים לקבל מגש ארוחה ללא גלוטן ישירות מהמטבח. 
-                <br>
-                כמו כן, השף הראשי עובר עם האורחים אשר רגישים לגלוטן ומנחה אותם מה מותר ומה אסור. 
+                יש לבדוק אם המנה באמת נטולת גלוטן ושסביבת העבודה נקייה מגלוטן.
             </p>
-        <!-- Django Loop for Additional Content -->
-        {% for conduct in conducts %}
-            <div class="section">
-                <h2>{{ conduct.title }}</h2>
-                <p>{{ conduct.content }}</p>
-            </div>
-        {% endfor %}
+            <p>
+                <b>איך אפשר להתנהל נכון במקומות בילוי ?</b><br>
+                התנהלות במקומות בילוי כמו ברים, בתי קפה ואירועים חברתיים יכולה להיות מאתגרת לאנשים עם צליאק, אך עם ידע ותכנון נכון, ניתן ליהנות בבטחה.
+                <br>
+                חשוב לבדוק מראש אם ישנם משקאות ומאכלים נטולי גלוטן, ולהיות מודעים למרכיבים שעשויים להכיל גלוטן.
+            </p>
+        </div>
+
+        <!-- Section 5 -->
+        <div id="section5" class="section">
+            <h2>התנהלות במלונות ובתי הארחה</h2>
+            <p>
+                <b>איך מתנהלים עם בתי הארחה ?</b><br>
+                כאשר מתכננים חופשה בבתי הארחה או במלונות, חשוב ליידע מראש את המקום על מצב הצליאק שלך ולוודא שיש להם אפשרות להכין ארוחות ללא גלוטן.
+                <br>
+                כדאי לוודא עם המלון מראש על האפשרות של הסעדה ללא גלוטן, ולעתים גם לשאול על התאמת הארוחות לפני ההגעה.
+            </p>
+        </div>
     </div>
+</div>
 </body>
+<div class="footer">
+    <p>&copy; 2024 Gluten-Free Website כל הזכויות שמורות.</p>
+</div>
 </html>

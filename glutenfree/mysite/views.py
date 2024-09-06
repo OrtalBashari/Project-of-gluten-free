@@ -1,17 +1,21 @@
 from importlib.metadata import requires
+import select
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
-from .models import backGround, TreatmentMethod, PublicConduct, CeliacAssociation, Entitlement, celiac_army
+from .models import backGround, TreatmentMethod, PublicConduct, CeliacAssociation, celiac_army
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from .forms import RegisterForm
 from django.contrib.auth.decorators import login_required
-from .models import Profile, Preferences, Comment, Notification, Recipe, Like, CommentRecipe
-from .forms import ProfileForm, PreferencesForm, CommentForm, RecipeForm, Comment_RecipeForm
+from .models import Profile, Preferences, Recipe, Like, CommentRecipe,Product
+from .forms import ProfileForm, PreferencesForm, RecipeForm, Comment_RecipeForm, ProductForm
 from django.http import JsonResponse
 from datetime import datetime
+from django.utils import timezone
+from django.contrib.auth.decorators import user_passes_test
+
 
 # Create your views here.
 @login_required
@@ -37,10 +41,51 @@ def celiac_associations_view(request):
     associations = CeliacAssociation.objects.all()
     return render(request, 'celiac_associations.html', {'associations': associations})
 
-def entitlements_view(request):
-    entitlements = Entitlement.objects.all()
-    return render(request, 'entitlements.html', {'entitlements': entitlements})
 
+def is_admin(user):
+    return user.is_superuser
+
+
+@login_required
+@user_passes_test(is_admin)
+def add_product(request):
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('product_list')
+    else:
+        form = ProductForm()
+    return render(request, 'add_product.html', {'form': form})        
+
+
+@login_required
+@user_passes_test(is_admin)
+def edit_product(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect('product_list')
+        
+    else:
+        form = ProductForm(instance=product)
+    return render(request, 'edit_product.html', {'form': form})        
+
+@login_required
+@user_passes_test(is_admin)
+def delete_product(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    if request.method == 'POST':
+        product.delete()
+        return redirect('product_list')
+    return render(request, 'delete_product.html', {'product': product})
+
+
+def product_list(request):
+    products = Product.objects.all()
+    return render(request, 'product_list.html', {'products': products})
 
 def recipes_view(request):
     if request.method == 'POST':
@@ -62,7 +107,7 @@ def add_recipe(request):
             recipes = form.save(commit=False)
             recipes.user = request.user
             recipes.save()
-            return redirect('recipe_list')
+            return redirect('recipes')
         else:
             print(form.errors)  
     else:
@@ -74,6 +119,8 @@ def add_recipe(request):
 def recipe_list(request):
     recipe_list = Recipe.objects.all()
     return render(request, 'recipe_list.html', {'recipe_list': recipe_list})
+
+
 
 def recipe_detail(request, id):
     recipe = get_object_or_404(Recipe, id=id)
@@ -99,6 +146,8 @@ def edit_recipe(request, recipe_id):
     else:
         form = RecipeForm(instance=recipe)
     return render(request, 'edit_recipe.html', {'form': form, 'recipe': recipe})    
+
+
 
     
 
@@ -178,39 +227,35 @@ def profile_view(request):
     return render(request, 'profile.html', {'profile': profile, 'form': form})
 
 @login_required
-def Preferences_view(request):
-    preferences, created = Preferences.objects.get_or_create(user= request.user)
+def update_preferences(request):
+    preferences, created = Preferences.objects.get_or_create(user=request.user)
     if request.method == 'POST':
-        form = PreferencesForm(request.POST, instance= preferences)
+        form = PreferencesForm(request.POST, instance=preferences)
         if form.is_valid():
             form.save()
-            return redirect('preferences')
+            return redirect('preferences')  # Redirect to a page showing updated preferences or a success message
     else:
-        form = PreferencesForm(instance= preferences)
-    return render(request, 'preferences.html', {'form': form})
+        form = PreferencesForm(instance=preferences)
 
+    recipes = Recipe.objects.all()
+    products = Product.objects.all()
 
+    return render(request, 'preferences.html', {
+        'form': form,
+        'recipes': recipes,
+        'products': products,
+    })
 
 @login_required
-def comments_view(request):
-    comments = Comment.objects.filter(user= request.user)
-    if request.method == 'POST':
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            new_comment = form.save(commit = False)
-            new_comment.user = request.user
-            new_comment.save()
-            return redirect('comments')
-    else:
-        form = CommentForm()
-    return render(request, 'comments.html', {'comments': comments, 'form': form})
+def view_preferences(request):
+    preferences = Preferences.objects.get(user=request.user)
+    return render(request, 'view_preferences.html', {
+        'preferences': preferences,
+    })
+
+
+
             
-
-
-@login_required
-def notifications_view(request):
-    notification = Notification.objects.filter(user = request.user)
-    return render(request, 'notification.html', {'notification': notification})
 
 def like_recipe(request):
     user = request.user
@@ -269,3 +314,29 @@ def add_comment(request, pk):
 
     return render(request, 'add_comment.html', context)                
                 
+
+@login_required
+def edit_comment(request, comment_id):
+    comment = get_object_or_404(CommentRecipe, id=comment_id, user=request.user)
+    if request.method == 'POST':
+        form = Comment_RecipeForm(request.POST, instance=comment)
+        if form.is_valid():
+            form.save()
+            return redirect('recipes')
+    else:
+        form = Comment_RecipeForm(instance=comment)
+    return render(request, 'edit_comment.html', {'form': form, 'comment': comment})
+
+
+
+  
+@login_required
+def delete_comment(request, comment_id):
+    comment = get_object_or_404(CommentRecipe, id=comment_id, user=request.user)
+    if request.method == 'POST':
+        comment.delete()
+        return redirect('recipes')
+    return render(request, 'delete_comment.html', {'comment': comment})   
+
+
+

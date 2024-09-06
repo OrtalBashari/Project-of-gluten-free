@@ -6,83 +6,281 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gluten-Free Recipes</title>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.5.1/uicons-solid-straight/css/uicons-solid-straight.css'>
-<style> 
-       body {
-            font-family: Arial, sans-serif;
-            background-color: #c2cdd4;
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet"> 
+
+    <style> 
+        body {
+            font-family:  'Roboto', sans-serif; ;
+            
+            background: linear-gradient(to bottom right, #f0f0f0, #e0e0e0);
+            background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.05) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, 0.05) 75%, rgba(0, 0, 0, 0.05) 100%),
+            linear-gradient(225deg, rgba(0, 0, 0, 0.05) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, 0.05) 75%, rgba(0, 0, 0, 0.05) 100%);
+        
+            background-color: #f5f5f5;
             margin: 0;
             padding: 0;
-            color: #101011;
-            direction: rtl; /* Set text direction to right-to-left */
-            text-align: right; /* Align text to the right */
+            color: #333333;
+            direction: rtl; /* כיוון הטקסט מימין לשמאל */
+            text-align: right; /* יישור הטקסט לימין */
         }
+
         h1 {
+    text-align: center;
+    margin: 10px 0;
+    color: #00000098;
+    font-size: 2.5em; /* מגדיל את גודל הגופן */
+    font-weight: bold; /* הופך את הטקסט לעבה יותר */
+    letter-spacing: 1.5px; /* מוסיף ריווח בין האותיות */
+    text-transform: uppercase; /* הופך את הטקסט לאותיות גדולות */
+    background: linear-gradient(to right, #047104, #ede8eb6b); /* הוספת גרדיאנט לטקסט */
+    -webkit-background-clip: text; /* רקע הגרדיאנט יוצג רק בטקסט */
+    -webkit-text-fill-color: transparent; /* הופך את צבע המילוי של הטקסט לשקוף */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* הוספת צל לטקסט */
+    transition: transform 0.3s ease, text-shadow 0.3s ease; /* אפקט מעבר עדין */
+    position: relative; /* מאפשר שימוש באלמנטים כמו קו תחתון */
+}
+
+h1::after {
+    content: '';
+    display: block;
+    width: 50%;
+    height: 2px;
+    background-color: #101011; /* קו תחתון בצבע דומה לגרדיאנט */
+    margin: 10px auto 0 auto; /* מיקום מרכזי */
+    transition: width 0.3s ease; /* אפקט מעבר לרוחב הקו */
+}
+
+h1:hover {
+    transform: scale(1.05); /* אפקט הגדלה בעת מעבר העכבר */
+    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4); /* הצללת טקסט נוספת בעת מעבר העכבר */
+}
+
+h1:hover::after {
+    width: 80%; /* הגדלת רוחב הקו בעת מעבר העכבר */
+}
+        
+
+        h2, h3 {
             text-align: center;
-            margin-top: 20px;
-            color: #e3609b;
+            margin: 10px 0; /* הקטנת המרווחים העליונים והתחתונים של כותרות משניות */
+            color: #333;
         }
-        h2 {
-            color: #4a90e2;
-            margin-top: 20px;
-        }
-        p {
-            margin: 10px 0;
+
+        p, ul {
+            margin: 5px 0; /* הקטנת המרווחים מסביב לפסקאות ורשימות */
             line-height: 1.6;
             padding: 0 20px;
         }
+
         .content-wrapper {
-            max-width: 800px;
-            margin: 20px auto;
+            
+            background-color: rgba(243, 234, 234, 0.447); /* שקיפות לתוכן המרכזי */
+
+            max-width: 900px;
+            margin: 10px auto; /* הקטנת המרווחים למעלה ולמטה */
             padding: 20px;
-            background-color: #eaeaea;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .section {
-            margin-bottom: 20px;
-            padding: 20px;
-            background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-        }
-        .section h3 {
-            color: #4a90e2;
-        }
-        .section p {
-            color: #333;
-        }
-        ul {
-            padding: 0 20px;
-        }
-        ul li {
-            margin-bottom: 10px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
+        .section {
+            
+            background-color: rgba(250, 250, 250, 0.484); /* שקיפות לסקשנים */
+
+            margin-bottom: 10px; /* הקטנת המרווח התחתון בין הסקשנים */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .section h3 {
+            margin: 5px 0; /* הקטנת המרווחים העליונים והתחתונים של כותרות בתוך סקשן */
+        }
+
+        ul {
+            padding-right: 20px;
+        }
+
+        ul li {
+            margin-bottom: 8px; /* הקטנת המרווח התחתון של פריטי הרשימה */
+            list-style-type: disc;
+        }
 
         .button {
-                    display: inline-block;
-                    padding: 10px 20px;
-                    font-size: 16px;
-                    color: white;
-                    background-color: #1661397d;
-                    text-align: center;
-                    text-decoration: none;
-                    border-radius: 8px;
-                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                    transition: background-color 0.3s ease;
-                }
-            
-                .button:hover {
-                    background-color: #ced2d5;
-                }
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 16px;
+            color: white;
+            background-color: #6c9f33;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 33px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #578c2a;
+        }
+
+        .card-container {
+            display: flex;
+            justify-content: right;
+            flex-wrap: wrap;
+            margin: 20px 0; /* הקטנת המרווחים למעלה ולמטה */
+        }
+
+        .card {
+        background-color: rgba(255, 255, 255, 0.8); /* שקיפות לכרטיסיות */
+        border: 1px solid rgba(221, 221, 221, 0.8);
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 240px;
+        margin: 10px;
+        text-align: center;
+        padding: 20px;
+        transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+        .card:hover {
+            background-color: rgba(240, 240, 240, 0.8); /* שקיפות לכרטיסיות בהעברת עכבר */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-link {
+            text-decoration: none;
+            color: #6c9f33;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .card-link:hover {
+            text-decoration: underline;
+        }
+
+        .image-container {
+            max-width: 100%;
+            text-align: left;
+            margin-bottom: 20px; /* הקטנת המרווח התחתון */
+        }
+
+        .image-container img {
+            max-width: 250px;
+            max-height: 250px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            filter: blur(0.5px);
+        }
+    
+
+
+      
+
+
+        .footer {
+    position: fixed; 
+    bottom: 0; 
+    left: 0;
+    width: 100%; 
+    background-color: #fffcfc61; 
+    color: #000000f0; 
+    text-align: center; 
+    padding: 10px 0; 
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); 
+    z-index: 1000; 
+    font-family: 'Nerko One', sans-serif;
+}
+
+.footer p {
+    margin: 0; 
+    font-size: 14px; 
+}
+
+.home-btn-container {
+    display: flex;
+    justify-content: space-between; /* מפריד בין הכפתורים */
+    align-items: center; /* מרכז אנכית */
+    margin-bottom: 20px;
+}
+
+.home-btn {
+    font-size: 18px;
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 8px; 
+    text-decoration: none;
+    transition: all 0.3s ease; 
+    display: inline-block;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+.home-btn {
+    background-color: #0a0909;
+}
+
+.home-btn:hover {
+    background-color: #333;
+    transform: scale(1.05); 
+}
+
+.image-head {
+    position: relative; /* מאפשר הוספת עיצובים נוספים */
+    width: 100%; /* תופס את כל רוחב ההורה */
+    max-width: 800px; /* מגביל את רוחב המיכל */
+    max-height: 600;
+    margin: 0 auto; /* מרכז את התמונה */
+    overflow: hidden; /* מסיר חלקים שהולכים מעבר למיכל */
+    text-align: center;
+}
+
+.image-head img {
+    width: 100%; /* תופס את כל רוחב המיכל */
+    height: auto; /* שומר על יחס הצדדים של התמונה */
+    display: block; /* מסיר רווחים מיותרים מתחת לתמונה */
+    border-radius: 50px; /* זוויות מעוגלות לתמונה */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* הוספת צל לתמונה */
+    transition: transform 0.3s ease-in-out; /* אנימציה להגדלה בעת ריחוף */
+}
+
+.image-head img:hover {
+    transform: scale(1.5); /* הגדלה קלה בעת ריחוף */
+}
+
+
     </style>
+    <h1> התמודדות עם מחלת הצליאק בבסיסי צה"ל</h1>
+
+    
+
+    <div class="home-btn-container">
+        <a href="{% url 'home' %}" class="home-btn">חזרה לדף הבית</a>
+    </div>
+    <div class="card-container">
+        <div class="card">
+            <a href="#section1" class="card-link">מענה ההזנה </a>
+        </div>
+        
+        <div class="card">
+        <a href="#section2" class="card-link">   ארוחות בבסיסים השונים</a>
+        </div>
+
+
+        <div class="card">
+            <a href="#section3" class="card-link">  תיאום האוכל מול מנהל המטבח</a>
+            </div>
+    </div>
+
 </head>
+
 <body>
+    <div class="image-head">
+        <img src="{% static 'images/34.jpg' %}" alt="תמונת נושא למתכון">
+    </div>
+
     <div class="content-wrapper">
-        <h1>צליאק בצה"ל</h1>
-        <h2>כיצד חיילים יתנהלו נכון עם המחלה?</h2>
-        <div class="section">
-            <h3>מענה ההזנה עבור חיילים עם צליאק ביחידות השונות <i class="fi fi-ss-user-police"></i></h3>
+       
+        <div id="section1" class="section">
+            <h3>מענה ההזנה עבור חיילים עם צליאק ביחידות השונות</h3>
             <p>
                 <b>כלל החיילים המשרתים עם צליאק:</b>
             </p>
@@ -90,40 +288,52 @@
                 <li>תפריט מוגדר ללא גלוטן.</li>
                 <li>זכאות לאמצעי חימום וקירור יעודיים אישיים.</li>
                 <li>כלי אוכל רב פעמיים אישיים או כלי אוכל חד-פעמיים המסופקים על- ידי היחידה.</li>
-                <li>חיילים עם צליאק יקבלו דמי כלכלה .</li>
-                <li>חיילים בשירות חובה אשר נמצאים ביחידות סגורות יהיו רשאים לקבלת קוד זכאות בשווי של 150 ש"ח אחת לחודש בכוורת.</li>
+                <li>חיילים עם צליאק יקבלו דמי כלכלה.</li>
+                <li>חיילים בשירות חובה אשר נמצאים ביחידות סגורות יהיו רשאים לקבל קוד זכאות בשווי של 150 ש"ח אחת לחודש בכוורת.</li>
             </ul>
-            <p>
+        </div>
+        <div id="section2" class="section">  
+        <p>
                 <b>ארוחות בבסיסים השונים:</b>
+        </p> 
+        <p>
                 <br>בארוחות הבוקר, צהריים וערב יוגשו ארוחות המסומנות ב"ללא גלוטן", ארוחות אלה חייבות להישאר סגורות.
                 <br>ישנם פריטי מזון הקיימים במטבח בבסיסים השונים, לרבות פירות, ירקות ומוצרי חלב.
                 <br>חייל אשר נמצא בשטח מחוץ לבסיס היחידה יקבל מנת קרב ללא גלוטן, מזון טרי המותאם ללא גלוטן.
                 <br>בחדר האוכל בבסיסים השונים יהיו עמדות חלוקה עם מזון ללא גלוטן.
             </p>
-            <p>
-                <b>תיאום האוכל מול מנהל המטבח:</b>
+        </div>
+        
+            
+                <div id="section3" class="section">
+                    <p>
+                <b>תיאום האוכל מול מנהל המטבח:</b> </p>
+                <p>
+
                 <br>החייל יתאם מול מנהל המטבח את סוגי הפריטים אשר הוא יכול לצרוך מהמלאי של המטבח.
                 <br> מומלץ שהחייל יידע את מנהל המטבח על מועד הגעה לארוחות לטובת מתן מענה מיטבי. 
             </p>
-
             <p>
                 <b>למידע נוסף על זכויות חיילים עם צליאק:</b>
-                <a href="https://www.idf.il/%D7%94%D7%A9%D7%99%D7%A8%D7%95%D7%AA-%D7%A9%D7%9C%D7%99/%D7%AA%D7%A0%D7%90%D7%99-%D7%94%D7%A9%D7%99%D7%A8%D7%95%D7%AA-%D7%91%D7%A6%D7%94-%D7%9C/%D7%90%D7%95%D7%9B%D7%9C/%D7%94%D7%A0%D7%97%D7%99%D7%95%D7%AA-%D7%91%D7%A0%D7%95%D7%A9%D7%90-%D7%9E%D7%A2%D7%A0%D7%94-%D7%94%D7%96%D7%A0%D7%94-%D7%9C%D7%97%D7%99%D7%99%D7%9C%D7%99%D7%9D-%D7%A2%D7%9D-%D7%A6%D7%9C%D7%99%D7%90%D7%A7-%D7%A6%D7%9C%D7%99%D7%90%D7%A7%D7%99%D7%9D-%D7%A6%D7%94-%D7%9C-%D7%90%D7%95%D7%9B%D7%9C-%D7%9E%D7%A2%D7%A0%D7%94-%D7%9E%D7%96%D7%95%D7%9F/#_ftn2" target="_blank">לחץ כאן</a>
+                <a href="https://www.idf.il/%D7%94%D7%A9%D7%99%D7%A8%D7%95%D7%AA-%D7%A9%D7%9C%D7%99/%D7%AA%D7%A0%D7%90%D7%99-%D7%94%D7%A9%D7%99%D7%A8%D7%95%D7%AA-%D7%91%D7%A6%D7%94-%D7%9C/%D7%90%D7%95%D7%9B%D7%9C/%D7%94%D7%A0%D7%97%D7%99%D7%95%D7%AA-%D7%91%D7%A0%D7%95%D7%A9%D7%90-%D7%9E%D7%A2%D7%A0%D7%94-%D7%94%D7%96%D7%A0%D7%94-%D7%9C%D7%97%D7%99%D7%99%D7%9C%D7%99%D7%9D-%D7%A2%D7%9D-%D7%A6%D7%9C%D7%99%D7%90%D7%A7-%D7%A6%D7%9C%D7%99%D7%90%D7%A7%D7%99%D7%9D-%D7%A6%D7%94-%D7%9C-%D7%90%D7%95%D7%9B%D7%9C-%D7%9E%D7%A2%D7%A0%D7%94-%D7%9E%D7%96%D7%95%D7%9F/#_ftn2" target="_blank" class="button">למידע נוסף</a>
             </p>
-
             <p>
                 <a href="https://www.mitgaisim.idf.il/%D7%9B%D7%AA%D7%91%D7%95%D7%AA/%D7%A8%D7%90%D7%A9%D7%99/%D7%96%D7%9B%D7%95%D7%99%D7%95%D7%AA-%D7%95%D7%97%D7%95%D7%91%D7%95%D7%AA/%D7%97%D7%95%D7%9C%D7%99-%D7%A6%D7%9C%D7%99%D7%90%D7%A7-%D7%9B%D7%9C-%D7%94%D7%9E%D7%99%D7%93%D7%A2-%D7%A2%D7%91%D7%95%D7%A8%D7%9B%D7%9D/#/" 
                    target="_blank" class="button">זכויות וחובות לקראת הגיוס</a>
             </p>
-            
         </div>
-        <!-- Django Loop for Content -->
-        {% for conduct in conducts %}
-            <div class="section">
-                <h3>{{ conduct.title }}</h3>
-                <p>{{ conduct.content }}</p>
-            </div>
-        {% endfor %}
+        
     </div>
+   
+
+
+<div class="image-container">
+    <img src="{% static 'images/33.jpg' %}" alt="תמונת צדדית">
+</div>
 </body>
+<div class="footer">
+    <p>&copy; 2024 Gluten-Free Website כל הזכויות שמורות.</p>
+</div>
+
+
 </html>

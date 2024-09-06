@@ -1,4 +1,4 @@
-import uuid
+from email.mime import image
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -33,12 +33,15 @@ class CeliacAssociation(models.Model):
     def __str__(self):
         return self.name
 
-class Entitlement(models.Model):
-    title = models.CharField(max_length=200)
+
+class Product(models.Model):
+    name = models.CharField(max_length=255)
     description = models.TextField()
+    image = models.ImageField(upload_to='gluten_free_products/')
+    link = models.URLField()
 
     def __str__(self):
-        return self.title
+        return self.name
     
 
 class Recipe(models.Model):
@@ -78,21 +81,14 @@ class Preferences(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     preferences = models.TextField(blank=True)
     favorite_recipes = models.ManyToManyField('Recipe', blank=True)
+    favorite_products = models.ManyToManyField('Product', blank=True)
 
-
-class Comment(models.Model):
-    user = models.ForeignKey(User, on_delete= models.SET_NULL, null=True)
-    content = models.TextField(blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.user.username} - {self.content[:20]}' # type: ignore
+        return f"{self.user.username}'s Preferences"
+
+
     
-class Notification(models.Model):
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    message = models.TextField()
-    is_read = models.BooleanField(default=False)
-    created_at = models.DateTimeField(auto_now_add=True)
 
 
 LIKE_CHOICES = (
@@ -113,6 +109,7 @@ class Like(models.Model):
 
     
 class CommentRecipe(models.Model):
+    id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
     parent_recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name='comments')
     body = models.TextField(max_length=150)

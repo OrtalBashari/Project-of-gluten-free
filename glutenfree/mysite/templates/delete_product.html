@@ -1,0 +1,86 @@
+
+{% block content %}
+<div class="container">
+    <h2>מחיקת המוצר </h2>
+    <div class="confirmation">
+        <p>האם אתה בטוח שברצונך למחוק את המוצר "{{ product.name }}"?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">מחק</button>
+            <a href="{% url 'product_list' %}" class="btn btn-secondary">ביטול</a>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+<style>
+/* עיצוב כללי לדף */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    direction: rtl; /* כיוון טקסט מימין לשמאל */
+}
+
+/* קונטיינר */
+.container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* כותרת */
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* אזור אישור מחיקה */
+.confirmation {
+    text-align: center;
+}
+
+/* עיצוב הטופס */
+form {
+    display: inline-block;
+    margin-top: 20px;
+}
+
+/* כפתור מחיקה */
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+/* כפתור ביטול */
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+</style>

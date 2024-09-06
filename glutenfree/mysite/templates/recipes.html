@@ -4,304 +4,443 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Nerko+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+
+
     <title>מתכונים ללא גלוטן</title>
     <style>
         /* Existing CSS */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            color: #333;
-            direction: rtl; /* טקסט מימין לשמאל */
-            text-align: right; /* טקסט מימין */
-        }
+        
+    body {
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 0;
+        color: #333;
+        direction: rtl;
+        text-align: right;
+        font-family: 'Nerko One', sans-serif;
 
-        .container {
-            width: 80%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
+    }
 
-        /* New CSS for heading */
-        .page-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
+    .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
 
-        .page-header h1 {
-            font-size: 36px;
-            color: #0a09098d;
-            margin: 0;
-            padding: 10px 20px;
-            background: linear-gradient(to right, #a9436d2b, #31a0c899);
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            display: inline-block;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-            font-weight: bold;
-        }
+    .page-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
 
-        /* Existing CSS continued */
-        .recipe-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* יצירת כרטיסיות */
-            gap: 20px;
-        }
+    .page-header h1 {
+        font-size: 32px;
+        color: #333;
+        margin: 0;
+        padding: 10px;
+        background: #e0e0e0;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
 
-        .recipe-item {
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: right;
-        }
+    .home-btn-container {
+        text-align: center;
+        margin-bottom: 20px;
+    }
 
-        .recipe-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-        }
+    .home-btn {
+        font-size: 18px;
+        color: #fff;
+        padding: 10px 20px;
+        background-color: #007bff;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+        display: inline-block;
+    }
 
-        .recipe-item img {
-            width: 100%;
-            max-height: 200px;
-            object-fit: cover; /* שמירה על פרופורציות התמונה */
-            border-radius: 8px;
-            margin-bottom: 15px;
-        }
+    .home-btn:hover {
+        background-color: #0056b3;
+    }
 
-        .recipe-item h2 {
-            color: #4a90e2;
-            margin-bottom: 10px;
-            font-size: 22px;
-            text-align: center;
-            font-weight: bold;
-        }
+    .recipe-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+    }
 
-        .recipe-item p {
-            color: #666;
-            margin-bottom: 15px;
-            line-height: 1.6;
-            width: 100%;
-            text-align: right;
-        }
+    .recipe-item {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 15px;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
-        .recipe-item p strong {
-            color: #333;
-            font-weight: bold;
-            display: block;
-            margin-bottom: 5px;
-        }
+    .recipe-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
 
-        .delete-link {
-            color: #dc3545;
-            text-decoration: none;
-            font-weight: bold;
-            display: inline-block;
-            margin-top: 10px;
-            transition: color 0.3s ease;
-        }
+    .recipe-item img {
+        width: 100%;
+        max-height: 200px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 15px;
+    }
 
-        .delete-link:hover {
-            color: #c82333;
-            text-decoration: underline;
-        }
+    .recipe-item h2 {
+        color: #007bff;
+        margin-bottom: 10px;
+        font-size: 20px;
+        text-align: center;
+    }
 
-        .like-btn {
-            margin-top: 10px;
-            padding: 10px 20px;
-            border: none;
-            background-color: #4a90e2;
-            color: white;
-            font-weight: bold;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            display: flex;
-            align-items: center;
-        }
+    .recipe-content-container {
+        max-height: 300px;
+        overflow-y: auto;
+        padding: 10px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        margin-bottom: 20px;
+    }
 
-        .like-btn:hover {
-            background-color: #3a78b2;
-        }
+    .recipe-content {
+        font-size: 14px;
+        line-height: 1.6;
+        color: #333;
+    }
 
-        .like-btn .icon {
-            margin-left: 8px;
-            font-size: 16px;
-        }
+    .delete-link {
+        color: #dc3545;
+        text-decoration: none;
+        font-weight: bold;
+        display: inline-block;
+        margin-top: 10px;
+        transition: color 0.3s ease;
+    }
 
-        .unlike-btn {
-            background-color: #dc3545;
-        }
+    .delete-link:hover {
+        color: #c82333;
+    }
 
-        .unlike-btn:hover {
-            background-color: #c82333;
-        }
+    .like-form {
+        margin-top: 10px;
+    }
 
-        .like-count {
-            margin-top: 10px;
-            font-weight: bold;
-            color: #333;
-        }
+    .like-btn {
+        padding: 8px 16px;
+        border: none;
+        background-color: #007bff;
+        color: white;
+        font-weight: bold;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        display: flex;
+        align-items: center;
+    }
 
-        /* New CSS for home button */
-        .home-btn {
-            font-size: 20px;
-            color: #0a09098d;
-            margin: 0;
-            padding: 10px 20px;
-            background: linear-gradient(to right, #a9436d2b, #31a0c899);
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            display: inline-block;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-            font-weight: bold;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-        }
+    .like-btn:hover {
+        background-color: #0056b3;
+    }
 
-        .home-btn:hover {
-            background-color: #3a78b2;
-        }
+    .unlike-btn {
+        background-color: #dc3545;
+    }
 
-        .home-btn-container {
-            text-align: center;
-            margin-bottom: 20px;
-        }
+    .unlike-btn:hover {
+        background-color: #c82333;
+    }
 
-        /* New CSS for recipe content */
-        .recipe-content-container {
-            max-height: 300px; /* Adjust height as needed */
-            overflow-y: auto; /* Adds scrollbar if content overflows */
-            padding: 10px;
-            background-color: #f9f9f9;
-            border-radius: 8px;
-            border: 1px solid #ddd;
-            margin-bottom: 20px;
-        }
+    .like-count {
+        margin-top: 10px;
+        font-weight: bold;
+        color: #333;
+    }
 
-        .recipe-content {
-            font-size: 14px; /* Smaller text size */
-            line-height: 1.6;
-            color: #333;
-        }
+    .comment-form {
+        width: 100%;
+        margin-top: 20px;
+    }
 
-        /* CSS for comment form */
-        .comment-form {
-            width: 100%;
-            margin-top: 20px;
-            text-align: center;
-        }
+    .comment-form textarea {
+        width: 100%;
+        height: 80px;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+        resize: vertical;
+    }
 
-        .comment-form textarea {
-            width: 100%;
-            height: 80px;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 14px;
-        }
+    .comment-form button {
+        padding: 8px 16px;
+        border: none;
+        background-color: #007bff;
+        color: white;
+        font-weight: bold;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
 
-        .comment-form button {
-            padding: 8px 16px;
-            border: none;
-            background-color: #4a90e2;
-            color: white;
-            font-weight: bold;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
+    .comment-form button:hover {
+        background-color: #0056b3;
+    }
 
-        .comment-form button:hover {
-            background-color: #3a78b2;
-        }
-    </style>
+    .update-btn {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        font-weight: bold;
+    }
+
+    .update-btn:hover {
+        background-color: #0056b3;
+    }
+
+    .update-btn:active {
+        background-color: #004494;
+    }
+
+    .comments-section {
+        margin-top: 20px;
+        width: 100%;
+    }
+
+    .comment {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+        margin-bottom: 10px;
+        background-color: #f9f9f9;
+        border-radius: 5px;
+    }
+
+    .comment-user {
+        font-weight: bold;
+        color: #007bff;
+    }
+
+    .edit-link {
+        color: #007bff;
+        text-decoration: none;
+        font-weight: bold;
+        display: inline-block;
+        margin-right: 10px;
+        transition: color 0.3s ease;
+    }
+
+    .edit-link:hover {
+        color: #0056b3;
+    }
+
+
+    /* CSS for Home Button and Add Recipe Button */
+.home-btn-container {
+    display: flex;
+    justify-content: space-between; /* מפריד בין הכפתורים */
+    align-items: center; /* מרכז אנכית */
+    margin-bottom: 20px;
+}
+
+.home-btn,
+.add-recipe-btn {
+    font-size: 18px;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+}
+
+/* CSS for Home Button and Add Recipe Button with additional styles */
+.home-btn-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.home-btn,
+.add-recipe-btn {
+    font-size: 18px;
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 8px; 
+    text-decoration: none;
+    transition: all 0.3s ease; 
+    display: inline-block;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+.home-btn {
+    background-color: #0a0909;
+}
+
+.home-btn:hover {
+    background-color: #333;
+    transform: scale(1.05); 
+}
+
+.add-recipe-btn {
+    background-color: #28a745;
+}
+
+.add-recipe-btn:hover {
+    background-color: #218838;
+    transform: scale(1.05); 
+}
+
+.footer {
+    position: fixed; 
+    bottom: 0; 
+    left: 0;
+    width: 100%; 
+    background-color: #fffcfc61; 
+    color: #1aa2d4; 
+    text-align: center; 
+    padding: 10px 0; 
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); 
+    z-index: 1000; 
+    font-family: 'Nerko One', sans-serif;
+}
+
+.footer p {
+    margin: 0; 
+    font-size: 14px; 
+}
+
+
+
+
+</style>
+
 </head>
 <body>
     <div class="container">
         <!-- Home Button -->
         <div class="home-btn-container">
             <a href="{% url 'home' %}" class="home-btn">חזרה לדף הבית</a>
+            {% if user.is_authenticated %}
+            <div class="add-recipe-btn-container">
+                <a href="{% url 'add_recipe' %}" class="add-recipe-btn">הוסף מתכון חדש</a>
+            </div>
+            {% endif %}
+
         </div>
+ 
 
         <!-- Page Header -->
         <div class="page-header">
-            <h1>רשימת מתכונים</h1>
+            <h1> המתכונים שלנו </h1>
         </div>
 
         <div class="recipe-grid">
             {% for recipe in recipes %}
-                <div class="recipe-item">
-                    {% if recipe.image %}
-                        <img src="{{ recipe.image.url }}" alt="{{ recipe.name }}">
-                    {% endif %}
-                    <h2>{{ recipe.name }}</h2>
-                    <div class="recipe-content-container">
-                        <p><strong>רכיבים:</strong></p>
-                        <p class="recipe-content">{{ recipe.ingredients|safe }}</p>
-                        <p><strong>הוראות הכנה:</strong></p>
-                        <p class="recipe-content">{{ recipe.instructions|safe }}</p>
-                    </div>
-                    <p><strong>תאריך הוספה:</strong> {{ recipe.created_at }}</p>
-
-                    {% if recipe.user == request.user %}
-                        <a href="{% url 'edit_recipe' recipe.id %}" class="edit-link">ערוך מתכון</a>
-                    {% endif %}
-
-                    {% if recipe.user == request.user %}
-                        <a href="{% url 'delete_recipe' recipe.id %}" class="delete-link">מחק מתכון</a>
-                    {% endif %}
-
-                    <!-- Like Button -->
-                    <form action="{% url 'like_recipe' %}" method="POST">
-                        {% csrf_token %}
-                        <input type="hidden" name="recipe_id" value="{{ recipe.id }}">
-                        {% if user.is_authenticated and user in recipe.likes.all %}
-                            <button type="submit" class="like-btn unlike-btn">
-                                Unlike <span class="icon">👎</span>
-                            </button>
-                        {% else %}
-                            <button type="submit" class="like-btn">
-                                Like <span class="icon">👍</span>
-                            </button>
-                        {% endif %}
-                    </form>
-
-                    <p class="like-count">Likes: {{ recipe.likes.count }}</p>
-
-                    <!-- Comment Form -->
-                    <div class="comment-form">
-                        <form action="{% url 'add_comment' recipe.id %}" method="POST">
-                            {% csrf_token %}
-                            <textarea name="content" placeholder="הוסף תגובה כאן..." required></textarea>
-                            <button type="submit">הוסף תגובה</button>
-                        </form>
-                    </div>
-
-                    <!-- Display comments -->
-                    <div class="comments-section">
-                        <h3>תגובות:</h3>
-                        {% for comment in recipe.comments.all %}
-                            <p><strong>{{ comment.user.username }}:</strong> {{ comment.body }}</p>
-                        {% empty %}
-                            <p>אין תגובות עדיין.</p>
-                        {% endfor %}
-                    </div>
-
+            <div class="recipe-item">
+                {% if recipe.image %}
+                    <img src="{{ recipe.image.url }}" alt="{{ recipe.name }}">
+                {% endif %}
+                <h2>{{ recipe.name }}</h2>
+                <div class="recipe-content-container">
+                    <p><strong>רכיבים:</strong></p>
+                    <p class="recipe-content">{{ recipe.ingredients|linebreaksbr }}</p>
+                    <p><strong>הוראות הכנה:</strong></p>
+                    <p class="recipe-content">{{ recipe.instructions|linebreaksbr }}</p>
                 </div>
+                <p><strong>תאריך הוספה:</strong> {{ recipe.created_at }}</p>
+        
+                {% if recipe.user == request.user %}
+                    <a href="{% url 'edit_recipe' recipe.id %}" class="edit-link">ערוך מתכון</a>
+                    <a href="{% url 'delete_recipe' recipe.id %}" class="delete-link">מחק מתכון</a>
+                {% endif %}
+        
+                <!-- Like Button -->
+                <form action="{% url 'like_recipe' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="recipe_id" value="{{ recipe.id }}">
+                    {% if user.is_authenticated and user in recipe.likes.all %}
+                        <button type="submit" class="like-btn unlike-btn">
+                            Unlike <span class="icon"><i class="bi bi-hand-thumbs-down-fill"></i></span>
+                        </button>
+                    {% else %}
+                        <button type="submit" class="like-btn">
+                            Like <span class="icon"><i class="bi bi-hand-thumbs-up-fill"></i></span>
+                        </button>
+                    {% endif %}
+                </form>
+        
+                <p class="like-count">Likes: {{ recipe.likes.count }}</p>
+        
+                <!-- Comment Form -->
+                <div class="comment-form">
+                    <form action="{% url 'add_comment' recipe.id %}" method="POST">
+                        {% csrf_token %}
+                        <textarea name="body" placeholder="הוסף תגובה..."></textarea>
+                        <button type="submit">הוסף תגובה</button>
+                    </form>
+                </div>
+        
+
+
+                <div class="comments-section">
+                    <h3>תגובות:</h3>
+                    {% for comment in recipe.comments.all %}
+                    <div class="comment">
+                        <p class="comment-user">{{ comment.user.username }}:</p>
+                        <p>{{ comment.body }}</p>
+                        {% if comment.user == request.user %}
+                        <!-- Edit Comment Form -->
+                        <a href="{% url 'edit_comment' comment.id %}" class="edit-link">ערוך</a>
+                
+                        <!-- Delete Comment Form -->
+                        
+
+                        <a href="{% url 'delete_comment' comment.id %}" class="delete-link">מחק תגובה</a>
+
+                        <!-- Edit Comment Form (initially hidden) -->
+                        <div id="edit-comment-{{ comment.id }}" class="edit-comment-form" style="display:none;">
+                            <form method="post" action="{% url 'edit_comment' comment.id %}">
+                                {% csrf_token %}
+                                {{ comment_form.as_p }}
+                                <button type="submit" class="update-btn">עריכת תגובה</button>
+                            </form>
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% empty %}
+                    <p>אין תגובות עדיין.</p>
+                    {% endfor %}
+                </div>
+            </div>
             {% endfor %}
         </div>
-    </div>
-</body>
-</html>
+        
+        </div>
+    </body>
+    <!-- Footer -->
+<div class="footer">
+    <p>&copy; 2024 Gluten-Free Website כל הזכויות שמורות.</p>
+</div>
+
+    </html>

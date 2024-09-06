@@ -1,9 +1,10 @@
 from dataclasses import field
-from typing import Any
+from tkinter import Widget
+from typing import Any, Required
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Profile, Preferences, Comment, Recipe, CommentRecipe
+from .models import Profile, Preferences, Recipe, CommentRecipe, Product
 
 class ProfileForm(forms.ModelForm):
     username = forms.CharField(max_length=150, required=True)
@@ -27,16 +28,30 @@ class ProfileForm(forms.ModelForm):
                  
             
     
+
+
 class PreferencesForm(forms.ModelForm):
+    favorite_recipes = forms.ModelMultipleChoiceField(
+        queryset=Recipe.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        required=False,
+        label='מתכונים אהובים'  # Label in Hebrew
+    )
+
+    favorite_products = forms.ModelMultipleChoiceField(
+        queryset=Product.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        required=False,
+        label='מוצרים אהובים'  # Label in Hebrew
+    )
+
     class Meta:
         model = Preferences
-        fields = [ 'preferences','favorite_recipes']
+        fields = ['favorite_recipes', 'favorite_products']
+       
 
 
-class CommentForm(forms.ModelForm):
-    class Meta:
-        model = Comment 
-        fields = ['content']
+       
 
 
 class RegisterForm(UserCreationForm):
@@ -77,4 +92,17 @@ class Comment_RecipeForm(forms.ModelForm):
 
         labels = {
             'body': ''
+        }
+
+
+class ProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ['name', 'description', 'image', 'link']
+
+        labels = {
+            'name': 'שם המוצר',
+            'description': 'תיאור',
+            'image': 'תמונה',
+             'link': 'קישור למוצר'
         }

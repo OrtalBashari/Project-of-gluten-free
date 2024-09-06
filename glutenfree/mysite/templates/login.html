@@ -4,20 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>הרשמה</title>
+    <title>LogIn</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <style>
         /* General Styles */
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: url(1.jpg) no-repeat;
-            background-size: cover; 
-        }
+    font-family: Arial, sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('../static/images/31.jpg') no-repeat center center fixed;
+    background-size: cover;
+    background-position: center;
+    filter: brightness(80%) contrast(120%) saturate(150%) ;
+
+}
 
         /* Container Styles */
         .container {
@@ -33,12 +36,12 @@
 
         /* Login Wrapper Styles */
         .login-wrapper {
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 400px;
-            max-width: 100%;
+        background-color: rgb(105 103 103 / 37%); /* Adjust the transparency as needed (0 for fully transparent, 1 for fully opaque) */
+        padding: 40px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 400px;
+        max-width: 100%;
         }
 
         /* Title Styles */
@@ -46,7 +49,7 @@
             font-size: 24px;
             margin-bottom: 20px;
             text-align: center;
-            color: #e07e9a;
+            color: #1555d6b7;
         }
 
         /* Input Box Styles */
@@ -100,7 +103,7 @@
         .login-btn {
             width: 100%;
             padding: 10px;
-            background-color: #007bff;
+            background-color: #58acbaab;
             color: white;
             border: none;
             border-radius: 4px;
@@ -109,7 +112,7 @@
         }
 
         .login-btn:hover {
-            background-color: #0056b3;
+            background-color: #ebedf04e;
         }
 
         /* Register Link Styles */
@@ -137,7 +140,7 @@
         <div class="login-wrapper">
             <form action="{% url 'login' %}" method="POST">
                 {% csrf_token %}
-                <h1 class="login-title">התחברות</h1>
+                <h1 class="login-title">Login</h1>
                 {% if messages %}
                 <ul>
                     {% for message in messages %}
