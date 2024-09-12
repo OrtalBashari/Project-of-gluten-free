@@ -138,6 +138,9 @@
 
     .like-form {
         margin-top: 10px;
+        display: flex;
+    align-items: center;
+    gap: 10px;
     }
 
     .like-btn {
@@ -166,7 +169,7 @@
     }
 
     .like-count {
-        margin-top: 10px;
+        margin-top: 14px;
         font-weight: bold;
         color: #333;
     }
@@ -223,22 +226,26 @@
     }
 
     .comments-section {
-        margin-top: 20px;
-        width: 100%;
-    }
+    margin-top: 20px;
+    width: 80%; /* רוחב התיבה */
+    max-width: 800px; /* רוחב מקסימלי */
+    margin: 0 auto; /* מרכז את התיבה בעמוד */
+}
 
-    .comment {
-        padding: 10px;
-        border-bottom: 1px solid #ddd;
-        margin-bottom: 10px;
-        background-color: #f9f9f9;
-        border-radius: 5px;
-    }
+.comment {
+    padding: 8px; /* מרווח פנימי קטן יותר */
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 8px; /* מרווח תחתון קטן יותר */
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    font-size: 12px; /* גודל טקסט קטן יותר */
+}
 
-    .comment-user {
-        font-weight: bold;
-        color: #007bff;
-    }
+.comment-user {
+    font-size: 14px; /* גודל טקסט של שם המשתמש */
+    font-weight: bold;
+    color: #007bff;
+}
 
     .edit-link {
         color: #007bff;
@@ -330,15 +337,61 @@
     font-size: 14px; 
 }
 
+.search-form-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: auto;
+            z-index: 10; /* Ensure it stays above other content */
+        }
+
+        .search-form {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-form input[type="text"] {
+            width: 200px;
+            padding: 8px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            margin-right: 10px;
+            transition: border-color 0.3s;
+        }
+
+        .search-form input[type="text"]:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        .search-form button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .search-form button:hover {
+            background-color: #0056b3;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+      
 
 
 
 </style>
+<div class="page-header">
+            <h1> המתכונים שלנו </h1>
+        </div>
 
-</head>
-<body>
-    <div class="container">
-        <!-- Home Button -->
         <div class="home-btn-container">
             <a href="{% url 'home' %}" class="home-btn">חזרה לדף הבית</a>
             {% if user.is_authenticated %}
@@ -349,11 +402,17 @@
 
         </div>
  
-
-        <!-- Page Header -->
-        <div class="page-header">
-            <h1> המתכונים שלנו </h1>
+        <div class="search-form-container">
+            <form method="GET" action="{% url 'search_results' %}" class="search-form">
+                <input type="text" name="q" placeholder="חפש">
+                <button type="submit">חפש</button>
+            </form>
         </div>
+
+</head>
+<body>
+    <div class="container">
+        
 
         <div class="recipe-grid">
             {% for recipe in recipes %}
@@ -376,7 +435,7 @@
                 {% endif %}
         
                 <!-- Like Button -->
-                <form action="{% url 'like_recipe' %}" method="POST">
+                <form action="{% url 'like_recipe' %}" method="POST" class="like-form">
                     {% csrf_token %}
                     <input type="hidden" name="recipe_id" value="{{ recipe.id }}">
                     {% if user.is_authenticated and user in recipe.likes.all %}
@@ -388,9 +447,10 @@
                             Like <span class="icon"><i class="bi bi-hand-thumbs-up-fill"></i></span>
                         </button>
                     {% endif %}
+                    <span class="like-count">Likes: {{ recipe.likes.count }}</span>
                 </form>
+                
         
-                <p class="like-count">Likes: {{ recipe.likes.count }}</p>
         
                 <!-- Comment Form -->
                 <div class="comment-form">

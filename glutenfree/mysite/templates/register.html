@@ -1,83 +1,75 @@
-{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>הרשמה</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to bottom, #638fbb83, #e2e2e297);
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            margin: 0;
         }
         .wrapper {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff49;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
             width: 100%;
-            max-width: 400px;
-            box-sizing: border-box;
+            max-width: 360px;
+            text-align: center;
         }
         h1 {
-            text-align: center;
-            margin-bottom: 20px;
             color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
         }
         .inputBox {
             margin-bottom: 15px;
         }
         .inputBox input {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             border: 1px solid #ddd;
-            border-radius: 4px;
+            border-radius: 6px;
             box-sizing: border-box;
         }
         button {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
+            background-color: #4078d1c8;
             border: none;
-            border-radius: 4px;
-            background-color: #c8688d;
+            border-radius: 6px;
             color: white;
             font-size: 16px;
             cursor: pointer;
+            margin-top: 10px;
         }
         button:hover {
-            background-color: #4cae4c;
+            background-color: #1064c487;
         }
     </style>
 </head>
 <body>
     <div class="wrapper">
+        <h1>הרשמה</h1>
         <form action="{% url 'register' %}" method="POST">
             {% csrf_token %}
-            <h1>הרשמה</h1>
-            {% if messages %}
-        <ul>
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
             <div class="inputBox">
-                <input type="text" name="username" placeholder="Username" required>
+                <input type="text" name="username" placeholder="שם משתמש" required>
             </div>
             <div class="inputBox">
-                <input type="email" name="email" placeholder="Email" required>
+                <input type="email" name="email" placeholder="דוא"ל" required>
             </div>
             <div class="inputBox">
-                <input type="password" name="password1" placeholder="Password" required>
+                <input type="password" name="password1" placeholder="סיסמה" required>
             </div>
             <div class="inputBox">
-                <input type="password" name="password2" placeholder="Confirm Password" required>
+                <input type="password" name="password2" placeholder="אישור סיסמה" required>
             </div>
             <button type="submit">הירשם</button>
         </form>

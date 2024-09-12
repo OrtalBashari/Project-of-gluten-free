@@ -4,58 +4,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+
     <title>רשימת מתכונים</title>
     <style>
         /* כלליות */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background: linear-gradient(to right, #3498db22, #2ecc7025); /* גרדיאנט בצבעי כחול וירוק */
+            color: #333;
+            direction: rtl;
         }
 
         /* מיכל עיקרי */
         .container {
-            width: 80%;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 90%;
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 30px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         /* כותרת */
         h2 {
-            color: #333;
-            font-size: 24px;
+            color: #2c3e50;
+            font-size: 28px;
             margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h2::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: 60px;
+            height: 4px;
+            background: #3498db;
+            transform: translateX(-50%);
+            border-radius: 2px;
         }
 
         /* רשימה */
         ul {
             list-style: none;
             padding: 0;
+            margin: 0;
         }
 
         ul li {
             margin-bottom: 20px;
-            padding: 15px;
-            background: #f9f9f9;
+            padding: 20px;
+            background: #ffffff;
             border-radius: 8px;
-            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s, box-shadow 0.3s;
+        }
+
+        ul li:hover {
+            background: #f9f9f9;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
         }
 
         ul li a {
             text-decoration: none;
-            color: #007bff;
-            font-size: 18px;
+            color: #3498db;
+            font-size: 20px;
+            font-weight: bold;
         }
 
         ul li a:hover {
             text-decoration: underline;
         }
+
+        ul li p {
+            margin: 10px 0 0;
+            color: #7f8c8d;
+            font-size: 16px;
+        }
+
+               /* עיצוב הכפתור */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+    color: #fff;
+    background-color: #007BFF; /* צבע רקע הכפתור */
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, box-shadow 0.3s;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background-color: #0056b3; /* צבע רקע כאשר עכבר מרחף מעל הכפתור */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.btn i {
+    font-size: 24px; /* גודל האייקון */
+}
+
+.btn-secondary {
+    background-color: #6c757d; /* צבע רקע נוסף בכפתור השני */
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268; /* צבע רקע נוסף כאשר עכבר מרחף מעל הכפתור */
+}
     </style>
+    <div class="header">
+        <a href="{% url 'home' %}" class="btn btn-secondary"><i class="bi bi-house"></i></a>
+    </div>
 </head>
 <body>
     <div class="container">

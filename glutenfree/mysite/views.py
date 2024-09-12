@@ -1,4 +1,5 @@
 from importlib.metadata import requires
+from os import name
 import select
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
@@ -233,7 +234,7 @@ def update_preferences(request):
         form = PreferencesForm(request.POST, instance=preferences)
         if form.is_valid():
             form.save()
-            return redirect('preferences')  # Redirect to a page showing updated preferences or a success message
+            return redirect('view_preferences')  # Redirect to a page showing updated preferences or a success message
     else:
         form = PreferencesForm(instance=preferences)
 
@@ -340,3 +341,18 @@ def delete_comment(request, comment_id):
 
 
 
+def search_results(request):
+    query = request.GET.get('q').strip()
+    recipes = Recipe.objects.filter(name__icontains=query)
+    products = Product.objects.filter(name__icontains=query)
+    print(f"Query: {query}")
+    print(f"Recipes: {recipes}")
+
+    
+
+    context = {
+        'query': query,
+        'recipes': recipes,
+        'products': products
+    }
+    return render(request, 'search_results.html', context)

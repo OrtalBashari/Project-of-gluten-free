@@ -1,4 +1,3 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
@@ -6,50 +5,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>עריכת מתכון</title>
     <style>
-        /* Add your styling here */
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #11101089; /* רקע כהה */
             margin: 0;
             padding: 0;
-            color: #333;
+            color: #100f0f; /* צבע טקסט בהיר */
             direction: rtl;
             text-align: right;
         }
         .container {
             width: 80%;
             max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #ffffff63; /* רקע כהה */
+            border-radius: 30px;
+            box-shadow: 0 8px 16px rgba(255, 255, 255, 0.835); /* צללית כהה יותר */
+            
+        }
+        h1 {
+            font-size: 35px;
+            margin-bottom: 30px;
+            color: #e0e0e0; /* צבע טקסט בהיר */
+            text-align: center;
         }
         form {
             display: flex;
             flex-direction: column;
         }
         form p {
-            margin-bottom: 15px;
+            margin-bottom: 25px;
         }
         form input[type="text"], form textarea, form input[type="file"] {
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            margin-bottom: 15px;
+            padding: 14px;
+            border: 1px solid #444; /* גבול כהה יותר */
+            border-radius: 8px;
+            margin-bottom: 25px;
             font-size: 16px;
+            background-color: #fcfcfc8d; /* צבע רקע כהה לשדות */
+            color: #0a0a0bcd; /* צבע טקסט בהיר */
         }
         form button {
-            padding: 10px 15px;
+            padding: 14px 24px;
             border: none;
-            border-radius: 4px;
-            background-color: #28a745;
-            color: #fff;
+            border-radius: 8px;
+            background-color: #d7cccc7d; /* צבע כפתור כתום כהה */
+            color: #fff; /* צבע טקסט לבן */
             font-size: 16px;
             cursor: pointer;
+            transition: background-color 0.3s;
         }
         form button:hover {
-            background-color: #218838;
+            background-color: #111010a9; /* צבע כפתור כהה יותר */
+        }
+
+        label {
+            font-size: 18px;
+            margin-bottom: 8px;
+            display: block; /* הצגת הכותרת מעל התיבה */
+            color: #f8f8f8; /* צבע כותרות */
         }
     </style>
 </head>
@@ -59,11 +74,21 @@
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.non_field_errors }}
-            {{ form.name.label_tag }} {{ form.name }}
-            {{ form.description.label_tag }} {{ form.description }}
-            {{ form.ingredients.label_tag }} {{ form.ingredients }}
-            {{ form.instructions.label_tag }} {{ form.instructions }}
-            {{ form.image.label_tag }} {{ form.image }}
+            <label for="id_name">שם המתכון:</label>
+            {{ form.name }}
+            
+            <label for="id_description">תיאור:</label>
+            {{ form.description }}
+            
+            <label for="id_ingredients">מרכיבים:</label>
+            {{ form.ingredients }}
+            
+            <label for="id_instructions">הוראות הכנה:</label>
+            {{ form.instructions }}
+            
+            <label for="id_image">תמונה</label>
+            {{ form.image }}
+            
             <button type="submit">שמור שינויים</button>
         </form>
     </div>

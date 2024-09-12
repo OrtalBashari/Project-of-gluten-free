@@ -227,10 +227,11 @@
 
 <body>
   <!-- Search Box -->
-  <form class="search-form" action="#" method="get"> 
-    <input type="text" name="search" placeholder="הקלד..."> 
+  <form method="GET" action="{% url 'search_results' %}">
+    <input type="text" name="q" placeholder="Search">
     <button type="submit">חפש</button>
 </form>
+
     <div class="header">
         <!-- Header Image -->
         <img src="{% static 'images/54.jpg' %}" alt="Header Image">

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>תוצאות חיפוש</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            direction: rtl;
+        }
+
+        h1 {
+            font-size: 40px;
+            color: white;
+            background-color: #4caf4f5c;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            font-size: 28px;
+            margin-top: 30px;
+            color: #4CAF50;
+            text-align: right;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #fff;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        li:hover {
+            background-color: #f9f9f9;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007BFF;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        a:hover {
+            color: #0056b3;
+        }
+
+        p {
+            color: #888;
+            font-size: 18px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>תוצאות חיפוש עבור "{{ query }}"</h1>
+
+        <h2>מתכונים</h2>
+        {% if recipes %}
+            <ul>
+                {% for recipe in recipes %}
+                    <li>
+                        <a href="{% url 'recipe_detail' recipe.id %}">{{ recipe.name }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>לא נמצאו מתכונים התואמים את החיפוש "{{ query }}"</p>
+        {% endif %}
+
+        <h2>מוצרים</h2>
+        {% if products %}
+            <ul>
+                {% for product in products %}
+                    <li>
+                        <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>לא נמצאו מוצרים התואמים את החיפוש "{{ query }}"</p>
+        {% endif %}
+    </div>
+</body>
+</html>

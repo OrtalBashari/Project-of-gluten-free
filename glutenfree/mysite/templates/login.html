@@ -9,18 +9,15 @@
     <style>
         /* General Styles */
         body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: url('../static/images/31.jpg') no-repeat center center fixed;
-    background-size: cover;
-    background-position: center;
-    filter: brightness(80%) contrast(120%) saturate(150%) ;
-
-}
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom, #638fbb83, #e2e2e297);
+            filter: brightness(90%) contrast(110%);
+        }
 
         /* Container Styles */
         .container {
@@ -36,20 +33,21 @@
 
         /* Login Wrapper Styles */
         .login-wrapper {
-        background-color: rgb(105 103 103 / 37%); /* Adjust the transparency as needed (0 for fully transparent, 1 for fully opaque) */
-        padding: 40px;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        width: 400px;
-        max-width: 100%;
+            background-color: rgba(255, 255, 255, 0.357); /* Semi-transparent white background */
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            box-sizing: border-box;
         }
 
         /* Title Styles */
         .login-title {
-            font-size: 24px;
+            font-size: 26px;
             margin-bottom: 20px;
             text-align: center;
-            color: #1555d6b7;
+            color: #333;
         }
 
         /* Input Box Styles */
@@ -71,7 +69,7 @@
             width: calc(100% - 40px);
             padding: 10px 10px 10px 40px;
             border: 1px solid #ddd;
-            border-radius: 4px;
+            border-radius: 5px;
             outline: none;
             font-size: 16px;
             box-sizing: border-box;
@@ -91,7 +89,7 @@
 
         .options a {
             font-size: 14px;
-            color: #007bff;
+            color: #3498db;
             text-decoration: none;
         }
 
@@ -102,17 +100,18 @@
         /* Login Button Styles */
         .login-btn {
             width: 100%;
-            padding: 10px;
-            background-color: #58acbaab;
+            padding: 12px;
+            background-color: #3498db;
             color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 5px;
             font-size: 16px;
             cursor: pointer;
+            transition: background-color 0.3s;
         }
 
         .login-btn:hover {
-            background-color: #ebedf04e;
+            background-color: #2980b9;
         }
 
         /* Register Link Styles */
@@ -126,7 +125,7 @@
         }
 
         .register-link a {
-            color: #007bff;
+            color: #3498db;
             text-decoration: none;
         }
 
@@ -157,12 +156,12 @@
                     <input type="password" name="password" placeholder="Password" required>
                 </div>
                 <div class="options">
-                    <label><input type="checkbox"> זכור אותי</label>
-                    <a href="{% url 'password_reset' %}">שכחת סיסמה?</a>
+                    <label><input type="checkbox"> Remember Me</label>
+                    <a href="{% url 'password_reset' %}">Forgot Password?</a>
                 </div>
-                <button class="login-btn" type="submit">התחבר</button>
+                <button class="login-btn" type="submit">Log In</button>
                 <div class="register-link">
-                    <p>אין לך שם משתמש? <a href="{% url 'register' %}">הירשם</a></p>
+                    <p>Don't have an account? <a href="{% url 'register' %}">Sign Up</a></p>
                 </div>
             </form>
         </div>

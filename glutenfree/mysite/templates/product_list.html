@@ -13,7 +13,7 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: #ffffff;
         }
 
         .container {
@@ -48,11 +48,18 @@
         background-color: #5a6268;
     }
 
-        h2 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 20px;
-        }
+    h1 {
+    text-align: center;
+    color: #cc1b1ba8;
+    background: #bbc1c74f; /* צבע רקע לכותרת */
+    font-size: 36px;
+    font-weight: bold;
+    padding: 20px;
+    border-radius: 8px; /* פינות מעוגלות */
+    box-shadow: 0 4px 8px rgba(226, 164, 164, 0.582); /* צללים סביב הכותרת */
+    margin-bottom: 20px;
+}
+
 
         .products-table {
             width: 100%;
@@ -67,7 +74,7 @@
         }
 
         .products-table th {
-            background-color: #007bff;
+            background-color: #1771df76;
             color: #fff;
         }
 
@@ -120,7 +127,7 @@
         }
 
         .btn-link {
-            color: #007bff;
+            color: #007bffc0;
             text-decoration: none;
         }
 
@@ -135,6 +142,9 @@
         }
     </style>
 
+
+        <h1>מוצרים ללא גלוטן</h1>
+
 <div class="header">
     <a href="{% url 'home' %}" class="btn btn-secondary"><i class="bi bi-house"></i></a>
 </div>
@@ -142,10 +152,12 @@
 <body>
 
     <div class="container">
+     
         
         {% block content %}
 
-        <h2>מוצרים ללא גלוטן</h2>
+
+        
 
         <!-- כפתור הוספת מוצר, יופיע רק אם המשתמש הוא מנהל -->
         {% if user.is_staff %}

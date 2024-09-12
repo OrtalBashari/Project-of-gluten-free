@@ -6,56 +6,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>אישור מחיקה</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+        body, h1, p, form, button {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
             color: #333;
             direction: rtl;
             text-align: right;
-        }
-        .container {
-            width: 80%;
-            max-width: 600px;
-            margin: 20px auto;
             padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .card {
+            max-width: 400px;
+            width: 100%;
+            padding: 30px;
+            background: linear-gradient(135deg, #ffffff89, #a5d6a7af);
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
             text-align: center;
         }
+
+        h1 {
+            color: #000000;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: #100d0d;
+        }
+
         button {
-            padding: 10px 15px;
+            padding: 12px 24px;
+            background-color: #08d98c67;
+            color: #fff;
             border: none;
-            border-radius: 4px;
-            color: white;
+            border-radius: 8px;
+            font-size: 16px;
             cursor: pointer;
-            margin: 5px;
+            transition: background-color 0.3s ease;
         }
-        .confirm {
-            background-color: #dc3545;
+
+        button:hover {
+            background-color: #a8b4cdab;
         }
-        .cancel {
-            background-color: #6c757d;
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
         }
-        .confirm:hover {
-            background-color: #c82333;
-        }
-        .cancel:hover {
-            background-color: #5a6268;
+
+        a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="card">
         <h1>אישור מחיקה</h1>
         <p>האם אתה בטוח שברצונך למחוק את המתכון "{{ recipe.name }}"?</p>
         <form action="{% url 'delete_recipe' recipe.id %}" method="post">
             {% csrf_token %}
             <button type="submit" class="confirm">מחק מתכון</button>
-            <a href="{% url 'recipes' %}" class="cancel">ביטול</a>
         </form>
+            <a href="{% url 'recipes' %}" class="cancel">ביטול</a>
+        
     </div>
 </body>
 </html>

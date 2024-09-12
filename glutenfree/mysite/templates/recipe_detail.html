@@ -4,59 +4,151 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+
     <title>{{ recipe.name }}</title>
     <style>
         /* כלליות */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: #f9f9f9;
+            direction: rtl;
         }
 
         /* מיכל עיקרי */
         .container {
-            width: 80%;
-            max-width: 800px;
-            margin: 0 auto;
+            width: 90%;
+            max-width: 900px;
+            margin: 30px auto;
             padding: 20px;
             background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
         }
-
-        /* כותרת */
         h1 {
-            color: #333;
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
+    font-size: 36px;
+    font-weight: bold;
+    color: #08554e7e; /* צבע עיקרי */
+    text-align: center;
+    margin-bottom: 20px;
+    position: relative;
+    padding: 20px;
+    background: #f2f8fc; /* צבע רקע */
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* הצללה */
+}
+
+h1::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 8px;
+    background: linear-gradient(90deg, #4a90e2, #50e3c2); /* גרדיאנט צבעים */
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(234, 172, 172, 0.2); /* הצללה */
+}
+
+h1 span {
+    display: block;
+    font-size: 24px;
+    color: #333; /* צבע משנה לכותרת */
+}
 
         /* פרטי מתכון */
         .recipe-details {
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
 
         .recipe-details img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
+    max-width: 300px; /* הגבל את רוחב התמונה ל-300 פיקסלים */
+    max-height: 200px; /* הגבל את גובה התמונה ל-200 פיקסלים */
+    object-fit: contain; /* התאם את התמונה לגבולות מבלי לחתוך אותה */
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+        h2 {
+            color: #2980b9;
+            font-size: 26px;
+            margin-top: 20px;
+            border-bottom: 2px solid #2980b9;
+            padding-bottom: 5px;
         }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* עיצוב הכפתור */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+    color: #fff;
+    background-color: #007BFF; /* צבע רקע הכפתור */
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, box-shadow 0.3s;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background-color: #0056b3; /* צבע רקע כאשר עכבר מרחף מעל הכפתור */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.btn i {
+    font-size: 24px; /* גודל האייקון */
+}
+
+.btn-secondary {
+    background-color: #6c757d; /* צבע רקע נוסף בכפתור השני */
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268; /* צבע רקע נוסף כאשר עכבר מרחף מעל הכפתור */
+}
+
     </style>
+            <div class="header">
+                <a href="{% url 'home' %}" class="btn btn-secondary"><i class="bi bi-house"></i></a>
+
+            </div>
+            <h1>{{ recipe.name }}</h1>
+
+
 </head>
+
 <body>
     <div class="container">
-        <h1>{{ recipe.name }}</h1>
-        {% if recipe.image %}
+      
+        <div class="recipe-details">
+            {% if recipe.image %}
             <img src="{{ recipe.image.url }}" alt="{{ recipe.name }}">
         {% endif %}
-        <div class="recipe-details">
             <h2>תיאור</h2>
             <p>{{ recipe.description }}</p>
             <h2>מרכיבים</h2>
-            <p>{{ recipe.ingredients }}</p>
+            <p>{{ recipe.ingredients|linebreaksbr}}</p>
             <h2>הוראות הכנה</h2>
-            <p>{{ recipe.instructions }}</p>
+            <p>{{ recipe.instructions|linebreaksbr }}</p>
         </div>
     </div>
 </body>

@@ -42,6 +42,7 @@ urlpatterns = [
     path('profile/', views.profile_view, name='profile'),
     path('preferences/', views.update_preferences, name='update_preferences'),
     path('preferences/view/', views.view_preferences, name='view_preferences'), 
+    path('search/', views.search_results, name='search_results'),
 
   
 
