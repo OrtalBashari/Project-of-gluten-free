@@ -356,3 +356,8 @@ def search_results(request):
         'products': products
     }
     return render(request, 'search_results.html', context)
+
+
+def product_detail(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    return render(request, 'product_detail.html', {'product': product})

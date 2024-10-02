@@ -8,102 +8,156 @@
     <title>Your Preferences</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            font-family: 'Roboto', sans-serif;
             color: #333;
             margin: 0;
             padding: 0;
+            background-color: #fafafab0; /* קרם עדין, נקי */;
         }
+
         .container {
-            max-width: 500px;
+            max-width: 1000px;
             margin: 20px auto;
             padding: 20px;
-            background: #ffffff00;
+            background-color: rgba(255, 255, 255, 0.9);
             border-radius: 50px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center; /* Changed from right to center for better layout */
         }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 1.8em;
+            color: #006064;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid #00acc1;
+            padding-bottom: 10px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
         .card {
-            width: 250px; /* Adjust the width of the card */
-            margin: 10px;
-            display: flex;
-            align-items: center;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background: #e6e6e684;
+            border-radius: 12px;
+            border-left: 4px solid #dfe8e940;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             overflow: hidden;
-            transition: transform 0.3s;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+
         .card:hover {
-            transform: scale(1.05);
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
         }
+
         .card img {
-            width: 100px; /* Width of the image */
-            height: 100px; /* Height of the image */
+            width: 100px;
+            height: 100px;
             object-fit: cover;
-            border-left: 2px solid #007BFF;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+
         .card-content {
             padding: 10px;
             flex-grow: 1;
         }
+
         .card-content h3 {
             margin: 0;
-            color: #0056b3;
-            font-size: 1em;
+            color: #006064;
+            font-size: 1.1em;
+            font-weight: 700;
         }
+
         .no-items {
             text-align: center;
             color: #888;
-            font-size: 1.2em;
+            font-size: 1.5em;
             margin: 20px 0;
         }
+
         @media (max-width: 600px) {
-            .container {
-                padding: 10px;
+            .grid-container {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 10px;
             }
-            .card {
-                width: 200px; /* Adjust for smaller screens */
-                margin: 5px;
-            }
+
             .card img {
                 width: 80px;
                 height: 80px;
             }
+
             .card-content h3 {
                 font-size: 0.9em;
+            }
+        }
+
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: #121212;
+                color: #f4f4f4;
+            }
+
+            .container {
+                background-color: #1e1e1e;
+            }
+
+            .card {
+                background: #333;
+                color: #f4f4f4;
+            }
+
+            .no-items {
+                color: #bbb;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        {% if preferences.favorite_recipes.all %}
-            {% for recipe in preferences.favorite_recipes.all %}
-                <div class="card">
-                    <img src="{% if recipe.image %}{{ recipe.image.url }}{% else %}{% static 'default-image.jpg' %}{% endif %}" alt="{{ recipe.title }}">
-                    <div class="card-content">
-                        <h3>{{ recipe.name }}</h3>
-                    </div>
-                </div>
-            {% endfor %}
-        {% else %}
-            <p class="no-items">No favorite recipes selected.</p>
-        {% endif %}
-        {% if preferences.favorite_products.all %}
-            {% for product in preferences.favorite_products.all %}
-                <div class="card">
-                    <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'default-image.jpg' %}{% endif %}" alt="{{ product.name }}">
-                    <div class="card-content">
-                        <h3>{{ product.name }}</h3>
-                    </div>
-                </div>
-            {% endfor %}
-        {% else %}
-            <p class="no-items">No favorite products selected.</p>
-        {% endif %}
+        <div class="section">
+            <h2 class="section-title">מתכונים מועדפים </h2>
+            <div class="grid-container">
+                {% if preferences.favorite_recipes.all %}
+                    {% for recipe in preferences.favorite_recipes.all %}
+                        <div class="card">
+                            <img src="{% if recipe.image %}{{ recipe.image.url }}{% else %}{% static 'default-image.jpg' %}{% endif %}" alt="{{ recipe.title }}">
+                            <div class="card-content">
+                                <h3>{{ recipe.name }}</h3>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p class="no-items">No favorite recipes selected.</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">מוצרים מועדפים </h2>
+            <div class="grid-container">
+                {% if preferences.favorite_products.all %}
+                    {% for product in preferences.favorite_products.all %}
+                        <div class="card">
+                            <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'default-image.jpg' %}{% endif %}" alt="{{ product.name }}">
+                            <div class="card-content">
+                                <h3>{{ product.name }}</h3>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p class="no-items">No favorite products selected.</p>
+                {% endif %}
+            </div>
+        </div>
     </div>
 </body>
 </html>

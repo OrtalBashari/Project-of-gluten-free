@@ -1,0 +1,150 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ product.name }}</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(90deg,#f5f5f5, #beddffa3);
+        }
+
+        .header-container {
+    text-align: center;
+    padding: 20px;
+
+    color: rgb(66, 67, 68); /* Text color */
+    margin-bottom: 60px;
+    position: relative; /* For positioning elements inside */
+}
+
+.header-container h1 {
+    font-size: 45px; /* Font size */
+    font-weight: bold; /* Font weight */
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Text shadow */
+    border: 5px solid #f2f3f9b1; /* Border with color */
+    border-radius: 20px; /* Rounded corners */
+    padding: 20px; /* Padding inside border */
+    display: inline-block; /* Fit the border around the text */
+    background-color: #ffffff44; /* Background color inside border */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow around the border */
+}
+
+
+
+        .breadcrumb {
+            background-color: #f4f4f93a;
+            padding: 10px;
+            margin: 20px auto;
+            width: 20%;
+            border-radius: 40px;
+            text-align: center;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .breadcrumb a {
+            text-decoration: none;
+            color: #0d2ed3b1;
+
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .product-detail {
+            width: 50%;
+            margin: 20px auto;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            background-color: #ffffff71;
+            border-radius: 80px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            gap: 20px;
+            
+        }
+
+        .product-image {
+            flex: 1;
+            max-width: 400px;
+            border-radius: 25px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            object-fit: cover; /* Ensure the image covers the area without distortion */
+        }
+
+        .product-info {
+            flex: 2;
+            text-align: right;
+        }
+
+        .product-info p {
+            font-size: 18px;
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 16px;
+            color: white;
+            background-color: #0d2ed3b1;
+            border: none;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #4e54badd;
+        }
+
+        @media (max-width: 768px) {
+            .product-detail {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .product-image {
+                max-width: 100%;
+            }
+
+            .product-info {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-container">
+        <h1>{{ product.name }}</h1>
+        <div class="breadcrumb">
+            <a href="{% url 'home' %}">דף הבית</a> &gt;
+            <a href="{% url 'product_list' %}">מוצרים</a> &gt;
+            {{ product.name }}
+        </div>
+    </div>
+
+    
+
+    <div class="product-detail">
+        <div class="product-info">
+            <p>{{ product.description }}</p>
+            <a href="{{ product.link }}" target="_blank" class="btn btn-primary">קנה עכשיו</a>
+        </div>
+        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
+    </div>
+
+</body>
+</html>
