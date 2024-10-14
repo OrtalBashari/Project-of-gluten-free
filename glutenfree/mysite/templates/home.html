@@ -7,165 +7,119 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gluten-Free Website</title>
     <link rel="icon" href="{% static 'favicon.ico' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Nerko+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Secular+One&display=swap" rel="stylesheet">
+
     <style>
+
         body {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             min-height: 100vh;
-            font-family: Arial, sans-serif;
+            font-family: 'Assistant', sans-serif;
             margin: 0;
             padding: 0;
             background-color: white;
             font-size: larger;
+
+    
         }
 
-        .header {
-    position: relative;
-    background-color: rgb(255, 255, 255);
-    padding: 20px;
-    display: flex;
-    flex-direction: row; /* מגדיר שהאלמנטים יסתדרו בשורה */
-    justify-content: flex-end; /* מיישר את התמונה לימין */
-    align-items: center;
-    border-bottom: 1px solid #ccc;
-}
-
-.header img {
-    width: 70%; /* התמונה תתפוס 60% מרוחב הקונטיינר שלה */
-    height: auto; /* שמירת יחס הגובה-רוחב המקורי של התמונה */
-    max-height: 600px; /* גובה מקסימלי של התמונה */
-    object-fit: cover; /* מבטיח שהתמונה תכסה את כל הרוחב מבלי לעוות אותה */
-    margin-bottom: 30px;
-}
-
-
-
-        .auth-links {
+    .auth-links {
             position: absolute;
-            top: 20px;
+            top: 25px;
             right: 20px;
-        }
+            flex-direction: column; /* להצגה בעמודה */
+            gap: 15px;
+            align-items: center;
+}
 
-        .auth-links a, .auth-links button {
-            text-decoration: none;
-            color: #ff9500;
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            padding: 0;
-        }
-        .title {
-    font-size: 42px; /* גודל גופן גדול יותר */
+.auth-links a, .auth-links button {
+    text-decoration: none;
+    color: #0636d2c6;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-family: 'Assistant', sans-serif;
+    transition: background-color 0.3s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: bold;
+
+}
+
+.auth-links a:hover, .auth-links button:hover {
+    background-color: rgba(255, 149, 0, 0.1);
+    transform: scale(1.05);
+}
+
+.profile-button {
+    font-weight: bold;
+    color: #118011;
+}
+.profile-button:hover {
+    color: #0d0d0dab;
+}
+
+.logout-form {
     margin: 0;
-    margin-top: 20px;
-    text-align: center; 
-    background-color: white;
-    padding: 10px 20px; /* ריווח פנימי */
-    border-radius: 60px; /* פינות מעוגלות */
-    box-shadow: 0 4px 8px rgba(221, 220, 220, 0.2); /* הצללה כדי להבליט את הכותרת */
-    font-family: 'Nerko One', cursive; /* הוספת גופן ייחודי */
-    background: linear-gradient(90deg, #f1c37d76, #ffffff78); /* רקע עם מעבר צבעים */
-    color: white; /* צבע לבן של הטקסט */
-    letter-spacing: 2px; /* ריווח בין האותיות */
-    text-transform: uppercase; /* הופך את הטקסט לאותיות גדולות */
-    transition: transform 0.3s ease; /* אפקט מעבר בעכבר */
+}
+.logout-button:hover {
+    margin: 0;
+    color: #0d0d0dab;
+}
+.logout-button {
+    color: #3ca8e7;
+}
+
+.auth-link:hover {
+    color: #0d0d0dab;
+}
+
+        .title {
+    font-size: 50px;
+    margin: 0;
+    margin-top: 23px;
+    padding: 15px 40px;
+    font-family: 'Secular One', sans-serif;
+    background: linear-gradient(135deg, rgba(242, 241, 241, 0.318), #57595958, rgba(252, 255, 252, 0.335));
+    color: rgb(40, 39, 39);
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%; /* הגבלת רוחב הכותרת */
+    margin-left: auto;
+    margin-right: auto; /* מרכז הכותרת */
+    position: relative;
+    top: -20px; /* חפיפה קלה עם התמונה */
+    text-align: center;
+    
+}
+
+.title::after {
+    content: '';
+    display: block;
+    width: 80%;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.5);
+    margin: 10px auto 0 auto;
 }
 
 .title:hover {
-    transform: scale(1.05); /* הכותרת גדלה מעט כאשר מעבירים מעליה את העכבר */
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(250, 248, 248, 0.2); /* הצללה מודגשת יותר בהובר */
 }
+      
 
-        .search-form {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            display: flex;
-            justify-content: flex-start;
-            margin-top: 20px;
-        }
-
-        .search-form input[type="text"] {
-            padding: 5px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            width: 200px;
-            margin-right: 5px;
-        }
-
-        .search-form button {
-            padding: 5px 10px;
-            border: none;
-            border-radius: 4px;
-            background-color: #b18347ac;
-            color: #fff;
-            cursor: pointer;
-        }
-
-        .navbar {
-    overflow: hidden;
-    background-color: rgba(242, 230, 216, 0.348); /* ערך השקיפות הוא 0.3 */
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-.navbar a {
-    float: left;
-    display: block;
-    color: rgba(8, 7, 7, 0.8); /* שקיפות של 0.8 לטקסט */
-    text-align: center;
-    padding: 14px 20px;
-    text-decoration: none;
-    transition: background-color 0.3s;
-}
-
-
-        .navbar a:hover {
-            background-color: #575757;
-        }
-
-        .main-container {
-            display: flex;
-            min-height: 50vh;
-        }
-
-        .sidebar {
-            background-color: #f9f9f9;
-            padding: 20px;
-            width: 150px;
-            box-shadow: -2px 0 5px rgba(0,0,0,0.1);
-            order: 2;
-            border-left: 1px solid #ccc;
-        }
-
-        .sidebar h2 {
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-
-        .sidebar ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .sidebar ul li {
-            margin-bottom: 10px;
-        }
-
-        .sidebar ul li a {
-            text-decoration: none;
-            color: #0e90d2;
-        }
-
-        .content-container {
-            flex: 1;
-            padding: 20px;
-            order: 2;
-        }
 
         .content {
             margin-top: 20px;
@@ -220,64 +174,383 @@
     color: #000;
 }
 
-    </style>
-</head>
-<h1 class="title">המדריך - Gluten Free</h1>
-
-
-<body>
-
-
-    <div class="header">
-        <!-- Header Image -->
-        <img src="{% static 'images/54.jpg' %}" alt="Header Image">
-    </div>
+.user-greeting {
+    padding: 20px;
+    margin-top: -35px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
 
 
 
+.user-greeting:hover {
+    transform: scale(1.05);
+}
 
-    <!-- Navbar -->
-    <div class="navbar">
-        <a href="{% url 'recipes' %}">מתכונים</a>
-        <a href="{% url 'product_list' %}"> מוצרים ללא גלוטן</a>
-        <a href="{% url 'celiac_associations' %}">עמותות לחולי צליאק</a>
-        <a href="{% url 'army'%}"> צליאק בצהל</a>
-        <a href="{% url 'public_conduct' %}">התנהלות במקומות ציבוריים</a>
-        <a href="{% url 'treatment' %}">דרכי טיפול</a>
-        <a href="{% url 'background' %}">רקע על המחלה</a>
-    </div>
+.greeting-message {
+    font-size: 40px;
+    color: #333;
+    font-family: 'Assistant', sans-serif;
+    
+}
 
-      <!-- Authentication Links and Welcome Message -->
-  <div class="auth-links">
-    {% if user.is_authenticated %}
-        <p>שלום, {{ user.username }}!</p>
-        <p>ברוך הבא!</p>
-        <form method="POST" action="{% url 'logout' %}">
-            {% csrf_token %}
-            <button type="submit">התנתק</button>
-        </form>
-    {% else %}
-        <a href="{% url 'login' %}">התחברות</a> / 
-        <a href="{% url 'register' %}">הרשמה</a>
+.username {
+    font-weight: bold; /* הדגשה */
+    color: #2c2c2cae; /* צבע חם לעניין */
+    
+}
 
-    {% endif %}
+.welcome-message {
+    font-size: 20px;
+    color: #666;
+}
+
+.profile-button {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #ff9500; /* צבע חם */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.profile-button:hover {
+    background-color: #d58e00; /* צבע כהה יותר בהhover */
+}
+
+.link-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+    padding: 25px;
+    background-color: #f3f3f3; /* רקע בהיר */
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.styled-link {
+    background-size: cover; /* ודא שהתמונה מכסה את כל השטח */
+    background-position: center; /* ממקם את התמונה במרכז */
+    background-repeat: no-repeat; /* מונע חזרה של התמונה */
+    border-radius: 15px; /* פינות מעוגלות לריבוע */
+    width: 300px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    color: white;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.styled-link:hover {
+    transform: scale(1.05); /* אפקט זום בהובר */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+
+.styled-link:active {
+    transform: scale(0.95); /* הקטנה קטנה בלחיצה */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+    .styled-link {
+        width: 100px;
+        height: 100px;
+        font-size: 16px;
+    }
+}
+
+
+
+.about-section {
+    background: linear-gradient(135deg, #ffffff 0%, #e9ecef 100%);
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    margin: 40px auto;
+    color: #333;
+    direction: rtl;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('static/images/65.jpeg'); /* רקע עם תמונה */
+    background-size: cover;
+    background-position: center;
+    opacity: 0.2;
+    z-index: 1;
+}
+
+.about-section h2 {
+    font-size: 45px;
+    color: #488845;
+    text-align: center;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+    position: relative;
+    z-index: 2;
+}
+
+.about-section p {
+    font-size: 20px;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    text-align: justify;
+    position: relative;
+    z-index: 2;
+
+}
+
+.about-section a {
+    color: #118011;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    position: relative;
+    z-index: 2;
+
+}
+
+.about-section a:hover {
+    color: #004400;
+    text-decoration: underline;
+}
+
+.about-section:hover {
+    transform: scale(1.02); /* אפקט התרחבות עדין */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* styles.css */
+.welcome {
+    margin-top: -40px;
+    padding: 60px 20px;
+    text-align: center;
+    border-radius: 40px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    background-image: url('static/images/61.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    aspect-ratio: 10/3;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.welcome::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(14, 14, 14, 0.5);
+    border-radius: 30px;
+    z-index: 1;
+    transition: background-color 0.3s ease;
+}
+
+.welcome h1 {
+    font-size: 48px;
+    margin: 0;
+    font-family: 'Secular One', sans-serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 2;
+    opacity: 0; /* הכיתוב מוסתר בהתחלה */
+    transition: opacity 0.3s ease;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.965), rgb(0, 0, 0)); 
+    -webkit-background-clip: text; /* חותך את הרקע לפי הטקסט */
+    -webkit-text-fill-color: transparent; /* ממלא את הטקסט בצבע שקוף */
+
+
+}
+
+.welcome h1:hover {
+    transform: scale(1.05); /* הגדלה קלה כאשר מעבירים מעל */
+}
+
+.welcome::before {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 6px;
+    background-color: #2a282889;
+    margin: 20px auto;
+    position: relative;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 
     
+}
+
+/* כאשר המחלקה 'show-text' פעילה */
+.welcome.show-text::after {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.welcome.show-text h1,
+.welcome.show-text::before {
+    opacity: 1; /* הכיתוב מוצג */
+}
+
+.preferences-link-container {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.preferences-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.preferences-link {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #d9d9de96; /* צבע רקע */
+    text-decoration: none;
+    color: #000;
+    transition: background-color 0.3s;
+}
+
+.preferences-link:hover {
+    background-color: #cababac4; /* צבע רקע כאשר העכבר על הקישור */
+}
+
+.preferences-link i {
+    margin-right: 5px; /* רווח בין האייקון לטקסט */
+}
+
+
+/* התאמה לניידים */
+@media (max-width: 768px) {
+    .welcome h1 {
+        font-size: 36px;
+    }
+}
+
+
+
+</style>
+<h1 class="title">המדריך - Gluten Free</h1>
+
+</head>
+<body>
+
+<div class="user-greeting">
+    {% if user.is_authenticated %}
+        <p class="greeting-message"><span class="username" > 👋{{ user.username }} </span> , שלום </p>
+        
+    {% endif %}
 </div>
 
-    <!-- Main Container -->
-    <div class="main-container">
-        <!-- Sidebar for Authenticated Users -->
-        {% if user.is_authenticated %}
-        <div class="sidebar">
-            <h2>האפשרויות שלך</h2>
-            <ul>
-                <li><a href="{% url 'profile' %}">החשבון שלי <i class="bi bi-person"></i></a></li>
-                <li><a href="{% url 'update_preferences' %}">העדפות</a></li>
-            </ul>
-        </div>
-        {% endif %}
+<header class="welcome" id="welcome" onclick="toggleText()">
+    <h1>ברוכים הבאים לאתר שלנו</h1>
+</header>
 
+    <section class="about-section">
+
+        <h2>אודותינו</h2>
+        <p>
+            ברוכים הבאים לאתר ה-Gluten Free! <br>
+             האתר נבנה מתוך הבנה עמוקה לצרכים של קהילת האנשים המתמודדים עם רגישות לגלוטן(מחלת הצליאק). <br>
+             כאן תוכלו למצוא מאגר עשיר של מתכונים טעימים ללא גלוטן, מוצרים מומלצים ושפע של <br>
+             טיפים שימושיים להתמודדות יומיומית.
+        </p>
+        <p>
+            המטרה שלנו היא להקל עליכם את החיים, בין אם אתם חדשים בעולם ללא גלוטן או שאתם כבר ותיקים ומחפשים השראה חדשה. <br>
+            אנו מאמינים באורח חיים בריא ונגיש לכולם.
+        </p>
+        <p>
+            אנו שואפים לספק חוויית משתמש מעולה ותוכן איכותי, המותאם לצרכים שלכם. <br>
+
+            למידע נוסף <a href="/about/">לחצו כאן</a>.
+        </p>
+    </section>
+    
+
+    <div class="link-buttons">
+        <a href="{% url 'recipes' %}" class="styled-link" 
+           style="background-image: url('static/images/18.jpg');">מתכונים</a>
+        <a href="{% url 'product_list' %}" class="styled-link" 
+           style="background-image: url('static/images/66.jpg');">מוצרים ללא גלוטן</a>
+        <a href="{% url 'celiac_associations' %}" class="styled-link" 
+           style="background-image: url('static/images/associations.jpg');">עמותות לחולי צליאק</a>
+        <a href="{% url 'army' %}" class="styled-link" 
+           style="background-image: url('static/images/army.jpg');">צליאק בצהל</a>
+        <a href="{% url 'public_conduct' %}" class="styled-link" 
+           style="background-image: url('static/images/10.jpg');">התנהלות במקומות ציבוריים</a>
+        <a href="{% url 'treatment' %}" class="styled-link" 
+           style="background-image: url('static/images/treatment.jpg');">דרכי טיפול</a>
+        <a href="{% url 'background' %}" class="styled-link" 
+           style="background-image: url('static/images/background.jpg');">רקע על המחלה</a>
+    </div>
+    
+    
+
+      <!-- Authentication Links and Welcome Message -->
+<header>
+      <div class="auth-links">
+        {% if user.is_authenticated %}
+            <a href="{% url 'profile' %}" class="profile-button">
+                צפה בפרופיל שלך <i class="bi bi-person"></i>
+            </a>
+            
+            <form method="POST" action="{% url 'logout' %}" class="logout-form">
+                {% csrf_token %}
+                <button type="submit" class="logout-button">
+                    התנתק <i class="bi bi-box-arrow-right"></i>
+                </button>
+            </form>
+        {% else %}
+            <a href="{% url 'login' %}" class="auth-link">
+                התחברות <i class="bi bi-person"></i>
+            </a> 
+            <a href="{% url 'register' %}" class="auth-link">
+                הרשמה <i class="bi bi-person-plus"></i>
+            </a>
+        {% endif %}
+    </div>
+</header>
+
+<header>
+    <div class="preferences-link-container">
+            <ul class="preferences-list">
+                    <a href="{% url 'update_preferences' %}" class="preferences-link">
+                        <i class="fas fa-heart"></i> 
+                        <span>העדפות</span>
+                    </a>
+                
+            </ul>
+    </div>
+    
+    
+    </header>
         <!-- Content Block -->
         <div class="content">
             {% block content %}{% endblock %}
@@ -303,5 +576,16 @@
     <div class="footer">
         <p>&copy; 2024 Gluten-Free Website כל הזכויות שמורות.</p>
     </div>
+
+    <script>
+        function toggleText() {
+            const welcomeElement = document.getElementById('welcome');
+            welcomeElement.classList.toggle('show-text');
+        }
+   
+</script>
+
+
+
 </body>
 </html>

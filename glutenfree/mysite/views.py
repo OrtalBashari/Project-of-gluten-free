@@ -16,6 +16,8 @@ from django.http import JsonResponse
 from datetime import datetime
 from django.utils import timezone
 from django.contrib.auth.decorators import user_passes_test
+from django.utils import translation
+
 
 
 # Create your views here.
@@ -224,8 +226,16 @@ def profile_view(request):
             return redirect('profile')  # הפנה מחדש לדף פרופיל אחרי שמירת השינויים
     else:
         form = ProfileForm(instance=profile)
-    
-    return render(request, 'profile.html', {'profile': profile, 'form': form})
+
+    # הוספת טיפול בהעדפות
+    preferences, created = Preferences.objects.get_or_create(user=request.user)
+
+    return render(request, 'profile.html', {
+        'profile': profile, 
+        'form': form,
+        'preferences': preferences,  # הוספת העדפות לתבנית
+    })
+
 
 @login_required
 def update_preferences(request):
@@ -361,3 +371,13 @@ def search_results(request):
 def product_detail(request, pk):
     product = get_object_or_404(Product, pk=pk)
     return render(request, 'product_detail.html', {'product': product})
+
+
+def about(request):
+    return render(request, 'about.html')
+
+
+
+
+
+

@@ -417,10 +417,13 @@
         <div class="recipe-grid">
             {% for recipe in recipes %}
             <div class="recipe-item">
+                <h2>{{ recipe.name }}</h2>
+
+               
+
                 {% if recipe.image %}
                     <img src="{{ recipe.image.url }}" alt="{{ recipe.name }}">
                 {% endif %}
-                <h2>{{ recipe.name }}</h2>
                 <div class="recipe-content-container">
                     <p><strong>רכיבים:</strong></p>
                     <p class="recipe-content">{{ recipe.ingredients|linebreaksbr }}</p>

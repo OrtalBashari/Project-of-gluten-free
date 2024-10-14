@@ -10,7 +10,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #f2f2f2; /* צבע רקע כללי */
             margin: 0;
             padding: 0;
             display: flex;
@@ -18,13 +18,12 @@
             align-items: center;
             height: 100vh;
             direction: rtl;
-
         }
 
         .container {
             max-width: 700px;
             width: 100%;
-            background: #ffffff;
+            background: linear-gradient(to bottom left, rgba(26, 127, 211, 0.268), rgba(255, 255, 255, 1));
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -65,24 +64,52 @@
         }
 
         .form-group input:focus {
-            border-color: #007bff;
+            border-color: #223dc5a4;
             outline: none;
             background-color: #ffffff;
         }
 
         button {
-            background-color: #007bff;
-            color: #a82828;
+            background-color: #223dc5a4;
+            color: white;
             cursor: pointer;
             border: none;
             padding: 12px;
             border-radius: 5px;
-            font-size: 16px;
+            font-size: 20px;
             margin-top: 10px;
         }
 
         button:hover {
             background-color: #0057b327;
+        }
+
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .tab-button {
+            flex: 1;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: bold;
+        }
+
+        .tab-button.active {
+            background-color: #223dc5a4; /* צבע חם לכרטיסיה הפעילה */
+            color: white;
+        }
+
+        .tab-content {
+            display: none; /* ברירת מחדל - לא להציג תוכן */
+        }
+
+        .tab-content.active {
+            display: block; /* הצגת תוכן כרטיסיה פעילה */
         }
 
         .profile-info {
@@ -91,7 +118,7 @@
         }
 
         .profile-info h2 {
-            font-size: 20px;
+            font-size: 25px;
             margin-bottom: 20px;
             color: #333;
         }
@@ -111,65 +138,179 @@
         }
 
         .input-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-    width: 100%;
-}
+            position: relative;
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
 
-.input-container i {
-    position: absolute;
-    left: 500px; /* מיקום האייקון בתוך התיבה */
-    color: #555;
-}
+        .input-container i {
+            position: absolute;
+            left: 500px; /* מיקום האייקון בתוך התיבה */
+            color: #555;
+        }
 
-.input-container input {
-    padding-left: 30px; /* מספיק מקום לאייקון */
-    width: 100%;
-    box-sizing: border-box;
-}
+        .input-container input {
+            padding-left: 30px; /* מספיק מקום לאייקון */
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .preferences {
+            background-color: #e9edf0; 
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px; /* רווח עליון */
+            border: 1px solid #ccc; /* גבול סביב ההעדפות */
+        }
+
+        .preferences-button {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 15px;
+            background-color: #3457f092; /* צבע חם */
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .preferences-button:hover {
+            background-color: #a3a5a58e; /* צבע כהה יותר בהhover */
+        }
+
+        /* עיצוב לרשימות */
+        .current-preferences {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #f9f9f9; /* צבע רקע לרשימה */
+            border-radius: 5px;
+            border: 1px solid #ddd; /* גבול סביב הרשימה */
+        }
+
+        .current-preferences h4 {
+            color: #333;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .current-preferences ul {
+            list-style-type: disc; /* תבליטים עגולים */
+            padding-left: 20px; /* רווח מהצד השמאלי */
+        }
+
+        .current-preferences li {
+            margin-bottom: 5px; /* רווח בין פריטים */
+            font-size: 16px; /* גודל טקסט לפריטים */
+        }
+
+        .current-preferences a {
+            color: #223dc5a4; /* צבע כחול לקישורים */
+            text-decoration: none; /* ללא קו מתחת */
+        }
+
+        .current-preferences a:hover {
+            text-decoration: underline; /* קו מתחת על hover */
+        }
 
     </style>
 </head>
 <body>
     <div class="container">
         <h1>הפרופיל שלי</h1>
-        <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="form-group">
-                <label for="username">שם משתמש:</label>
-                {{ form.username }}
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab-button active" onclick="showTab('profile')">פרופיל</button>
+            <button class="tab-button" onclick="showTab('preferences')">העדפות</button>
+        </div>
+
+        <!-- Profile Info Tab -->
+        <div id="profile" class="tab-content active">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="username">שם משתמש:</label>
+                    {{ form.username }}
+                </div>
+                <div class="form-group">
+                    <label for="email">אימייל:</label>
+                    {{ form.email }}
+                </div>
+                <div class="form-group">
+                    <label for="password">סיסמה חדשה:</label>
+                    {{ form.password }}
+                </div>
+                <div class="form-group">
+                    <label for="profile_picture">תמונת פרופיל:</label>
+                    <div class="input-container">
+                        <i class="bi bi-person-video"></i>
+                        {{ form.profile_picture }}
+                    </div>
+                </div>
+                <button type="submit">עדכון פרופיל</button>
+            </form>
+
+            <div class="profile-info">
+                <h2>פרטי משתמש</h2>
+                <p><strong>שם משתמש:</strong> {{ profile.user.username }}</p>
+                <p><strong>אימייל:</strong> {{ profile.user.email }}</p>
+                <p><strong>תמונת פרופיל:</strong></p>
+                {% if profile.profile_picture %}
+                    <img src="{{ profile.profile_picture.url }}" alt="תמונת פרופיל">
+                {% else %}
+                    <p>אין תמונת פרופיל</p>
+                {% endif %}
             </div>
-            <div class="form-group">
-                <label for="email">אימייל:</label>
-                {{ form.email }}
-            </div>
-            <div class="form-group">
-                <label for="password">סיסמה חדשה:</label>
-                {{ form.password }}
-            </div>
-            <div class="form-group">
+        </div>
+
+        <!-- Preferences Tab -->
+        <div id="preferences" class="tab-content">
+            <div class="preferences">
+                <p>בחר את ההעדפות שלך למתכונים ומוצרים:</p>
+                <a href="{% url 'update_preferences' %}" class="preferences-button">עדכן העדפות</a>
                 
-                <label for="profile_picture">תמונת פרופיל:</label>
-                <div class="input-container">
-                    <i class="bi bi-person-video"></i>
-                {{ form.profile_picture }}
+                <!-- הצגת ההעדפות -->
+                <h4>העדפות נוכחיות</h4>
+                <div class="current-preferences">
+                    <p><strong>מתכונים מועדפים:</strong></p>
+                    <ul>
+                        {% for recipe in preferences.favorite_recipes.all %}
+                        <li>
+                            <a href="{% url 'recipe_detail' recipe.id %}">{{ recipe.name }}</a>
+                        </li>
+                        {% empty %}
+                            <li>אין העדפות נוכחיות.</li>
+                        {% endfor %}
+                    </ul>
+                    <p><strong>מוצרים מועדפים:</strong></p>
+                    <ul>
+                        {% for product in preferences.favorite_products.all %}
+                        <li>
+                            <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a>
+                        </li>
+                        {% empty %}
+                            <li>אין העדפות נוכחיות.</li>
+                        {% endfor %}
+                    </ul>
+                </div>
             </div>
-            <button type="submit">עדכון פרופיל</button>
-        </form>
-
-        <div class="profile-info">
-            <h2>פרטי משתמש</h2>
-
-            <p><strong>שם משתמש:</i></strong> {{ profile.user.username }}</p>
-            <p><strong>אימייל:</strong> {{ profile.user.email }}</p>
-            <p><strong>תמונת פרופיל:</strong></p>
-            {% if profile.profile_picture %}
-                <img src="{{ profile.profile_picture.url }}" alt="תמונת פרופיל">
-            {% else %}
-                <p>אין תמונת פרופיל</p>
-            {% endif %}
         </div>
     </div>
+
+    <script>
+        function showTab(tabName) {
+            const tabs = document.querySelectorAll('.tab-content');
+            const buttons = document.querySelectorAll('.tab-button');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+            document.getElementById(tabName).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+    </script>
 </body>
 </html>

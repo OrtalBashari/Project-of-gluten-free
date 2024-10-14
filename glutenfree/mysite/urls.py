@@ -45,6 +45,9 @@ urlpatterns = [
     path('preferences/', views.update_preferences, name='update_preferences'),
     path('preferences/view/', views.view_preferences, name='view_preferences'), 
     path('search/', views.search_results, name='search_results'),
+    path('about/', views.about, name='about'),
+
+
 
   
 
