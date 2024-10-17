@@ -1,0 +1,184 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gluten-Free Website</title>
+    <link rel="icon" href="{% static 'favicon.ico' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nerko+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Secular+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Hebrew:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+
+
+
+</head>
+
+<style>
+
+footer {
+            padding: 10px; /* רווח פנימי */
+    display: flex; /* מאפשר למקם את התוכן בצמוד */
+    justify-content: center; /* ממרכז את התוכן */
+    align-items: center; /* מיישר את התוכן במרכז האנכי */
+    text-align: center;
+    box-shadow: 0 -2px 5px rgba(209, 194, 194, 0.212);
+
+
+}
+
+footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #efefef92;
+            color: #000000;
+            box-shadow: 0 -2px 5px rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            font-family: 'Noto Sans Hebrew', sans-serif;
+
+        }
+
+.footer-content {
+    display: flex;
+    justify-content: space-between; /* ממרכז בין הטקסט לכפתורים */
+    align-items: center; /* מיישר את התוכן במרכז האנכי */
+    width: 40%; /* תופס את כל רוחב ה-footer */
+    max-width: 1200px; /* הגבלת רוחב הסרגל */
+    direction: rtl;
+    max-height: 30px;
+}
+
+.footer-content p {
+    margin: 0; /* מסיר רווחים */
+    font-size: 18px; /* גודל הפונט */
+    color: #333; /* צבע הטקסט */
+    text-align: center; /* מרכז את הטקסט */
+    font-family: 'Noto Sans Hebrew', sans-serif;
+
+}
+
+.copyright-symbol {
+    margin-right: 5px; /* מרווח בין הסמל לטקסט */
+}
+
+.share-buttons {
+    display: flex;
+    gap: 10px; /* מרווח בין הכפתורים */
+}
+
+.share-button {
+    display: inline-block;
+    padding: 10px;
+    border-radius: 50%; /* עיגול */
+    background-color: #f0f0f0;
+    color: #fff;
+    text-align: center;
+    font-size: 24px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    transition: background-color 0.3s ease;
+}
+
+.share-button i {
+    font-size: 24px;
+}
+
+.share-button.facebook { background-color: #3b5998; }
+.share-button.twitter { background-color: #55acee; }
+.share-button.whatsapp { background-color: #25d366; }
+
+.share-button:hover {
+    background-color: #ddd;
+    color: #000;
+}
+
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto; /* כותרת, תוכן, פוטר */
+    font-family: 'Assistant', sans-serif;
+
+}
+
+/* מבנה עמוד גמיש עם פוטר בתחתית */
+body {
+    flex-direction: column;
+    min-height: 100vh; /* גובה מינימלי של 100% מהחלון */
+    font-family: 'Assistant', sans-serif;
+
+}
+
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+    color: #fff;
+    background-color: #007BFF; /* צבע רקע הכפתור */
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, box-shadow 0.3s;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background-color: #0056b3; /* צבע רקע כאשר עכבר מרחף מעל הכפתור */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.btn i {
+    font-size: 24px; /* גודל האייקון */
+}
+
+.btn-secondary {
+    background-color: #6c757d; /* צבע רקע נוסף בכפתור השני */
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268; /* צבע רקע נוסף כאשר עכבר מרחף מעל הכפתור */
+}
+
+</style>
+<div class="header">
+    <a href="{% url 'home' %}" class="btn btn-secondary"><i class="bi bi-house"></i></a>
+
+</div>
+
+<body>
+<footer>
+    <div class="footer-content">
+        <p>
+         כל הזכויות שמורות ל- Gluten Free - המדריך <span class="copyright-symbol">©</span>
+        </p>
+        <div class="share-buttons">
+            <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank" class="share-button facebook">
+                <i class="bi bi-facebook"></i>
+            </a>
+            <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text=Check this out!" target="_blank" class="share-button twitter">
+                <i class="bi bi-twitter"></i>
+            </a>
+            <a href="https://wa.me/?text={{ request.build_absolute_uri }}" target="_blank" class="share-button whatsapp">
+                <i class="bi bi-whatsapp"></i>
+            </a>
+        </div>
+    </div>
+</footer>
+
+
+</body>
+</html>

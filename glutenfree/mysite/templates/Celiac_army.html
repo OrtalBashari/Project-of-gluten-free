@@ -1,4 +1,6 @@
 {% load static %}
+{% include 'base.html' %}
+
 <!DOCTYPE html>
 <html lang="en" dir="rtl">
 <head>
@@ -10,7 +12,7 @@
 
     <style> 
         body {
-            font-family:  'Roboto', sans-serif; ;
+            font-family: 'Assistant', sans-serif;
             
             background: linear-gradient(to bottom right, #f0f0f0, #e0e0e0);
             background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.05) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, 0.05) 75%, rgba(0, 0, 0, 0.05) 100%),
@@ -26,7 +28,7 @@
 
         h1 {
     text-align: center;
-    margin: 10px 0;
+    margin: 5px 0;
     color: #00000098;
     font-size: 2.5em; /* מגדיל את גודל הגופן */
     font-weight: bold; /* הופך את הטקסט לעבה יותר */
@@ -60,11 +62,16 @@ h1:hover::after {
 }
         
 
-        h2, h3 {
-            text-align: center;
-            margin: 10px 0; /* הקטנת המרווחים העליונים והתחתונים של כותרות משניות */
-            color: #333;
-        }
+h2, h3 {
+    text-align: center;
+    margin: 10px 0;
+    color: #333;
+    background-color: rgba(255, 255, 255, 0.235); /* הוספת רקע קל */
+    padding: 10px; /* מרווח פנימי */
+    border-radius: 5px; /* פינות מעוגלות */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* צל */
+}
+
 
         p, ul {
             margin: 5px 0; /* הקטנת המרווחים מסביב לפסקאות ורשימות */
@@ -111,150 +118,127 @@ h1:hover::after {
             padding: 12px 24px;
             font-size: 16px;
             color: white;
-            background-color: #6c9f33;
+            background-color: #819d6284;
             text-align: center;
             text-decoration: none;
-            border-radius: 33px;
+            border-radius: 40px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: background-color 0.3s ease;
+            font-weight: bold;
         }
 
         .button:hover {
-            background-color: #578c2a;
+            background-color: #879a76;
         }
 
         .card-container {
-            display: flex;
-            justify-content: right;
-            flex-wrap: wrap;
-            margin: 20px 0; /* הקטנת המרווחים למעלה ולמטה */
-        }
-
-        .card {
-        background-color: rgba(255, 255, 255, 0.8); /* שקיפות לכרטיסיות */
-        border: 1px solid rgba(221, 221, 221, 0.8);
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        width: 240px;
-        margin: 10px;
-        text-align: center;
-        padding: 20px;
-        transition: background-color 0.3s, box-shadow 0.3s;
+    display: flex;
+    justify-content: flex-start; /* שינוי מ-space-around ל-flex-start */
+    flex-wrap: wrap;
+    margin: 10px 0; /* הקטנת המרווחים למעלה ולמטה */
+    
 }
 
-        .card:hover {
-            background-color: rgba(240, 240, 240, 0.8); /* שקיפות לכרטיסיות בהעברת עכבר */
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+.card {
+    background-color: rgba(255, 255, 255, 0.9); /* שקיפות קלה */
+    
+    border-radius: 12px; /* הקטנת הפינות */
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2); /* הצללה מודגשת */
+    width: 280px; /* הגדלת רוחב הכרטיס */
+    margin: 15px; /* הגדלת המרווחים בין הכרטיסים */
+    text-align: center;
+    padding: 20px;
+    transition: transform 0.3s, box-shadow 0.3s; /* הוספת אפקט התנועה */
+    position: relative; /* הכנת הכרטיס לשימוש באפקטים נוספים */
+}
+
+.card:hover {
+    transform: translateY(-5px); /* הזזת הכרטיס כלפי מעלה בעת העברת עכבר */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3); /* הצללה מודגשת בעת העברת עכבר */
+}
+
+.card-link {
+    text-decoration: none;
+    color: #2c3e50; /* צבע כהה יותר */
+    font-weight: bold;
+    font-size: 20px; /* הגדלת גודל הפונט */
+    position: relative; /* מיקום הכרטיס */
+}
+
+.card-link::after {
+    content: '';
+    display: block;
+    width: 50%;
+    height: 2px;
+    background-color: #1e981e93; /* קו תת-כותרת צבעוני */
+    margin: 10px auto 0; /* יישור מרכזי */
+    transition: width 0.3s; /* שינוי רוחב קו */
+}
+
+.card-link:hover::after {
+    width: 100%; /* קו התת-כותרת מתרחב בעת העברת עכבר */
+}
+
+.card-link:hover {
+    color: #206737c4; /* שינוי צבע הקישור בעת העברת עכבר */
+}
+
+
+        .image-head {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            max-width: 1500px;
+            margin: 0 auto;
+            overflow: hidden;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: -60px;
         }
 
-        .card-link {
-            text-decoration: none;
-            color: #6c9f33;
-            font-weight: bold;
-            font-size: 18px;
-        }
-
-        .card-link:hover {
-            text-decoration: underline;
-        }
-
-        .image-container {
-            max-width: 100%;
-            text-align: left;
-            margin-bottom: 20px; /* הקטנת המרווח התחתון */
-        }
-
-        .image-container img {
-            max-width: 250px;
-            max-height: 250px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        .image-head img {
+            width: 100%; /* תופס את כל רוחב המיכל */
+            height: auto; /* שומר על יחס הצדדים */
+            border-radius: 50px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+            max-width: none; /* מבטל את ההגבלה על רוחב מקסימלי */
+            max-height: 400px; /* מוודא שהתמונה לא תהיה גבוהה מדי */
             filter: blur(0.5px);
         }
-    
+
+        .image-head img:hover {
+            transform: scale(1.02); /* הגדלה קלה בעת ריחוף */
+        }
 
 
-      
-
-
-        .footer {
-    position: fixed; 
-    bottom: 0; 
-    left: 0;
-    width: 100%; 
-    background-color: #fffcfc61; 
-    color: #000000f0; 
-    text-align: center; 
-    padding: 10px 0; 
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); 
-    z-index: 1000; 
-    font-family: 'Nerko One', sans-serif;
+p {
+    font-size: 1.2em; /* גודל גופן חדש לפסקאות */
 }
 
-.footer p {
-    margin: 0; 
-    font-size: 14px; 
-}
-
-.home-btn-container {
-    display: flex;
-    justify-content: space-between; /* מפריד בין הכפתורים */
-    align-items: center; /* מרכז אנכית */
-    margin-bottom: 20px;
-}
-
-.home-btn {
-    font-size: 18px;
-    color: #fff;
-    padding: 12px 24px;
-    border-radius: 8px; 
-    text-decoration: none;
-    transition: all 0.3s ease; 
-    display: inline-block;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
-}
-
-.home-btn {
-    background-color: #0a0909;
-}
-
-.home-btn:hover {
-    background-color: #333;
-    transform: scale(1.05); 
-}
-
-.image-head {
-    position: relative; /* מאפשר הוספת עיצובים נוספים */
-    width: 100%; /* תופס את כל רוחב ההורה */
-    max-width: 800px; /* מגביל את רוחב המיכל */
-    max-height: 600;
-    margin: 0 auto; /* מרכז את התמונה */
-    overflow: hidden; /* מסיר חלקים שהולכים מעבר למיכל */
-    text-align: center;
-}
-
-.image-head img {
-    width: 100%; /* תופס את כל רוחב המיכל */
-    height: auto; /* שומר על יחס הצדדים של התמונה */
-    display: block; /* מסיר רווחים מיותרים מתחת לתמונה */
-    border-radius: 50px; /* זוויות מעוגלות לתמונה */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* הוספת צל לתמונה */
-    transition: transform 0.3s ease-in-out; /* אנימציה להגדלה בעת ריחוף */
-}
-
-.image-head img:hover {
-    transform: scale(1.5); /* הגדלה קלה בעת ריחוף */
+ul li {
+    font-size: 1.2em; /* גודל גופן חדש לרשימות */
 }
 
 
     </style>
+
+
+<div class="image-head">
     <h1> התמודדות עם מחלת הצליאק בבסיסי צה"ל</h1>
+    <img src="{% static 'images/80.jpg' %}" >
+    
+</div>
+
 
     
 
-    <div class="home-btn-container">
-        <a href="{% url 'home' %}" class="home-btn">חזרה לדף הבית</a>
-    </div>
+    
+</head>
+<body>
+
     <div class="card-container">
         <div class="card">
             <a href="#section1" class="card-link">מענה ההזנה </a>
@@ -270,12 +254,9 @@ h1:hover::after {
             </div>
     </div>
 
-</head>
 
-<body>
-    <div class="image-head">
-        <img src="{% static 'images/34.jpg' %}" alt="תמונת נושא למתכון">
-    </div>
+
+    
 
     <div class="content-wrapper">
        
@@ -327,13 +308,9 @@ h1:hover::after {
    
 
 
-<div class="image-container">
-    <img src="{% static 'images/33.jpg' %}" alt="תמונת צדדית">
-</div>
+
 </body>
-<div class="footer">
-    <p>&copy; 2024 Gluten-Free Website כל הזכויות שמורות.</p>
-</div>
+
 
 
 </html>

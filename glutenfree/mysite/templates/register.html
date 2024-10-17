@@ -1,3 +1,5 @@
+{% include 'base.html' %}
+
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
@@ -56,14 +58,14 @@
 </head>
 <body>
     <div class="wrapper">
-        <h1>הרשמה</h1>
+        <h1>Register</h1>
         <form action="{% url 'register' %}" method="POST">
             {% csrf_token %}
             <div class="inputBox">
                 <input type="text" name="username" placeholder="שם משתמש" required>
             </div>
             <div class="inputBox">
-                <input type="email" name="email" placeholder="דוא"ל" required>
+                <input type="email" name="email" placeholder="דואל" required>
             </div>
             <div class="inputBox">
                 <input type="password" name="password1" placeholder="סיסמה" required>
@@ -71,7 +73,7 @@
             <div class="inputBox">
                 <input type="password" name="password2" placeholder="אישור סיסמה" required>
             </div>
-            <button type="submit">הירשם</button>
+            <button type="submit">Sign up</button>
         </form>
     </div>
 </body>

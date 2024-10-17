@@ -1,4 +1,5 @@
 {% load static %}
+{% include 'base.html' %}
 
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
@@ -8,8 +9,8 @@
     <title>דרכי טיפול</title>
     <style>
        body {
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(to bottom right, #f0f0f0, #e0e0e0);
+        font-family: 'Assistant', sans-serif;
+        background: linear-gradient(to bottom right, #f0f0f0, #e0e0e0);
             background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.05) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, 0.05) 75%, rgba(0, 0, 0, 0.05) 100%),
                               linear-gradient(225deg, rgba(0, 0, 0, 0.05) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, 0.05) 75%, rgba(0, 0, 0, 0.05) 100%);
             background-color: #f5f5f5;
@@ -117,113 +118,70 @@ h1:hover::after {
         }
 
         .card-container {
-            display: flex;
-            justify-content: right;
-            flex-wrap: wrap;
-            margin: 20px 0; /* הקטנת המרווחים למעלה ולמטה */
-        }
+    display: flex;
+    justify-content: space-around; /* שימוש בשימושים רווחים יותר בין הכרטיסים */
+    flex-wrap: wrap;
+    margin: 10px 0; /* הקטנת המרווחים למעלה ולמטה */
+    
+}
 
-        .card {
-            background-color: rgba(255, 255, 255, 0.8); /* שקיפות לכרטיסיות */
-            border: 1px solid rgba(221, 221, 221, 0.8);
-            border-radius: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 150px;
-            height:30px;
-            margin: 10px;
-            text-align: center;
-            padding: 20px;
-            transition: background-color 0.3s, box-shadow 0.3s;
-        }
+.card {
+    background-color: rgba(255, 255, 255, 0.9); /* שקיפות קלה */
+    
+    border-radius: 12px; /* הקטנת הפינות */
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2); /* הצללה מודגשת */
+    width: 280px; /* הגדלת רוחב הכרטיס */
+    margin: 15px; /* הגדלת המרווחים בין הכרטיסים */
+    text-align: center;
+    padding: 20px;
+    transition: transform 0.3s, box-shadow 0.3s; /* הוספת אפקט התנועה */
+    position: relative; /* הכנת הכרטיס לשימוש באפקטים נוספים */
+}
 
-        .card:hover {
-            background-color: rgba(240, 240, 240, 0.8); /* שקיפות לכרטיסיות בהעברת עכבר */
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-        }
+.card:hover {
+    transform: translateY(-5px); /* הזזת הכרטיס כלפי מעלה בעת העברת עכבר */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3); /* הצללה מודגשת בעת העברת עכבר */
+}
 
-        .card-link {
-            text-decoration: none;
-            color: #000000;
-            font-weight: bold;
-            font-size: 18px;
-        }
+.card-link {
+    text-decoration: none;
+    color: #2c3e50; /* צבע כהה יותר */
+    font-weight: bold;
+    font-size: 20px; /* הגדלת גודל הפונט */
+    position: relative; /* מיקום הכרטיס */
+}
 
-        .card-link:hover {
-            text-decoration: underline;
-        }
+.card-link::after {
+    content: '';
+    display: block;
+    width: 50%;
+    height: 2px;
+    background-color: #5d85cf93; /* קו תת-כותרת צבעוני */
+    margin: 10px auto 0; /* יישור מרכזי */
+    transition: width 0.3s; /* שינוי רוחב קו */
+}
 
-        .image-container {
-            max-width: 100%;
-            text-align: left;
-            margin-bottom: 20px; /* הקטנת המרווח התחתון */
-        }
+.card-link:hover::after {
+    width: 100%; /* קו התת-כותרת מתרחב בעת העברת עכבר */
+}
 
-        .image-container img {
-            max-width: 250px;
-            max-height: 250px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            filter: blur(0.5px);
-        }
+.card-link:hover {
+    color: #385a9893; /* שינוי צבע הקישור בעת העברת עכבר */
+}
 
-        .footer {
-            position: fixed; 
-            bottom: 0; 
-            left: 0;
-            width: 100%; 
-            background-color: #fffcfc61; 
-            color: #000000f0; 
-            text-align: center; 
-            padding: 10px 0; 
-            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); 
-            z-index: 1000; 
-            font-family: 'Nerko One', sans-serif;
-        }
-
-        .footer p {
-            margin: 0; 
-            font-size: 14px; 
-        }
-
-        .home-btn-container {
-            display: flex;
-            justify-content: space-between; /* מפריד בין הכפתורים */
-            align-items: center; /* מרכז אנכית */
-            margin-bottom: 20px;
-        }
-
-        .home-btn {
-            font-size: 18px;
-            color: #fff;
-            padding: 12px 24px;
-            border-radius: 8px; 
-            text-decoration: none;
-            transition: all 0.3s ease; 
-            display: inline-block;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
-        }
-
-        .home-btn {
-            background-color: #0a0909;
-        }
-
-        .home-btn:hover {
-            background-color: #333;
-            transform: scale(1.05); 
-        }
 
         .image-head {
             position: relative;
             width: 100%;
             height: 500px;
-            max-width: 1000px;
+            max-width: 1500px;
             margin: 0 auto;
             overflow: hidden;
             text-align: center;
             display: flex;
             justify-content: center;
             gap: 10px;
-            margin-bottom: 20px;
+            margin-bottom: -60px;
         }
 
         .image-head img {
@@ -240,12 +198,33 @@ h1:hover::after {
         .image-head img:hover {
             transform: scale(1.02); /* הגדלה קלה בעת ריחוף */
         }
-    </style>
-    <h1> דרכי טיפול במחלת הצליאק </h1>
 
-    <div class="home-btn-container">
-        <a href="{% url 'home' %}" class="home-btn">חזרה לדף הבית</a>
+
+        .list-image {
+    display: inline-block; /* מאפשר לתמונות להופיע בשורה */
+    margin: 10px; /* ריווח סביב כל תמונה */
+    max-width: 20%; /* מבטיח שהתמונות יישארו בגבולות התיבה */
+    height: auto; /* שומר על פרופורציות התמונה */
+}
+
+p {
+    font-size: 1.2em; /* גודל גופן חדש לפסקאות */
+}
+
+ul li {
+    font-size: 1.2em; /* גודל גופן חדש לרשימות */
+}
+
+
+    </style>
+    <div class="image-head">
+        <h1> דרכי טיפול במחלת הצליאק </h1>
+        <img src="{% static 'images/43.jfif' %}" >
+        
     </div>
+    
+
+   
 </head>
 <body>
     <div class="card-container">
@@ -261,12 +240,14 @@ h1:hover::after {
         <div class="card">
             <a href="#section4" class="card-link">ניהול וטיפול במחלה</a>
         </div>
+
+        <div class="card">
+            <a href="#section5" class="card-link">הבדלים בין מוצרים עם גלוטן למוצרים ללא גלוטן</a>
+        </div>
     </div>
 <body>
 
-    <div class="image-head">
-        <img src="{% static 'images/43.jfif' %}" alt="תמונת נושא למתכון">
-    </div>
+    
     <div class="content-wrapper">
         <!-- Section 1 -->
         <div id="section1" class="section">
@@ -326,10 +307,45 @@ h1:hover::after {
                בנוסף, המטופל יצטרך לעשות בדיקות דם בשביל לבדוק שלא חסר לו ויטמינים בגוף.
             </p>
         </div>
+
+                <!-- Section 5 -->
+                <div id="section5" class="section">
+                    <h2>הבדלים בין מוצרים עם גלוטן למוצרים ללא גלוטן</h2>
+                    <p>
+                        כאשר אתם קונים מוצרים, חשוב לדעת להבחין בין מוצרים המכילים גלוטן לבין מוצרים ללא גלוטן.
+                        <br>
+                        הנה כמה טיפים שיעזרו לכם:
+                    </p>
+                    <ul>
+                        <li>
+                            <strong>קריאת תוויות:</strong> בדקו את רשימת המרכיבים על התווית, חפשו מרכיבים כמו חיטה, שעורה ושיפון, אשר מכילים גלוטן.
+                            <img class="list-image" src="{% static 'images/79.jpg' %}" >
+
+                        </li>
+                        <li>
+                            <strong>סימון 'ללא גלוטן':</strong> חפשו את הסימון 'ללא גלוטן' על האריזות. מוצרים שסומנו כך נבדקו והוכחו כלא מכילים גלוטן.
+                            <img class="list-image" src="{% static 'images/73.jpg' %}" >
+                            <img class="list-image" src="{% static 'images/49.png' %}" >
+                            <img class="list-image" src="{% static 'images/74.png' %}" >
+                            <img class="list-image" src="{% static 'images/77.png' %}" >
+
+
+
+                        </li>
+                        <li>
+                            <strong>מוצרים טבעיים:</strong> העדיפו מוצרים טבעיים כמו פירות, ירקות, בשר ודגים, שהם לרוב ללא גלוטן מטבעם.
+                            
+                        </li>
+                        <li>
+                            <strong>מוצרים מעובדים:</strong> היו זהירים עם מוצרים מעובדים, שכן הם יכולים להכיל רכיבים מוספים עם גלוטן.
+                        </li>
+                        
+                    </ul>
+                    
+                    
+                </div>
+        
     </div>
 </body>
 
-<div class="footer">
-    <p>&copy; 2024 Gluten-Free Website כל הזכויות שמורות.</p>
-</div>
 </html>

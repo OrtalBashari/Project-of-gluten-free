@@ -1,4 +1,6 @@
 {% load static %}
+{% include 'base.html' %}
+
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
@@ -13,7 +15,7 @@
         /* Existing CSS */
         
     body {
-        font-family: 'Helvetica Neue', Arial, sans-serif;
+        font-family: 'Assistant', sans-serif;
         background-color: #f5f5f5;
         margin: 0;
         padding: 0;
@@ -25,6 +27,8 @@
     }
 
     .container {
+        font-family: 'Assistant', sans-serif;
+
         width: 90%;
         max-width: 1200px;
         margin: 0 auto;
@@ -49,26 +53,7 @@
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
-    .home-btn-container {
-        text-align: center;
-        margin-bottom: 20px;
-    }
-
-    .home-btn {
-        font-size: 18px;
-        color: #fff;
-        padding: 10px 20px;
-        background-color: #007bff;
-        border-radius: 5px;
-        text-decoration: none;
-        transition: background-color 0.3s ease;
-        display: inline-block;
-    }
-
-    .home-btn:hover {
-        background-color: #0056b3;
-    }
-
+   
     .recipe-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -261,15 +246,8 @@
     }
 
 
-    /* CSS for Home Button and Add Recipe Button */
-.home-btn-container {
-    display: flex;
-    justify-content: space-between; /* מפריד בין הכפתורים */
-    align-items: center; /* מרכז אנכית */
-    margin-bottom: 20px;
-}
 
-.home-btn,
+
 .add-recipe-btn {
     font-size: 18px;
     color: #fff;
@@ -280,15 +258,8 @@
     display: inline-block;
 }
 
-/* CSS for Home Button and Add Recipe Button with additional styles */
-.home-btn-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
 
-.home-btn,
+
 .add-recipe-btn {
     font-size: 18px;
     color: #fff;
@@ -300,42 +271,16 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
 
-.home-btn {
-    background-color: #0a0909;
-}
-
-.home-btn:hover {
-    background-color: #333;
-    transform: scale(1.05); 
-}
 
 .add-recipe-btn {
-    background-color: #28a745;
+    background-color: #5a82bf;
 }
 
 .add-recipe-btn:hover {
-    background-color: #218838;
+    background-color: #6693b892;
     transform: scale(1.05); 
 }
 
-.footer {
-    position: fixed; 
-    bottom: 0; 
-    left: 0;
-    width: 100%; 
-    background-color: #fffcfc61; 
-    color: #1aa2d4; 
-    text-align: center; 
-    padding: 10px 0; 
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); 
-    z-index: 1000; 
-    font-family: 'Nerko One', sans-serif;
-}
-
-.footer p {
-    margin: 0; 
-    font-size: 14px; 
-}
 
 .search-form-container {
             display: flex;
@@ -386,21 +331,18 @@
       
 
 
-
 </style>
 <div class="page-header">
             <h1> המתכונים שלנו </h1>
         </div>
 
-        <div class="home-btn-container">
-            <a href="{% url 'home' %}" class="home-btn">חזרה לדף הבית</a>
             {% if user.is_authenticated %}
             <div class="add-recipe-btn-container">
                 <a href="{% url 'add_recipe' %}" class="add-recipe-btn">הוסף מתכון חדש</a>
             </div>
             {% endif %}
 
-        </div>
+       
  
         <div class="search-form-container">
             <form method="GET" action="{% url 'search_results' %}" class="search-form">
@@ -502,8 +444,6 @@
         </div>
     </body>
     <!-- Footer -->
-<div class="footer">
-    <p>&copy; 2024 Gluten-Free Website כל הזכויות שמורות.</p>
-</div>
+
 
     </html>

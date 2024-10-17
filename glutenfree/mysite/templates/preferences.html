@@ -1,70 +1,81 @@
 {% load static %}
+{% include 'base.html' %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="he">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Preferences</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
+            font-family: 'Noto Sans Hebrew', sans-serif;
+            background-color: #e8f5e9a7; /* צבע רקע רך */
+            color: #444; /* צבע טקסט כהה */
             margin: 0;
             padding: 0;
-            direction: rtl; /* Make sure text direction is right-to-left for Hebrew */
+            direction: rtl; /* כיוון טקסט מימין לשמאל */
         }
         h1 {
-            color: #ff6e61a8;
-            font-size: 36px;
-            margin-bottom: 30px;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); 
+            color: #2c3e50; /* צבע טקסט כהה */
+            font-size: 36px; /* גודל טקסט גדול יותר */
+            margin-bottom: 20px;
             text-align: center;
+            text-transform: uppercase; /* כותרת באותיות רישיות */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* הצללה רכה לכותרת */
         }
         .container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background: #ffffff;
-            border-radius: 15px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 800px; /* רוחב מקסימלי של הקונטיינר */
+            margin:140px auto; /* רווח למעלה ולמטה */
+            padding: 30px; /* רווח פנימי */
+            background: #ffffff; /* צבע רקע לבן */
+            border-radius: 15px; /* פינות מעוגלות */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* צל רך */
+            transition: transform 0.2s; /* מעבר חלק כשמעבירים את העכבר */
+            height: 1000px;
+        }
+        .container:hover {
+            transform: scale(1.02); /* הגדלה קלה כשמעבירים את העכבר */
         }
         form {
-            margin-bottom: 20px;
-        }
-        form p {
-            margin: 10px 0;
+            margin-bottom: 30px; /* רווח בין הטופס לשאר התוכן */
         }
         form button {
-            background-color: #007BFF;
-            color: white;
+            background-color: #3498db; /* צבע רקע לכפתור */
+            color: white; /* צבע טקסט לבן */
             border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1em;
-            transition: background-color 0.3s;
+            padding: 12px 20px; /* רווח פנימי */
+            border-radius: 5px; /* פינות מעוגלות */
+            cursor: pointer; /* משתנה לאצבע בעת ריחוף */
+            font-size: 1.1em; /* גודל טקסט */
+            transition: background-color 0.3s, transform 0.2s; /* שינוי צבע חלק בעת ריחוף */
+            display: block;
+            margin: 0 auto; /* ממקם את הכפתור במרכז */
+            width: 100%; /* הכפתור ייקח את כל הרוחב של הקונטיינר */
+            max-width: 200px; /* הגבלת רוחב הכפתור */
         }
         form button:hover {
-            background-color: #0056b3;
+            background-color: #2980b9; /* צבע כפתור בעת ריחוף */
+            transform: scale(1.05); /* הגדלה קלה של הכפתור בעת ריחוף */
         }
         .link-container {
-            text-align: center;
+            text-align: center; /* ממקם את הקישור במרכז */
         }
         .link-container a {
-            text-decoration: none;
-            color: #007BFF;
-            font-size: 1.2em;
+            text-decoration: none; /* מסיר קו תחתון */
+            color: #3498db; /* צבע קישור */
+            font-size: 1.1em; /* גודל טקסט */
+            transition: color 0.3s; /* שינוי צבע חלק בעת ריחוף */
         }
         .link-container a:hover {
-            text-decoration: underline;
+            text-decoration: underline; /* קו תחתון בעת ריחוף */
+            color: #2980b9; /* צבע קישור בעת ריחוף */
         }
     </style>
 </head>
 <body>
-    <h1>ההעדפות של {{ user.username }}</h1>
     <div class="container">
+        <h1>ההעדפות של {{ user.username }}</h1>
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}

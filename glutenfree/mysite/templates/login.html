@@ -1,3 +1,5 @@
+{% include 'base.html' %}
+
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -157,7 +159,6 @@
                 </div>
                 <div class="options">
                     <label><input type="checkbox"> Remember Me</label>
-                    <a href="{% url 'password_reset' %}">Forgot Password?</a>
                 </div>
                 <button class="login-btn" type="submit">Log In</button>
                 <div class="register-link">

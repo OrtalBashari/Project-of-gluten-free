@@ -1,32 +1,115 @@
-.about-section {
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    margin-top: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+{% include 'base.html' %}
 
-.about-section h2 {
-    font-family: 'Nerko One', cursive;
-    font-size: 32px;
-    margin-bottom: 10px;
-    color: #ff9500;
-}
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>אודות האתר</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Hebrew:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-.about-section p {
-    font-size: 18px;
-    color: #333;
-}
+    <style>
+          body {
+            font-family: 'Noto Sans Hebrew', sans-serif;
+            background-color: #ffffffa1;
+            margin: 0;
+            padding: 20px;
+            direction: rtl; /* התאמה לעברית */
+        }
 
-.about-section a {
-    color: #b18347ac;
-    text-decoration: underline;
-}
+        /* מרכז התוכן והדגשתו */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #75c3aa3a;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
 
-{% block content %}
-<div class="about-page">
-    <h1>אודות האתר</h1>
-    <p>האתר שלנו מוקדש לסיוע לאנשים עם צליאק... (תוכן מפורט).</p>
+        /* כותרת ראשית */
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        /* סגנון הסעיפים */
+        section {
+            margin-bottom: 40px;
+        }
+
+        section h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: #444;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 5px;
+        }
+
+        /* טקסט כללי */
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        /* רשימה בסעיף */
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        ul li {
+            font-size: 18px;
+            line-height: 2.0;
+            margin-bottom: 10px;
+        }
+
+
+   
+  
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>אודות Gluten-Free</h1>
+    <section>
+        <h2>מי אנחנו?</h2>
+        <p>Gluten-Free הוא המדריך שלך לעולם בריא ללא גלוטן. האתר שלנו נועד להקל על אנשים עם רגישות לגלוטן על מנת לעזור לאותם האנשים למצוא מתכונים, מוצרים וטיפים לחיים קלים יותר.</p>
+    </section>
+
+    <section>
+        <h2>מה אפשר למצוא באתר?</h2>
+        <ul>
+            <li>מתכונים מגוונים ללא גלוטן עם הוראות מפורטות.</li>
+            <li>רשימת מוצרים מומלצים המותאמים לצרכים שלך.</li>
+            <li>טיפים להתנהלות בחיי היום-יום ללא גלוטן.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>המטרה שלנו</h2>
+        <p>המטרה שלנו היא להנגיש את המידע החשוב ביותר בצורה ברורה ומזמינה, ולהוות מקום מפגש למי שמנהל אורח חיים ללא גלוטן.</p>
+    </section>
+
+    <section class="about">
+        <h2>הסיפור שלנו</h2>
+        <p>לחלק מהמשפחה שלי ישנה רגישות לגלוטן,לכן נאלצנו להתאים את החיים בבית. <br>
+            בתחילה זה היה מאתגר – למצוא מוצרים שמתאימים לכולם ולבשל מתכונים חדשים, לאט לאט גילינו שזה אפשרי, אפילו מהנה. <br>
+             מצאנו יחד דרכים להכין מאפים ללא גלוטן שאף אחד לא מאמין שהם "ללא גלוטן". <br>
+             לאורך הדרך גילינו שאפשר להמשיך ליהנות מאוכל טעים ובריא בלי גלוטן – ובזכות זה החלטתי להקים את האתר הזה. כאן תוכלו למצוא מתכונים, מוצרים מומלצים, וטיפים שיעזרו גם לכם להתנהל ביתר קלות. <br>
+             דרך האתר הזה, אני מקווה לשתף את הידע והניסיון שלנו כדי להקל על אחרים בהתמודדות דומה – ולזכור שתמיד יש פתרון, גם כשזה מרגיש מסובך.
+
+        </p> 
+    </section>
+   
 </div>
-{% endblock %}
+
+</body>
+
+</html>

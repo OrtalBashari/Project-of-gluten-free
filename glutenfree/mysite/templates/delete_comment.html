@@ -1,4 +1,6 @@
 {% load static %}
+{% include 'base.html' %}
+
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
@@ -80,7 +82,7 @@
 <body>
     <div class="card">
         <h1>אישור מחיקת תגובה</h1>
-        <p>האם אתה בטוח שברצונך למחוק את תגובה הזו?</p>
+        <p>האם אתה בטוח שברצונך למחוק תגובה הזו?</p>
 
         <form action="{% url 'delete_comment' comment.id %}" method="post">
             {% csrf_token %}

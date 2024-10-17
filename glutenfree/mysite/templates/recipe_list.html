@@ -1,10 +1,11 @@
 {% load static %}
+{% include 'base.html' %}
+
 <!DOCTYPE html>
 <html lang="he">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 
     <title>רשימת מתכונים</title>
     <style>
@@ -25,14 +26,14 @@
             margin: 30px auto;
             padding: 30px;
             background: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(122, 185, 189, 0.466);
         }
 
         /* כותרת */
         h2 {
             color: #2c3e50;
-            font-size: 28px;
+            font-size: 40px;
             margin-bottom: 20px;
             text-align: center;
             position: relative;
@@ -89,43 +90,9 @@
             font-size: 16px;
         }
 
-               /* עיצוב הכפתור */
-.btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 48px;
-    height: 48px;
-    font-size: 20px;
-    color: #fff;
-    background-color: #007BFF; /* צבע רקע הכפתור */
-    border: none;
-    border-radius: 50%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s, box-shadow 0.3s;
-    text-decoration: none;
-}
 
-.btn:hover {
-    background-color: #0056b3; /* צבע רקע כאשר עכבר מרחף מעל הכפתור */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-}
-
-.btn i {
-    font-size: 24px; /* גודל האייקון */
-}
-
-.btn-secondary {
-    background-color: #6c757d; /* צבע רקע נוסף בכפתור השני */
-}
-
-.btn-secondary:hover {
-    background-color: #5a6268; /* צבע רקע נוסף כאשר עכבר מרחף מעל הכפתור */
-}
     </style>
-    <div class="header">
-        <a href="{% url 'home' %}" class="btn btn-secondary"><i class="bi bi-house"></i></a>
-    </div>
+    
 </head>
 <body>
     <div class="container">

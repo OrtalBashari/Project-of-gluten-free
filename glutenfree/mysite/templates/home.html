@@ -12,6 +12,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Nerko+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Secular+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Hebrew:wght@400;700&display=swap" rel="stylesheet">
+
 
     <style>
 
@@ -125,39 +127,69 @@
             margin-top: 20px;
         }
 
-        .footer {
+        footer {
+            padding: 10px; /* רווח פנימי */
+    display: flex; /* מאפשר למקם את התוכן בצמוד */
+    justify-content: center; /* ממרכז את התוכן */
+    align-items: center; /* מיישר את התוכן במרכז האנכי */
+    text-align: center;
+    box-shadow: 0 -2px 5px rgba(209, 194, 194, 0.212);
+
+
+}
+
+footer {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 50px;
             background-color: #efefef92;
             color: #000000;
-            text-align: center;
             box-shadow: 0 -2px 5px rgba(255, 255, 255, 0.1);
             z-index: 1000;
-            font-family: 'Nerko One', sans-serif;
+            font-family: 'Noto Sans Hebrew', sans-serif;
+
         }
 
+.footer-content {
+    display: flex;
+    justify-content: space-between; /* ממרכז בין הטקסט לכפתורים */
+    align-items: center; /* מיישר את התוכן במרכז האנכי */
+    width: 40%; /* תופס את כל רוחב ה-footer */
+    max-width: 1200px; /* הגבלת רוחב הסרגל */
+    direction: rtl;
+    max-height: 30px;
+}
 
-        .share-buttons {
+.footer-content p {
+    margin: 0; /* מסיר רווחים */
+    font-size: 16px; /* גודל הפונט */
+    color: #333; /* צבע הטקסט */
+    text-align: center; /* מרכז את הטקסט */
+    font-family: 'Noto Sans Hebrew', sans-serif;
+
+}
+
+.copyright-symbol {
+    margin-right: 5px; /* מרווח בין הסמל לטקסט */
+}
+
+.share-buttons {
     display: flex;
     gap: 10px; /* מרווח בין הכפתורים */
-    margin-top: 20px;
-    justify-content: left; /* מרכז את הכפתורים במרכז הדף */
 }
 
 .share-button {
     display: inline-block;
     padding: 10px;
-    border-radius: 60%;
+    border-radius: 50%; /* עיגול */
     background-color: #f0f0f0;
     color: #fff;
     text-align: center;
     font-size: 24px;
-    width: 50px;
-    height: 50px;
-    line-height: 50px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
     transition: background-color 0.3s ease;
 }
 
@@ -173,6 +205,9 @@
     background-color: #ddd;
     color: #000;
 }
+
+
+
 
 .user-greeting {
     padding: 20px;
@@ -205,49 +240,45 @@
     color: #666;
 }
 
-.profile-button {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 10px 20px;
-    background-color: #ff9500; /* צבע חם */
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
 
-.profile-button:hover {
-    background-color: #d58e00; /* צבע כהה יותר בהhover */
-}
 
 .link-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
+    display: flex; /* כל הריבועים בשורה אחת */
+    flex-wrap: wrap; /* מאפשר שבירה לשורות נוספות במסכים קטנים */
+    justify-content: center; /* מיישר את כל הריבועים לצד ימין */
+    gap: 20px; /* רווח בין הריבועים */
     margin-top: 30px;
     padding: 25px;
-    background-color: #f3f3f3; /* רקע בהיר */
+    background-color: #ffffff; /* רקע בהיר */
     border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 -2px 5px rgba(255, 255, 255, 0.212);
+    direction: rtl;
+    transform: translateX(50px); /* הזזה של כל הקונטיינר ימינה */
+
+
+    
 }
 
+
 .styled-link {
-    background-size: cover; /* ודא שהתמונה מכסה את כל השטח */
+    background-size: cover; /* התמונה מכסה את כל השטח */
     background-position: center; /* ממקם את התמונה במרכז */
     background-repeat: no-repeat; /* מונע חזרה של התמונה */
-    border-radius: 15px; /* פינות מעוגלות לריבוע */
-    width: 300px;
-    height: 300px;
+    border-radius: 15px; /* פינות מעוגלות */
+    width: 250px;
+    height: 250px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Roboto', sans-serif;
-    font-size: 18px;
-    color: white;
+    font-family: 'Assistant', sans-serif;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* הצללה כהה */
+    font-size:27px;
+    color: rgb(255, 255, 255);
     text-decoration: none;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s ease, box-shadow 0.3s ease;
+
 }
 
 .styled-link:hover {
@@ -255,17 +286,20 @@
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
 
-
 .styled-link:active {
-    transform: scale(0.95); /* הקטנה קטנה בלחיצה */
+    transform: scale(0.95); /* הקטנה בלחיצה */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 @media (max-width: 768px) {
+    .link-buttons {
+        justify-content: center; /* יישור למרכז במסכים קטנים */
+    }
+
     .styled-link {
         width: 100px;
         height: 100px;
-        font-size: 16px;
+        font-size: 40px;
     }
 }
 
@@ -495,21 +529,23 @@
     
 
     <div class="link-buttons">
+        <a href="{% url 'background' %}" class="styled-link" 
+           style="background-image: url('static/images/71.jfif');">רקע על המחלה</a>
+        <a href="{% url 'treatment' %}" class="styled-link" 
+           style="background-image: url('static/images/70.jfif');">דרכי טיפול</a>
+        <a href="{% url 'public_conduct' %}" class="styled-link" 
+           style="background-image: url('static/images/69.jfif');">התנהלות במקומות ציבוריים</a>
+        <a href="{% url 'army' %}" class="styled-link" 
+           style="background-image: url('static/images/68.jfif');">צליאק בצה"ל</a>
+        <a href="{% url 'celiac_associations' %}" class="styled-link" 
+           style="background-image: url('static/images/67.jfif');">עמותות לחולי צליאק</a>
         <a href="{% url 'recipes' %}" class="styled-link" 
            style="background-image: url('static/images/18.jpg');">מתכונים</a>
         <a href="{% url 'product_list' %}" class="styled-link" 
            style="background-image: url('static/images/66.jpg');">מוצרים ללא גלוטן</a>
-        <a href="{% url 'celiac_associations' %}" class="styled-link" 
-           style="background-image: url('static/images/associations.jpg');">עמותות לחולי צליאק</a>
-        <a href="{% url 'army' %}" class="styled-link" 
-           style="background-image: url('static/images/army.jpg');">צליאק בצהל</a>
-        <a href="{% url 'public_conduct' %}" class="styled-link" 
-           style="background-image: url('static/images/10.jpg');">התנהלות במקומות ציבוריים</a>
-        <a href="{% url 'treatment' %}" class="styled-link" 
-           style="background-image: url('static/images/treatment.jpg');">דרכי טיפול</a>
-        <a href="{% url 'background' %}" class="styled-link" 
-           style="background-image: url('static/images/background.jpg');">רקע על המחלה</a>
     </div>
+    
+    
     
     
 
@@ -558,24 +594,29 @@
     </div>
 
 
-    <div class="share-buttons">
-        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank" class="share-button facebook">
-            <i class="bi bi-facebook"></i>
-        </a>
-        <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text=Check this out!" target="_blank" class="share-button twitter">
-            <i class="bi bi-twitter"></i>
-        </a>
-        
-        <a href="https://wa.me/?text={{ request.build_absolute_uri }}" target="_blank" class="share-button whatsapp">
-            <i class="bi bi-whatsapp"></i>
-        </a>
-    </div>
+    
     
 
-    <!-- Footer -->
-    <div class="footer">
-        <p>&copy; 2024 Gluten-Free Website כל הזכויות שמורות.</p>
-    </div>
+    <footer>
+        <div class="footer-content">
+            <p>
+             כל הזכויות שמורות ל- Gluten Free - המדריך <span class="copyright-symbol">©</span>
+            </p>
+            <div class="share-buttons">
+                <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank" class="share-button facebook">
+                    <i class="bi bi-facebook"></i>
+                </a>
+                <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text=Check this out!" target="_blank" class="share-button twitter">
+                    <i class="bi bi-twitter"></i>
+                </a>
+                <a href="https://wa.me/?text={{ request.build_absolute_uri }}" target="_blank" class="share-button whatsapp">
+                    <i class="bi bi-whatsapp"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+    
+    
 
     <script>
         function toggleText() {

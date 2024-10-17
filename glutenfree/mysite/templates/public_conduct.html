@@ -1,4 +1,6 @@
 {% load static %}
+{% include 'base.html' %}
+
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
@@ -7,7 +9,7 @@
     <title>Conduct in Public Places</title>
     <style>
           body {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Assistant', sans-serif;
             background: linear-gradient(to bottom right, #f0f0f0, #e0e0e0);
             background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.05) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, 0.05) 75%, rgba(0, 0, 0, 0.05) 100%),
                               linear-gradient(225deg, rgba(0, 0, 0, 0.05) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, 0.05) 75%, rgba(0, 0, 0, 0.05) 100%);
@@ -21,13 +23,13 @@
 
         h1 {
     text-align: center;
-    margin: 10px 0;
+    margin: -15px 0;
     color: #00000098;
     font-size: 2.5em; /* מגדיל את גודל הגופן */
     font-weight: bold; /* הופך את הטקסט לעבה יותר */
     letter-spacing: 1.5px; /* מוסיף ריווח בין האותיות */
     text-transform: uppercase; /* הופך את הטקסט לאותיות גדולות */
-    background: linear-gradient(to right, #ed4c41, #ffffff); /* הוספת גרדיאנט לטקסט */
+    background: linear-gradient(to right, #304fad, #f7f4f1); /* הוספת גרדיאנט לטקסט */
     -webkit-background-clip: text; /* רקע הגרדיאנט יוצג רק בטקסט */
     -webkit-text-fill-color: transparent; /* הופך את צבע המילוי של הטקסט לשקוף */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* הוספת צל לטקסט */
@@ -115,39 +117,56 @@ h1:hover::after {
         }
 
         .card-container {
-            display: flex;
-            justify-content: right;
-            flex-wrap: wrap;
-            margin: 20px 0; /* הקטנת המרווחים למעלה ולמטה */
-        }
+    display: flex;
+    justify-content: space-around; /* שימוש בשימושים רווחים יותר בין הכרטיסים */
+    flex-wrap: wrap;
+    margin: -5px 0; /* הקטנת המרווחים למעלה ולמטה */
+    
+}
 
-        .card {
-            background-color: rgba(255, 255, 255, 0.8); /* שקיפות לכרטיסיות */
-            border: 1px solid rgba(221, 221, 221, 0.8);
-            border-radius: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 250px;
-            margin: 10px;
-            text-align: center;
-            padding: 20px;
-            transition: background-color 0.3s, box-shadow 0.3s;
-        }
+.card {
+    background-color: rgba(255, 255, 255, 0.9); /* שקיפות קלה */
+    
+    border-radius: 12px; /* הקטנת הפינות */
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2); /* הצללה מודגשת */
+    width: 280px; /* הגדלת רוחב הכרטיס */
+    margin: 15px; /* הגדלת המרווחים בין הכרטיסים */
+    text-align: center;
+    padding: 20px;
+    transition: transform 0.3s, box-shadow 0.3s; /* הוספת אפקט התנועה */
+    position: relative; /* הכנת הכרטיס לשימוש באפקטים נוספים */
+}
 
-        .card:hover {
-            background-color: rgba(240, 240, 240, 0.8); /* שקיפות לכרטיסיות בהעברת עכבר */
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-        }
+.card:hover {
+    transform: translateY(-5px); /* הזזת הכרטיס כלפי מעלה בעת העברת עכבר */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3); /* הצללה מודגשת בעת העברת עכבר */
+}
 
-        .card-link {
-            text-decoration: none;
-            color: #00000098;
-            font-weight: bold;
-            font-size: 18px;
-        }
+.card-link {
+    text-decoration: none;
+    color: #2c3e50; /* צבע כהה יותר */
+    font-weight: bold;
+    font-size: 20px; /* הגדלת גודל הפונט */
+    position: relative; /* מיקום הכרטיס */
+}
 
-        .card-link:hover {
-            text-decoration: underline;
-        }
+.card-link::after {
+    content: '';
+    display: block;
+    width: 50%;
+    height: 2px;
+    background-color: #5d85cf93; /* קו תת-כותרת צבעוני */
+    margin: 10px auto 0; /* יישור מרכזי */
+    transition: width 0.3s; /* שינוי רוחב קו */
+}
+
+.card-link:hover::after {
+    width: 100%; /* קו התת-כותרת מתרחב בעת העברת עכבר */
+}
+
+.card-link:hover {
+    color: #385a9893; /* שינוי צבע הקישור בעת העברת עכבר */
+}
 
         .image-container {
             max-width: 100%;
@@ -163,51 +182,7 @@ h1:hover::after {
             filter: blur(0.5px);
         }
 
-        .footer {
-            position: fixed; 
-            bottom: 0; 
-            left: 0;
-            width: 100%; 
-            background-color: #fffcfc61; 
-            color: #000000f0; 
-            text-align: center; 
-            padding: 10px 0; 
-            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); 
-            z-index: 1000; 
-            font-family: 'Nerko One', sans-serif;
-        }
-
-        .footer p {
-            margin: 0; 
-            font-size: 14px; 
-        }
-
-        .home-btn-container {
-            display: flex;
-            justify-content: space-between; /* מפריד בין הכפתורים */
-            align-items: center; /* מרכז אנכית */
-            margin-bottom: 20px;
-        }
-
-        .home-btn {
-            font-size: 18px;
-            color: #fff;
-            padding: 12px 24px;
-            border-radius: 8px; 
-            text-decoration: none;
-            transition: all 0.3s ease; 
-            display: inline-block;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
-        }
-
-        .home-btn {
-            background-color: #e28f8f;
-        }
-
-        .home-btn:hover {
-            background-color: #bc263a90;
-            transform: scale(1.05); 
-        }
+   
 
         .image-head {
             position: relative;
@@ -253,11 +228,18 @@ h1:hover::after {
         filter: brightness(1.1);
     }
 
+    p {
+    font-size: 1.2em; /* גודל גופן חדש לפסקאות */
+}
+
+ul li {
+    font-size: 1.2em; /* גודל גופן חדש לרשימות */
+}
+
+
     </style>
 <h1>התמודדות עם המחלה במקומות ציבוריים </h1>
-<div class="home-btn-container">
-    <a href="{% url 'home' %}" class="home-btn">חזרה לדף הבית</a>
-</div>
+
 <div class="image-head">
     <div class="image-container">
         <img src="{% static 'images/44.jpg' %}" alt="תמונת נושא 1">
@@ -382,7 +364,5 @@ h1:hover::after {
     </div>
 </div>
 </body>
-<div class="footer">
-    <p>&copy; 2024 Gluten-Free Website כל הזכויות שמורות.</p>
-</div>
+
 </html>
